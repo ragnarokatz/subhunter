@@ -1,0 +1,14 @@
+{
+    "0": {
+        "Name": "Armor",
+        "Level": 5
+    },
+    "1": {
+        "Name": "ClipSize",
+        "Level": 6
+    },
+    "2": {
+        "Name": "Damage",
+        "Level": 8
+    }
+}
