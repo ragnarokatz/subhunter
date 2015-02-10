@@ -11,7 +11,6 @@ namespace Game
         private string name;
         private int latestLevel;
         private int gold;
-        private Dbase upgrades;
 
         private Player()
         {

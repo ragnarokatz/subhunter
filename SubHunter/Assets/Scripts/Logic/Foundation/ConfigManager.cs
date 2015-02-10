@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using Json = Pathfinding.Serialization.JsonFx;
 
 namespace Foundation
@@ -12,7 +13,7 @@ namespace Foundation
         private static ConfigManager instance = new ConfigManager();
         public static ConfigManager I { get { return ConfigManager.instance; } }
 
-        private Dbase allConfigs;
+        private Dictionary<string, object> allConfigs;
         private bool isInitialized = false;
 
         public void Init(string configPath)
@@ -29,9 +30,9 @@ namespace Foundation
 
         private void LoadConfigs(string configPath)
         {
-            this.allConfigs = new Dbase();
+            this.allConfigs = new Dictionary<string, object>();
 
-            var paths = Directory.GetFiles(configPath, "*.json");
+            var paths = Directory.GetFiles(configPath, "*.txt");
             var files = GetFiles(paths);
 
             System.Diagnostics.Debug.Assert(files.Length == paths.Length);
@@ -40,8 +41,8 @@ namespace Foundation
             {
                 var path = paths[i];
                 var json = File.ReadAllText(path);
-                var config = Json.JsonReader.Deserialize<Dbase>(json);
-                this.allConfigs.Set(files[i], config);
+                var config = Json.JsonReader.Deserialize<Dictionary<string, object>>(json);
+                this.allConfigs.Add(files[i], config);
             }
         }
 
@@ -56,14 +57,14 @@ namespace Foundation
             return fileNames;
         }
 
-        public Dbase GetConfig(string fileName)
+        public Dictionary<string, object> GetConfig(string fileName)
         {
-            if (! this.allConfigs.Contains(fileName))
+            if (! this.allConfigs.ContainsKey(fileName))
             {
                 Log.Error("Config with name {0} is not found.", fileName);
                 return null;
             }
-            return this.allConfigs.QueryDbase(fileName);
+            return this.allConfigs[fileName] as Dictionary<string, object>;
         }
     }
 }

@@ -3,10 +3,16 @@
 namespace Foundation
 {
     /// <summary>
-    /// Vector 2 structure.
+    /// Vector 2 for controlling movement.
     /// </summary>
     public class Vector2
     {
+        public static readonly Vector2 Left  = new Vector2(-1, 0);
+        public static readonly Vector2 Right = new Vector2(1, 0);
+        public static readonly Vector2 Up    = new Vector2(0, 1);
+        public static readonly Vector2 Down  = new Vector2(0, -1);
+        public static readonly Vector2 Zero  = new Vector2(0, 0);
+
         public static float GetDistance(Vector2 pos1, Vector2 pos2)
         {
             return pos1.DistanceTo(pos2);
@@ -28,7 +34,8 @@ namespace Foundation
             this.y = y;
         }
 
-        public float Magnitude { get { return (float) Math.Sqrt(Math.Pow(this.x, 2) + Math.Pow(this.y, 2)); } }
+        public float Magnitude    { get { return (float) Math.Sqrt(Math.Pow(this.x, 2) + Math.Pow(this.y, 2)); } }
+        public Vector2 Normalized { get { var magnitude = Magnitude; return new Vector2(this.x /= magnitude, this.y /= magnitude); } }
 
         public float DistanceTo(float x, float y)
         {
@@ -48,6 +55,16 @@ namespace Foundation
         public static Vector2 operator - (Vector2 v1, Vector2 v2)
         {
             return new Vector2(v1.x - v2.x, v1.y - v2.y);
+        }
+
+        public static Vector2 operator * (Vector2 v, float scale)
+        {
+            return new Vector2(v.x * scale, v.y * scale);
+        }
+
+        public static Vector2 operator / (Vector2 v, float scale)
+        {
+            return new Vector2(v.x / scale, v.y / scale);
         }
 
         public override string ToString()
@@ -71,17 +88,6 @@ namespace Foundation
         public override int GetHashCode()
         {
             return base.GetHashCode();
-        }
-
-        /// <summary>
-        /// Convert this particular vector to a magnitude of 1,
-        /// while maintaining its direction.
-        /// </summary>
-        public void Normalize()
-        {
-            var magnitude = Magnitude;
-            this.x /= magnitude;
-            this.y /= magnitude;
         }
     }
 }
