@@ -93,8 +93,14 @@ public class Enemy : MonoBehaviour
         if (Time.time - this.lastFireTime < FireInterval)
             return;
 
+        if (MoveType == Movement.Accelerated &&
+            Mathf.Abs(this.transform.position.x - Init.I.PlayerShip.transform.position.x) > DETECT_RANGE)
+            return;
+
         Fire();
     }
+
+    private const float DETECT_RANGE = 0.1f;
 
     private const float PAUSE_INTERVAL = 2f;
     private const float MOVE_INTERVAL = 1f;
@@ -131,16 +137,18 @@ public class Enemy : MonoBehaviour
         this.transform.position += this.dir * this.speed;
     }
 
-    private const float TARGET_SPEED = 0.005f;
+    private const float TARGET_SPEED = 0.001f;
     private void DoAcceleratedMovement()
     {
         if ((this.dir == Vector3.left && Init.I.PlayerShip.transform.position.x < this.transform.position.x) ||
             (this.dir == Vector3.right && Init.I.PlayerShip.transform.position.x > this.transform.position.x))
         {
             var distance = Mathf.Abs(Init.I.PlayerShip.transform.position.x - this.transform.position.x);
-            var reachTime = distance / ((this.speed - TARGET_SPEED) / 2);
+            var avgSpeed = (this.speed - TARGET_SPEED) / 2;
+            var reachTime = distance / avgSpeed;
             this.acceleration = (TARGET_SPEED - this.speed) / reachTime;
             this.speed += this.acceleration;
+            if (this.speed < TARGET_SPEED) this.speed = TARGET_SPEED;
             return;
         }
 
