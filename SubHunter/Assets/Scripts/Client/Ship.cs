@@ -7,12 +7,14 @@ public class Ship : MonoBehaviour
     private const float START_X = 0f;
     private const float SPEED = 0.01f;
 
-    private const float LEFT_EDGE = -3f;
-    private const float RIGHT_EDGE = 3f;
+    private const float LEFT_EDGE = -6.5f;
+    private const float RIGHT_EDGE = 6.5f;
 
     private const float FIRE_INTERVAL = 1f;
 
-    private float lastFireTime;
+    private float lastFireLeftTime;
+    private float lastFireRightTime;
+    private float lastFireMiddleTime;
 
     void Start()
     {
@@ -26,6 +28,9 @@ public class Ship : MonoBehaviour
 
         if (Input.GetKey(KeyCode.X))
             FireRight();
+
+        if (Input.GetKey(KeyCode.Space))
+            FireMiddle();
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -58,19 +63,28 @@ public class Ship : MonoBehaviour
 
     public void FireLeft()
     {
-        if (Time.time - this.lastFireTime < FIRE_INTERVAL)
+        if (Time.time - this.lastFireLeftTime < FIRE_INTERVAL)
             return;
 
         Log.Trace("Firing left.");
-        this.lastFireTime = Time.time;
+        this.lastFireLeftTime = Time.time;
     }
 
     public void FireRight()
     {
-        if (Time.time - this.lastFireTime < FIRE_INTERVAL)
+        if (Time.time - this.lastFireRightTime < FIRE_INTERVAL)
             return;
 
         Log.Trace("Firing right.");
-        this.lastFireTime = Time.time;
+        this.lastFireRightTime = Time.time;
+    }
+
+    public void FireMiddle()
+    {
+        if (Time.time - this.lastFireMiddleTime < FIRE_INTERVAL)
+            return;
+
+        Log.Trace("Firing middle.");
+        this.lastFireMiddleTime = Time.time;
     }
 }

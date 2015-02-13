@@ -1,22 +1,26 @@
 {
-	"Length" : 60,
-	"Sets" : {
-		"0" : {
-			"Scout" : 5,
-			"Torpedo" : 2,
-		},
-		"10" : {
-			"Scout" : 8,
-			"Torpedo" : 4,
-		},
-		"15": {
-			"Scout" : 4,
-			"Torpedo" : 6,
-		},
-		"25": {
-			"Bonus" : 1,
-			"Torpedo" : 4,
-			"Scout" : 3,
-		},
-	},
+    "Length" : 60,
+    "Sets" : {
+        "0" : {
+            "Scout" : 5,
+            "Torpedo" : 2,
+        },
+        "5" : {
+            "Torpedo" : 3,
+            "Missile" : 5,
+        },
+        "10" : {
+            "Scout" : 8,
+            "Torpedo" : 4,
+        },
+        "15": {
+            "Scout" : 4,
+            "Torpedo" : 6,
+        },
+        "25": {
+            "Bonus" : 1,
+            "Torpedo" : 4,
+            "Scout" : 3,
+        },
+    },
 }
