@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Torpedo;
     public GameObject Bonus;
     public GameObject Missile;
+    public GameObject Jellyfish;
+    public GameObject Firefish;
 
     private float startTime;
     private float endTime;
@@ -85,9 +87,11 @@ public class EnemySpawner : MonoBehaviour
             break;
 
         case "Jellyfish":
+            Instantiate(Jellyfish);
             break;
 
         case "Firefish":
+            Instantiate(Firefish);
             break;
         }
     }

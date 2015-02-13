@@ -1,5 +1,5 @@
-SubHunter/Library/
-SubHunter/Temp/
+SubHunter/Library/**
+SubHunter/Temp/**
 Obj
 Build
 

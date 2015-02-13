@@ -8,7 +8,6 @@ public enum Trajectory
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public Ship Ship;
     public float Speed;
     public Trajectory trajectory;
 
@@ -28,7 +27,7 @@ public class EnemyProjectile : MonoBehaviour
 
         this.formula = new QuadraticFormula(0.5f);
         this.startPos = this.transform.position;
-        if (Ship.transform.position.x < this.transform.position.x)
+        if (Init.I.PlayerShip.transform.position.x < this.transform.position.x)
         {
             this.dir = Vector3.left;
             return;

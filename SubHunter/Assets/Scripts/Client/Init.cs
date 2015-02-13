@@ -4,10 +4,17 @@ using Foundation;
 
 public class Init : MonoBehaviour
 {
+    private static Init instance;
+    public static Init I { get { return Init.instance; } }
+
+    public GameObject PlayerShip;
+
     private const string CONFIG_PATH = "Configs";
 
     void Awake()
     {
+        Init.instance = GameObject.Find("Init").GetComponent<Init>();
+
         Log.OnLog += HandleOnLog;
 
         var configPath = Path.Combine(UnityEngine.Application.dataPath, CONFIG_PATH);

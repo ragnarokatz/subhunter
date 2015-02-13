@@ -5,7 +5,7 @@ using Foundation;
 public class Ship : MonoBehaviour
 {
     private const float START_X = 0f;
-    private const float SPEED = 0.01f;
+    private const float SPEED = 0.03f;
 
     private const float LEFT_EDGE = -6.5f;
     private const float RIGHT_EDGE = 6.5f;
