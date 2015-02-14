@@ -8,30 +8,35 @@ public enum Movement
     CreepUp,
 }
 
+public enum FireType
+{
+    Interval,
+    InRange,
+}
+
 public class Enemy : MonoBehaviour
 {
-    public Movement MoveType;
-
-    public float SpeedMin;
-    public float SpeedMax;
-
-    public float SpawnCeiling;
-    public float SpawnFloor;
-
+    // Public properties
+    public Movement   MoveType;
+    public float      SpeedMin;
+    public float      SpeedMax;
+    public float      SpawnCeiling;
+    public float      SpawnFloor;
     public GameObject Weapon;
-    public float FireInterval;
+    public float      FireInterval;
+    public FireType   FireType;
 
+    // Movement
     private float initSpeed;
     private float speed;
-    private float acceleration;
-
     private Vector3 dir;
+
+    // Fire
+    private float lastFireTime;
 
     private const float LEFT_EDGE = -7f;
     private const float RIGHT_EDGE = 7f;
     private const float BOTTOM_EDGE = -4f;
-
-    private float lastFireTime;
 
     void Start()
     {
@@ -39,12 +44,14 @@ public class Enemy : MonoBehaviour
         this.initSpeed = this.speed;
         var spawnPos = Random.Range(SpawnFloor, SpawnCeiling);
 
+        // Init for creep up movement
         if (MoveType == Movement.CreepUp)
         {
             this.transform.position = new Vector3(spawnPos, BOTTOM_EDGE, this.transform.position.z);
             return;
         }
 
+        // Init for linear and accelerated movements
         var dirRandom = Random.Range(0, 2);
         if (dirRandom == 0)
         {
@@ -61,13 +68,21 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        UpdateMove();
+        UpdateFire();
+    }
+
+    private void UpdateMove()
+    {
+        // Update for creep up movement
         if (MoveType == Movement.CreepUp)
         {
-            CheckStateChange();
+            UpdateStateChange();
             DoCreepUpMovement();
             return;
         }
 
+        // Update for linear and accelerated movements
         if (this.dir == Vector3.right &&
             this.transform.position.x > RIGHT_EDGE)
         {
@@ -82,32 +97,45 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        // Update for accelerated movement
         if (MoveType == Movement.Accelerated)
+        {
             DoAcceleratedMovement();
+            return;
+        }
 
-        this.transform.position += this.dir * this.speed;
+        // Update for linear movement
+        this.transform.position += this.dir * this.speed * Time.deltaTime;
+    }
 
+    private void UpdateFire()
+    {
         if (this.Weapon == null)
             return;
 
         if (Time.time - this.lastFireTime < FireInterval)
             return;
 
-        if (MoveType == Movement.Accelerated &&
-            Mathf.Abs(this.transform.position.x - Init.I.PlayerShip.transform.position.x) > DETECT_RANGE)
+        // For interval fire
+        if (this.FireType == FireType.Interval)
+        {
+            Fire();
+            return;
+        }
+
+        // For in range fire
+        if (Mathf.Abs(this.transform.position.x - Init.I.PlayerShip.transform.position.x) > FIRE_RANGE)
             return;
 
         Fire();
     }
-
-    private const float DETECT_RANGE = 0.1f;
 
     private const float PAUSE_INTERVAL = 2f;
     private const float MOVE_INTERVAL = 1f;
     private float lastChangeTime;
     private bool isPaused;
 
-    private void CheckStateChange()
+    private void UpdateStateChange()
     {
         if (this.isPaused && Time.time - this.lastChangeTime > PAUSE_INTERVAL)
         {
@@ -134,35 +162,24 @@ public class Enemy : MonoBehaviour
         if (this.isPaused)
             return;
 
-        this.transform.position += this.dir * this.speed;
+        this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
-    private const float TARGET_SPEED = 0.001f;
+    private const float DETECT_RANGE = 1.5f;
     private void DoAcceleratedMovement()
     {
-        if ((this.dir == Vector3.left && Init.I.PlayerShip.transform.position.x < this.transform.position.x) ||
-            (this.dir == Vector3.right && Init.I.PlayerShip.transform.position.x > this.transform.position.x))
+        var dist = Mathf.Abs(this.transform.position.x - Init.I.PlayerShip.transform.position.x);
+        if (dist > DETECT_RANGE)
         {
-            var distance = Mathf.Abs(Init.I.PlayerShip.transform.position.x - this.transform.position.x);
-            var avgSpeed = (this.speed - TARGET_SPEED) / 2;
-            var reachTime = distance / avgSpeed;
-            this.acceleration = (TARGET_SPEED - this.speed) / reachTime;
-            this.speed += this.acceleration;
-            if (this.speed < TARGET_SPEED) this.speed = TARGET_SPEED;
+            this.transform.position += this.dir * this.initSpeed * Time.deltaTime;
             return;
         }
 
-        float dist;
-        if (this.dir == Vector3.left)
-            dist = this.transform.position.x - LEFT_EDGE;
-        else
-            dist = RIGHT_EDGE - this.transform.position.x;
-
-        var rt = dist / ((this.initSpeed - this.speed) / 2);
-        this.acceleration = (this.initSpeed - this.speed) / rt;
-        this.speed += this.acceleration;
+        this.speed = dist / DETECT_RANGE * this.initSpeed;
+        this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
+    private const float FIRE_RANGE = 0.05f;
     private void Fire()
     {
         var projectile = GameObject.Instantiate(Weapon) as GameObject;

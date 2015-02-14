@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum Trajectory
+public enum MotionType
 {
     Vertical,
     Quadratic,
@@ -8,8 +8,8 @@ public enum Trajectory
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public float Speed;
-    public Trajectory trajectory;
+    public MotionType Trajectory;
+    public float      Speed;
 
     private Vector3 startPos;
     private Vector3 dir;
@@ -19,12 +19,14 @@ public class EnemyProjectile : MonoBehaviour
 
     void Start()
     {
-        if (trajectory == Trajectory.Vertical)
+        // Init for vertical trajectory
+        if (Trajectory == MotionType.Vertical)
         {
             this.dir = Vector3.up;
             return;
         }
 
+        // Init for quadratic trajectory
         this.formula = new QuadraticFormula(0.5f);
         this.startPos = this.transform.position;
         if (Init.I.PlayerShip.transform.position.x < this.transform.position.x)
@@ -44,17 +46,19 @@ public class EnemyProjectile : MonoBehaviour
             return;
         }
 
-        if (trajectory == Trajectory.Vertical)
+        // Update for vertical trajectory
+        if (Trajectory == MotionType.Vertical)
         {
-            this.transform.position += this.dir * Speed;
+            this.transform.position += this.dir * Speed * Time.deltaTime;
             return;
         }
 
+        // Update for quadratic trajectory
         var x = this.transform.position.x;
         if (this.dir == Vector3.left)
-            x -= this.Speed;
+            x -= this.Speed * Time.deltaTime;
         else
-            x += this.Speed;
+            x += this.Speed * Time.deltaTime;
 
         var deltaX = x - this.startPos.x;
         var deltaY = this.formula.CalculateY(deltaX);

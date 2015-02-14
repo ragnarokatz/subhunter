@@ -50,7 +50,7 @@ public class Ship : MonoBehaviour
         if (this.transform.position.x <= LEFT_EDGE)
             return;
 
-        this.transform.position = new Vector3(this.transform.position.x - SPEED, this.transform.position.y, this.transform.position.z);
+        this.transform.position += Vector3.left * SPEED * Time.deltaTime;
     }
 
     public void MoveRight()
@@ -58,7 +58,7 @@ public class Ship : MonoBehaviour
         if (this.transform.position.x >= RIGHT_EDGE)
             return;
 
-        this.transform.position = new Vector3(this.transform.position.x + SPEED, this.transform.position.y, this.transform.position.z);
+        this.transform.position += Vector3.right * SPEED * Time.deltaTime;
     }
 
     public void FireLeft()
