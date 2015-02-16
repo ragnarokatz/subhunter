@@ -4,8 +4,11 @@ using Foundation;
 
 public class Ship : MonoBehaviour
 {
+    public float BoxWidth;
+    public float BoxHeight;
+
     private const float START_X = 0f;
-    private const float SPEED = 0.03f;
+    private const float SPEED = 3f;
 
     private const float LEFT_EDGE = -6.5f;
     private const float RIGHT_EDGE = 6.5f;
@@ -16,6 +19,8 @@ public class Ship : MonoBehaviour
     private float lastFireRightTime;
     private float lastFireMiddleTime;
 
+    public Rect Box = new Rect(0f, 0f, this.BoxWidth, this.BoxHeight);
+
     void Start()
     {
         this.transform.position = new Vector3(START_X, this.transform.position.y, this.transform.position.z);
@@ -23,6 +28,8 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
+        UpdateBox();
+
         if (Input.GetKey(KeyCode.Z))
             FireLeft();
 
@@ -43,6 +50,11 @@ public class Ship : MonoBehaviour
             MoveRight();
             return;
         }
+    }
+
+    private void UpdateBox()
+    {
+        this.Box.Set(this.transform.position.x - this.BoxWidth, this.transform.position.y - this.BoxHeight, this.BoxWidth, this.BoxHeight);
     }
 
     public void MoveLeft()
@@ -86,5 +98,10 @@ public class Ship : MonoBehaviour
 
         Log.Trace("Firing middle.");
         this.lastFireMiddleTime = Time.time;
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     public GameObject Weapon;
     public float      FireInterval;
     public FireType   FireType;
+    public float      BoxWidth;
+    public float      BoxHeight;
 
     // Movement
     private float initSpeed;
@@ -37,6 +39,9 @@ public class Enemy : MonoBehaviour
     private const float LEFT_EDGE = -7f;
     private const float RIGHT_EDGE = 7f;
     private const float BOTTOM_EDGE = -4f;
+
+    // Collision
+    public Rect Box = new Rect(0f, 0f, BoxWidth * 2, BoxHeight * 2);
 
     void Start()
     {
@@ -68,8 +73,20 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        UpdateBox();
         UpdateMove();
         UpdateFire();
+    }
+
+    private void UpdateBox()
+    {
+        this.Box.Set(this.transform.position.x - this.BoxWidth, this.transform.position.y - this.BoxHeight, this.BoxWidth, this.BoxHeight);
+
+        var ship = Init.I.PlayerShip.GetComponent<Ship>();
+        if (! this.Box.Overlaps(ship.Box))
+            return;
+
+        ship.Destroy();
     }
 
     private void UpdateMove()
