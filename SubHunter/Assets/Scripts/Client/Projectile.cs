@@ -6,7 +6,7 @@ public enum MotionType
     Quadratic,
 }
 
-public class EnemyProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public MotionType Trajectory;
     public float      Speed;

@@ -17,6 +17,8 @@ public enum FireType
 public class Enemy : MonoBehaviour
 {
     // Public properties
+    public float      BoxWidth;
+    public float      BoxHeight;
     public Movement   MoveType;
     public float      SpeedMin;
     public float      SpeedMax;
@@ -25,8 +27,7 @@ public class Enemy : MonoBehaviour
     public GameObject Weapon;
     public float      FireInterval;
     public FireType   FireType;
-    public float      BoxWidth;
-    public float      BoxHeight;
+    public float      Delay;
 
     // Movement
     private float initSpeed;
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
 
     // Fire
     private float lastFireTime;
+    private bool isExploding;
 
     private const float LEFT_EDGE = -7f;
     private const float RIGHT_EDGE = 7f;
@@ -76,6 +78,14 @@ public class Enemy : MonoBehaviour
         UpdateBox();
         UpdateMove();
         UpdateFire();
+    }
+
+    public void Explode()
+    {
+        if (this.isExploding)
+            return;
+
+        this.isExploding = true;
     }
 
     private void UpdateBox()

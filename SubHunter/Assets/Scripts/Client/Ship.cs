@@ -19,7 +19,17 @@ public class Ship : MonoBehaviour
     private float lastFireRightTime;
     private float lastFireMiddleTime;
 
-    public Rect Box = new Rect(0f, 0f, this.BoxWidth, this.BoxHeight);
+    public Rect Box
+    {
+        get
+        {
+            return new Rect(
+                    this.transform.position.x - this.BoxWidth / 2,
+                    this.transform.position.y - this.BoxHeight / 2,
+                    this.BoxWidth,
+                    this.BoxHeight);
+        }
+    }
 
     void Start()
     {
