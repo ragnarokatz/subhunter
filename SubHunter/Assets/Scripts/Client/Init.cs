@@ -7,8 +7,6 @@ public class Init : MonoBehaviour
     private static Init instance;
     public static Init I { get { return Init.instance; } }
 
-    public GameObject PlayerShip;
-
     private const string CONFIG_PATH = "Configs";
 
     void Awake()
@@ -38,16 +36,11 @@ public class Init : MonoBehaviour
         }
     }
 
-    // Use this for initialization
     void Start()
     {
+        Dimensions.Init();
 
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Game.StartGame();
     }
 
     void OnDestroy()

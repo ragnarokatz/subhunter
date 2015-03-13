@@ -31,6 +31,11 @@ public class Ship : MonoBehaviour
         }
     }
 
+    public void Explode()
+    {
+        Game.StopLevel();
+    }
+
     void Start()
     {
         this.transform.position = new Vector3(START_X, this.transform.position.y, this.transform.position.z);

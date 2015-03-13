@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Torpedo;
     public GameObject Bonus;
     public GameObject Missile;
-    public GameObject Jellyfish;
+    public GameObject Medusa;
     public GameObject Firefish;
 
     private float startTime;
@@ -17,11 +17,11 @@ public class EnemySpawner : MonoBehaviour
     private float elapsedTime { get { return Time.time - this.startTime; } }
     private Dictionary<string, object> sets;
 
-    private List<string> instantiated;
+    private List<string> spawned;
 
     void Start()
     {
-        var levelInfo = ConfigManager.I.GetConfig("Level1");
+        var levelInfo = ConfigManager.I.GetConfig("Level1"); ////----
         var length = (float) (int) levelInfo["Length"];
 
         var sets = levelInfo["Sets"] as Dictionary<string, object>;
@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         this.startTime = Time.time;
         this.endTime = this.startTime + length;
 
-        this.instantiated = new List<string>();
+        this.spawned = new List<string>();
     }
 
     void Update()
@@ -45,53 +45,53 @@ public class EnemySpawner : MonoBehaviour
                 continue;
 
             var info = kvp.Value as Dictionary<string, object>;
-            foreach (KeyValuePair<string, object> kvp2 in info)
-                Instantiate(kvp2.Key, (int) kvp2.Value);
+            foreach (var kvp2 in info)
+                Spawn(kvp2.Key, (int) kvp2.Value);
 
-            this.instantiated.Add(kvp.Key);
+            this.spawned.Add(kvp.Key);
         }
 
-        if (this.instantiated.Count == 0)
+        if (this.spawned.Count == 0)
             return;
 
-        foreach (var i in instantiated)
+        foreach (var i in spawned)
             this.sets.Remove(i);
 
-        this.instantiated.Clear();
+        this.spawned.Clear();
     }
 
-    private void Instantiate(string type, int count)
+    private void Spawn(string type, int count)
     {
         for (int i = 0; i < count; i++)
-            Instantiate(type);
+            Spawn(type);
     }
 
-    private void Instantiate(string type)
+    private void Spawn(string type)
     {
         switch (type)
         {
         case "Scout":
-            Instantiate(Scout);
+            GameObject.Instantiate(Scout);
             break;
 
         case "Bonus":
-            Instantiate(Bonus);
+            GameObject.Instantiate(Bonus);
             break;
 
         case "Torpedo":
-            Instantiate(Torpedo);
+            GameObject.Instantiate(Torpedo);
             break;
 
         case "Missile":
-            Instantiate(Missile);
+            GameObject.Instantiate(Missile);
             break;
 
         case "Jellyfish":
-            Instantiate(Jellyfish);
+            GameObject.Instantiate(Medusa);
             break;
 
         case "Firefish":
-            Instantiate(Firefish);
+            GameObject.Instantiate(Firefish);
             break;
         }
     }

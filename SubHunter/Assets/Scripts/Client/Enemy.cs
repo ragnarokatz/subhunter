@@ -1,50 +1,130 @@
 using UnityEngine;
 using Foundation;
 
-public enum Movement
+public enum Motions
 {
     Linear,
     Accelerated,
     CreepUp,
 }
 
-public enum FireType
+public enum ShootStyles
 {
     Interval,
     InRange,
 }
 
+public enum Limits
+{
+    TopEdge,
+    WaterSurface
+}
+
 public class Enemy : MonoBehaviour
 {
     // Public properties
-    public float      BoxWidth;
-    public float      BoxHeight;
-    public Movement   MoveType;
-    public float      SpeedMin;
-    public float      SpeedMax;
-    public float      SpawnCeiling;
-    public float      SpawnFloor;
+    public float BoxWidth;
+    public float BoxHeight;
+
+    public Motions Motion;
+
+    public float SpeedMin;
+    public float SpeedMax;
+
+    public float SpawnCeiling;
+    public float SpawnFloor;
+
     public GameObject Weapon;
-    public float      FireInterval;
-    public FireType   FireType;
-    public float      Delay;
+
+    public ShootStyles ShootStyle;
+    public float ShootIntervalMin;
+    public float ShootIntervalMax;
+
+    public int Points;
+
+    // Collision
+    private Rect box { get { return new Rect(this.transform.position.x - this.BoxWidth / 2,
+    this.transform.position.y - this.BoxHeight / 2, this.BoxWidth, this.BoxHeight); } }
 
     // Movement
     private float initSpeed;
     private float speed;
     private Vector3 dir;
 
-    // Fire
-    private float lastFireTime;
+    // Shoot
+    private float nextShootTime;
+
+    // Explosion
     private bool isExploding;
+    private int comboIdx;
+    private int comboChain;
 
-    private const float LEFT_EDGE = -7f;
-    private const float RIGHT_EDGE = 7f;
-    private const float BOTTOM_EDGE = -4f;
+    //==========================Explosion=============================
+    public void ExplodeByBomb()
+    {
+        if (this.isExploding)
+            return;
 
-    // Collision
-    public Rect Box = new Rect(0f, 0f, BoxWidth * 2, BoxHeight * 2);
+        this.comboIdx = Game.StartCombo();
+        this.comboChain = 1;
 
+        Explode();
+    }
+
+    public void TriggerExplode(Enemy enemy)
+    {
+        if (enemy.isExploding)
+            return;
+
+        enemy.comboIdx = this.comboIdx;
+        enemy.comboChain = Game.ChainCombo(this.comboIdx);
+
+        Explode();
+    }
+
+    private void Explode()
+    {
+        this.isExploding = true;
+
+        Player.AddScore(this.Points * this.comboChain);
+        PlayExplodeAnim();
+        ShowScoreText();
+    }
+
+    private void PlayExplodeAnim()
+    {
+        // TODO:
+    }
+
+    private void ShowScoreText()
+    {
+    }
+
+    //============================Collision================================
+    public bool IsColliding(Enemy other)
+    {
+        if (this.box.Overlaps(other.box))
+            return true;
+
+        return false;
+    }
+
+    public bool IsColliding(Ship ship)
+    {
+        if (this.box.Overlaps(ship.Box))
+            return true;
+
+        return false;
+    }
+
+    //==========================Shoot=======================================
+    private void GenerateNextShootTime()
+    {
+        var interval = Random.Range(this.ShootIntervalMin, this.ShootIntervalMax);
+        this.nextShootTime = Time.time + interval;
+    }
+
+    //======================================================================
     void Start()
     {
         this.speed = Random.Range(SpeedMin, SpeedMax);
@@ -52,9 +132,9 @@ public class Enemy : MonoBehaviour
         var spawnPos = Random.Range(SpawnFloor, SpawnCeiling);
 
         // Init for creep up movement
-        if (MoveType == Movement.CreepUp)
+        if (Motion == Motions.CreepUp)
         {
-            this.transform.position = new Vector3(spawnPos, BOTTOM_EDGE, this.transform.position.z);
+            this.transform.position = new Vector3(spawnPos, Dimensions.BOTTOM_EDGE, this.transform.position.z);
             return;
         }
 
@@ -63,46 +143,48 @@ public class Enemy : MonoBehaviour
         if (dirRandom == 0)
         {
             this.dir = Vector3.right;
-            this.transform.position = new Vector3(LEFT_EDGE, spawnPos, this.transform.position.z);
+            this.transform.position = new Vector3(Dimensions.LEFT_EDGE, spawnPos, this.transform.position.z);
             return;
         }
 
         this.dir = Vector3.left;
-        this.transform.position = new Vector3(RIGHT_EDGE, spawnPos, this.transform.position.z);
+        this.transform.position = new Vector3(Dimensions.RIGHT_EDGE, spawnPos, this.transform.position.z);
 
-        this.lastFireTime = Time.time;
+        GenerateNextShootTime();
     }
 
     void Update()
     {
-        UpdateBox();
-        UpdateMove();
-        UpdateFire();
-    }
-
-    public void Explode()
-    {
         if (this.isExploding)
+        {
+            ExplosionUpdate();
             return;
+        }
 
-        this.isExploding = true;
+        CollisionUpdate();
+
+        MoveUpdate();
+        ShootUpdate();
     }
 
-    private void UpdateBox()
+    private void ExplosionUpdate()
     {
-        this.Box.Set(this.transform.position.x - this.BoxWidth, this.transform.position.y - this.BoxHeight, this.BoxWidth, this.BoxHeight);
-
-        var ship = Init.I.PlayerShip.GetComponent<Ship>();
-        if (! this.Box.Overlaps(ship.Box))
-            return;
-
-        ship.Destroy();
+        Game.CheckExplosion(this);
     }
 
-    private void UpdateMove()
+    private void CollisionUpdate()
+    {
+        if (! IsColliding(Game.PlayerShip))
+            return;
+
+        Game.PlayerShip.Explode();
+        this.Explode();
+    }
+
+    private void MoveUpdate()
     {
         // Update for creep up movement
-        if (MoveType == Movement.CreepUp)
+        if (Motion == Motions.CreepUp)
         {
             UpdateStateChange();
             DoCreepUpMovement();
@@ -111,21 +193,21 @@ public class Enemy : MonoBehaviour
 
         // Update for linear and accelerated movements
         if (this.dir == Vector3.right &&
-            this.transform.position.x > RIGHT_EDGE)
+            this.transform.position.x > Dimensions.RIGHT_EDGE)
         {
             Destroy();
             return;
         }
 
         if (this.dir == Vector3.left &&
-            this.transform.position.x < LEFT_EDGE)
+            this.transform.position.x < Dimensions.LEFT_EDGE)
         {
             Destroy();
             return;
         }
 
         // Update for accelerated movement
-        if (MoveType == Movement.Accelerated)
+        if (Motion == Motions.Accelerated)
         {
             DoAcceleratedMovement();
             return;
@@ -135,26 +217,26 @@ public class Enemy : MonoBehaviour
         this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
-    private void UpdateFire()
+    private void ShootUpdate()
     {
         if (this.Weapon == null)
             return;
 
-        if (Time.time - this.lastFireTime < FireInterval)
+        if (Time.time < this.nextShootTime)
             return;
 
-        // For interval fire
-        if (this.FireType == FireType.Interval)
+        // For interval shoot
+        if (this.ShootStyle == ShootStyles.Interval)
         {
-            Fire();
+            Shoot();
             return;
         }
 
-        // For in range fire
-        if (Mathf.Abs(this.transform.position.x - Init.I.PlayerShip.transform.position.x) > FIRE_RANGE)
+        // For in range shoot
+        if (Mathf.Abs(this.transform.position.x - Game.PlayerShip.transform.position.x) > SHOOT_RANGE)
             return;
 
-        Fire();
+        Shoot();
     }
 
     private const float PAUSE_INTERVAL = 2f;
@@ -169,7 +251,7 @@ public class Enemy : MonoBehaviour
             this.isPaused = false;
             this.lastChangeTime = Time.time;
 
-            this.dir = (Init.I.PlayerShip.transform.position - this.transform.position).normalized;
+            this.dir = (Game.PlayerShip.transform.position - this.transform.position).normalized;
 
             return;
         }
@@ -195,7 +277,7 @@ public class Enemy : MonoBehaviour
     private const float DETECT_RANGE = 1.5f;
     private void DoAcceleratedMovement()
     {
-        var dist = Mathf.Abs(this.transform.position.x - Init.I.PlayerShip.transform.position.x);
+        var dist = Mathf.Abs(this.transform.position.x - Game.PlayerShip.transform.position.x);
         if (dist > DETECT_RANGE)
         {
             this.transform.position += this.dir * this.initSpeed * Time.deltaTime;
@@ -206,13 +288,13 @@ public class Enemy : MonoBehaviour
         this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
-    private const float FIRE_RANGE = 0.05f;
-    private void Fire()
+    private const float SHOOT_RANGE = 0.05f;
+    private void Shoot()
     {
         var projectile = GameObject.Instantiate(Weapon) as GameObject;
         projectile.transform.position = this.transform.position;
 
-        this.lastFireTime = Time.time;
+        GenerateNextShootTime();
     }
 
     private void Destroy()

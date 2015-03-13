@@ -2,9 +2,14 @@ using System;
 
 public class Player
 {
-    public int Lives { get; set; }
-    public int Level { get; set; }
-    public int Completion { get; set; }
-    public int Score { get; set; }
-    public int Clip { get; set; }
+    public static int Lives { get; set; }
+    public static int Level { get; set; }
+    public static int Completion { get; set; }
+    public static int Score { get; set; }
+    public static int Clip { get; set; }
+
+    public static void AddScore(int score)
+    {
+        Player.Score += score;
+    }
 }

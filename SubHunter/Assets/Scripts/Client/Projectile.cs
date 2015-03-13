@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
         // Init for quadratic trajectory
         this.formula = new QuadraticFormula(0.5f);
         this.startPos = this.transform.position;
-        if (Init.I.PlayerShip.transform.position.x < this.transform.position.x)
+        if (Game.PlayerShip.transform.position.x < this.transform.position.x)
         {
             this.dir = Vector3.left;
             return;
@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
         // Update for vertical trajectory
         if (Trajectory == MotionType.Vertical)
         {
-            this.transform.position += this.dir * Speed * Time.deltaTime;
+            this.transform.position += this.dir * this.Speed * Time.deltaTime;
             return;
         }
 
