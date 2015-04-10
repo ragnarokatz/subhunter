@@ -4,21 +4,6 @@ using Foundation;
 
 public class Init : MonoBehaviour
 {
-    private static Init instance;
-    public static Init I { get { return Init.instance; } }
-
-    private const string CONFIG_PATH = "Configs";
-
-    void Awake()
-    {
-        Init.instance = GameObject.Find("Init").GetComponent<Init>();
-
-        Log.OnLog += HandleOnLog;
-
-        var configPath = Path.Combine(UnityEngine.Application.dataPath, CONFIG_PATH);
-        ConfigManager.I.Init(configPath);
-    }
-
     private void HandleOnLog(Log.LogTypes type, string message)
     {
         switch (type)
@@ -38,6 +23,8 @@ public class Init : MonoBehaviour
 
     void Start()
     {
+        Log.OnLog += HandleOnLog;
+
         Game.StartGame();
     }
 

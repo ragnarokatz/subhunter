@@ -10,22 +10,25 @@ namespace Foundation
     /// </summary>
     public class ConfigManager
     {
+        static ConfigManager()
+        {
+            Init();
+        }
+
         private static ConfigManager instance = new ConfigManager();
         public static ConfigManager I { get { return ConfigManager.instance; } }
 
         private Dictionary<string, object> allConfigs;
         private bool isInitialized = false;
 
-        public void Init(string configPath)
+        private void Init()
         {
             Log.Assert(! this.isInitialized);
 
-            this.isInitialized = true;
+            var configPath = Path.Combine(UnityEngine.Application.dataPath, "Configs");
             LoadConfigs(configPath);
-        }
 
-        private ConfigManager()
-        {
+            this.isInitialized = true;
         }
 
         private void LoadConfigs(string configPath)
