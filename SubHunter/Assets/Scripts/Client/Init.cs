@@ -38,8 +38,6 @@ public class Init : MonoBehaviour
 
     void Start()
     {
-        Dimensions.Init();
-
         Game.StartGame();
     }
 

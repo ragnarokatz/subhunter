@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
         // Init for creep up movement
         if (Motion == Motions.CreepUp)
         {
-            this.transform.position = new Vector3(spawnPos, Dimensions.BOTTOM_EDGE, this.transform.position.z);
+            this.transform.position = new Vector3(spawnPos, Dimensions.BOT_EDGE, this.transform.position.z);
             return;
         }
 

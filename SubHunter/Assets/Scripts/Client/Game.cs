@@ -43,7 +43,7 @@ public class Game
     {
         var ship = Resources.Load<GameObject>("Ship");
         var shipGO = GameObject.Instantiate(ship) as GameObject;
-        shipGO.transform.position = new Vector3(0f, Dimensions.WATER_SURFACE, 0f);
+        shipGO.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
         Game.PlayerShip = shipGO.GetComponent<Ship>();
     }
 
