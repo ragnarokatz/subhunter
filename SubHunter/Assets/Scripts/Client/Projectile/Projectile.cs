@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     protected float destroyBoundary;
 
     // Collision box of the projectile
-    public Rect Box
+    protected Rect Box
     {
         get
         {

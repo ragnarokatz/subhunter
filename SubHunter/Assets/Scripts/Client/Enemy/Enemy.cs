@@ -22,42 +22,48 @@ public enum Limits
 
 public class Enemy : MonoBehaviour
 {
-    // Public properties
+    // Enemy ship dimensions
     public float Width;
     public float Height;
 
-    public Motions Motion;
-
+    // Speed
     public float SpeedMin;
     public float SpeedMax;
 
+    // Spawn locations
     public float SpawnCeiling;
     public float SpawnFloor;
 
-    public GameObject Weapon;
-
-    public ShootStyles ShootStyle;
-    public float ShootIntervalMin;
-    public float ShootIntervalMax;
-
+    // Points awarded upon destruction
     public int Points;
 
+    // Enemy's weapon
+    public GameObject Weapon;
+
     // Collision
-    private Rect Box { get { return new Rect(this.transform.position.x - this.Width / 2,
-    this.transform.position.y - this.Height / 2, this.Width, this.Height); } }
+    protected Rect Box
+    {
+        get
+        {
+            return new Rect(
+                this.transform.position.x - this.Width / 2,
+                this.transform.position.y - this.Height / 2,
+                this.Width,
+                this.Height);
+        }
+    }
 
     // Movement
-    private float initSpeed;
-    private float speed;
-    private Vector3 dir;
+    protected float speed;
+    protected Vector3 dir;
 
     // Shoot
-    private float nextShootTime;
+    protected float nextShootTime;
 
     // Explosion
-    private bool isExploding;
-    private int comboIdx;
-    private int comboChain;
+    protected bool isExploding;
+    protected int comboIdx;
+    protected int comboChain;
 
     //==========================Explosion=============================
     public void ExplodeByBomb()
@@ -71,6 +77,14 @@ public class Enemy : MonoBehaviour
         Explode();
     }
 
+    public void ExplodeByOthers()
+    {
+        if (this.isExploding)
+            return;
+
+        // TODO: 
+    }
+
     public void TriggerExplode(Enemy enemy)
     {
         if (enemy.isExploding)
@@ -82,7 +96,7 @@ public class Enemy : MonoBehaviour
         Explode();
     }
 
-    private void Explode()
+    protected void Explode()
     {
         this.isExploding = true;
 
@@ -91,13 +105,14 @@ public class Enemy : MonoBehaviour
         ShowScoreText();
     }
 
-    private void PlayExplodeAnim()
+    protected void PlayExplodeAnim()
     {
         // TODO:
     }
 
-    private void ShowScoreText()
+    protected void ShowScoreText()
     {
+        // TODO:
     }
 
     //============================Collision================================
@@ -118,14 +133,14 @@ public class Enemy : MonoBehaviour
     }
 
     //==========================Shoot=======================================
-    private void GenerateNextShootTime()
+    protected void GenerateNextShootTime()
     {
         var interval = Random.Range(this.ShootIntervalMin, this.ShootIntervalMax);
         this.nextShootTime = Time.time + interval;
     }
 
     //======================================================================
-    void Start()
+    public virtual void Start()
     {
         this.speed = Random.Range(SpeedMin, SpeedMax);
         this.initSpeed = this.speed;
@@ -153,7 +168,7 @@ public class Enemy : MonoBehaviour
         GenerateNextShootTime();
     }
 
-    void Update()
+    public virtual void Update()
     {
         if (this.isExploding)
         {
@@ -167,12 +182,12 @@ public class Enemy : MonoBehaviour
         ShootUpdate();
     }
 
-    private void ExplosionUpdate()
+    protected void ExplosionUpdate()
     {
         Game.CheckExplosion(this);
     }
 
-    private void CollisionUpdate()
+    protected void CollisionUpdate()
     {
         if (! IsColliding(Game.PlayerShip))
             return;
@@ -181,7 +196,7 @@ public class Enemy : MonoBehaviour
         this.Explode();
     }
 
-    private void MoveUpdate()
+    protected void MoveUpdate()
     {
         // Update for creep up movement
         if (Motion == Motions.CreepUp)
@@ -217,7 +232,7 @@ public class Enemy : MonoBehaviour
         this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
-    private void ShootUpdate()
+    protected void ShootUpdate()
     {
         if (this.Weapon == null)
             return;
@@ -239,12 +254,12 @@ public class Enemy : MonoBehaviour
         Shoot();
     }
 
-    private const float PAUSE_INTERVAL = 2f;
-    private const float MOVE_INTERVAL = 1f;
-    private float lastChangeTime;
-    private bool isPaused;
+    protected const float PAUSE_INTERVAL = 2f;
+    protected const float MOVE_INTERVAL = 1f;
+    protected float lastChangeTime;
+    protected bool isPaused;
 
-    private void UpdateStateChange()
+    protected void UpdateStateChange()
     {
         if (this.isPaused && Time.time - this.lastChangeTime > PAUSE_INTERVAL)
         {
@@ -266,7 +281,7 @@ public class Enemy : MonoBehaviour
         this.lastChangeTime = Time.time;
     }
 
-    private void DoCreepUpMovement()
+    protected void DoCreepUpMovement()
     {
         if (this.isPaused)
             return;
@@ -274,8 +289,8 @@ public class Enemy : MonoBehaviour
         this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
-    private const float DETECT_RANGE = 1.5f;
-    private void DoAcceleratedMovement()
+    protected const float DETECT_RANGE = 1.5f;
+    protected void DoAcceleratedMovement()
     {
         var dist = Mathf.Abs(this.transform.position.x - Game.PlayerShip.transform.position.x);
         if (dist > DETECT_RANGE)
@@ -288,8 +303,8 @@ public class Enemy : MonoBehaviour
         this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 
-    private const float SHOOT_RANGE = 0.05f;
-    private void Shoot()
+    protected const float SHOOT_RANGE = 0.05f;
+    protected void Shoot()
     {
         var projectile = GameObject.Instantiate(Weapon) as GameObject;
         projectile.transform.position = this.transform.position;
@@ -297,7 +312,7 @@ public class Enemy : MonoBehaviour
         GenerateNextShootTime();
     }
 
-    private void Destroy()
+    protected void Destroy()
     {
         Destroy(this.gameObject);
     }
