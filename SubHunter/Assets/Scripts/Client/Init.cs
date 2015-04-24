@@ -24,8 +24,6 @@ public class Init : MonoBehaviour
     void Start()
     {
         Log.OnLog += HandleOnLog;
-
-        Game.StartGame();
     }
 
     void OnDestroy()

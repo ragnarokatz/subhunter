@@ -10,18 +10,13 @@ namespace Foundation
     /// </summary>
     public class ConfigManager
     {
-        static ConfigManager()
-        {
-            Init();
-        }
-
         private static ConfigManager instance = new ConfigManager();
         public static ConfigManager I { get { return ConfigManager.instance; } }
 
         private Dictionary<string, object> allConfigs;
         private bool isInitialized = false;
 
-        private void Init()
+        private ConfigManager()
         {
             Log.Assert(! this.isInitialized);
 

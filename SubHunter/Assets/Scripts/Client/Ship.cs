@@ -4,16 +4,11 @@ using Foundation;
 
 public class Ship : MonoBehaviour
 {
-    public float BoxWidth;
-    public float BoxHeight;
+    public float Wdith;
+    public float Height;
 
-    private const float START_X = 0f;
-    private const float SPEED = 3f;
-
-    private const float LEFT_EDGE = -6.5f;
-    private const float RIGHT_EDGE = 6.5f;
-
-    private const float FIRE_INTERVAL = 1f;
+    public float Speed;
+    public float FireInterval;
 
     private float lastFireLeftTime;
     private float lastFireRightTime;
@@ -24,27 +19,20 @@ public class Ship : MonoBehaviour
         get
         {
             return new Rect(
-                    this.transform.position.x - this.BoxWidth / 2,
-                    this.transform.position.y - this.BoxHeight / 2,
-                    this.BoxWidth,
-                    this.BoxHeight);
+                    this.transform.position.x - this.Wdith / 2,
+                    this.transform.position.y - this.Height / 2,
+                    this.Wdith,
+                    this.Height);
         }
     }
 
     public void Explode()
     {
-        Game.StopLevel();
-    }
-
-    void Start()
-    {
-        this.transform.position = new Vector3(START_X, this.transform.position.y, this.transform.position.z);
+        Explosion.StartExplosion(this.transform.position);
     }
 
     void Update()
     {
-        UpdateBox();
-
         if (Input.GetKey(KeyCode.Z))
             FireLeft();
 
@@ -55,42 +43,31 @@ public class Ship : MonoBehaviour
             FireMiddle();
 
         if (Input.GetKey(KeyCode.LeftArrow))
-        {
             MoveLeft();
-            return;
-        }
 
         if (Input.GetKey(KeyCode.RightArrow))
-        {
             MoveRight();
-            return;
-        }
-    }
-
-    private void UpdateBox()
-    {
-        this.Box.Set(this.transform.position.x - this.BoxWidth, this.transform.position.y - this.BoxHeight, this.BoxWidth, this.BoxHeight);
     }
 
     public void MoveLeft()
     {
-        if (this.transform.position.x <= LEFT_EDGE)
+        if (this.transform.position.x <= Dimensions.LEFT_EDGE)
             return;
 
-        this.transform.position += Vector3.left * SPEED * Time.deltaTime;
+        this.transform.position += Vector3.left * Speed * Time.deltaTime;
     }
 
     public void MoveRight()
     {
-        if (this.transform.position.x >= RIGHT_EDGE)
+        if (this.transform.position.x >= Dimensions.RIGHT_EDGE)
             return;
 
-        this.transform.position += Vector3.right * SPEED * Time.deltaTime;
+        this.transform.position += Vector3.right * Speed * Time.deltaTime;
     }
 
     public void FireLeft()
     {
-        if (Time.time - this.lastFireLeftTime < FIRE_INTERVAL)
+        if (Time.time - this.lastFireLeftTime < this.FireInterval)
             return;
 
         Log.Trace("Firing left.");
@@ -99,7 +76,7 @@ public class Ship : MonoBehaviour
 
     public void FireRight()
     {
-        if (Time.time - this.lastFireRightTime < FIRE_INTERVAL)
+        if (Time.time - this.lastFireRightTime < this.FireInterval)
             return;
 
         Log.Trace("Firing right.");
@@ -108,7 +85,7 @@ public class Ship : MonoBehaviour
 
     public void FireMiddle()
     {
-        if (Time.time - this.lastFireMiddleTime < FIRE_INTERVAL)
+        if (Time.time - this.lastFireMiddleTime < this.FireInterval)
             return;
 
         Log.Trace("Firing middle.");

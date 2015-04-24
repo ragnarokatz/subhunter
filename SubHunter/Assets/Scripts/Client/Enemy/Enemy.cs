@@ -23,8 +23,8 @@ public enum Limits
 public class Enemy : MonoBehaviour
 {
     // Public properties
-    public float BoxWidth;
-    public float BoxHeight;
+    public float Width;
+    public float Height;
 
     public Motions Motion;
 
@@ -43,8 +43,8 @@ public class Enemy : MonoBehaviour
     public int Points;
 
     // Collision
-    private Rect box { get { return new Rect(this.transform.position.x - this.BoxWidth / 2,
-    this.transform.position.y - this.BoxHeight / 2, this.BoxWidth, this.BoxHeight); } }
+    private Rect Box { get { return new Rect(this.transform.position.x - this.Width / 2,
+    this.transform.position.y - this.Height / 2, this.Width, this.Height); } }
 
     // Movement
     private float initSpeed;
@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
     //============================Collision================================
     public bool IsColliding(Enemy other)
     {
-        if (this.box.Overlaps(other.box))
+        if (this.Box.Overlaps(other.Box))
             return true;
 
         return false;
@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
 
     public bool IsColliding(Ship ship)
     {
-        if (this.box.Overlaps(ship.Box))
+        if (this.Box.Overlaps(ship.Box))
             return true;
 
         return false;
