@@ -4,21 +4,18 @@ using System.Collections.Generic;
 
 public class Game
 {
-    public List<GameObject> projectiles;
+    public List<Projectile> projectiles;
     public List<Enemy>      enemies;
 
     //===============================Game controls============================
-    public static void StartGame()
+    public static void StartGame(int level)
     {
-        StartLevel(1);
-        Player.Clip = 5;
-        Player.Lives = 4;
-        Player.Score = 0;
+        Player.I.StartNewGame(level);
     }
 
     public static void EndGame()
     {
-        Highscore.TrySubmitHighscore();
+        HighscoreConfig.TrySubmitHighscore();
     }
 
     private static bool isActive;
@@ -61,9 +58,7 @@ public class Game
     }
 
     //================================Game entities==============================
-    public static Sub PlayerShip;
-    private static List<Enemy> enemies = new List<Enemy>();
-    private static List<Projectile> projectiles = new List<Projectile>();
+    public static Ship PlayerShip;
 
     public static void AddEnemy(Enemy enemy)
     {

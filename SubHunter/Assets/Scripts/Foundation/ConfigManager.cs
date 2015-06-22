@@ -5,9 +5,6 @@ using Json = Pathfinding.Serialization.JsonFx;
 
 namespace Foundation
 {
-    /// <summary>
-    /// Json config manager.
-    /// </summary>
     public class ConfigManager
     {
         private static ConfigManager instance = new ConfigManager();

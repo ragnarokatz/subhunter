@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Sub : Enemy
 {
-    // Public properties
     public GameObject Weapon;
     public float      ShootIntervalMin;
     public float      ShootIntervalMax;
@@ -32,6 +31,9 @@ public class Sub : Enemy
 
     protected override void Update ()
     {
+        if (this.isExploding)
+            return;
+        
         MoveUpdate();
         ShootUpdate();
     }

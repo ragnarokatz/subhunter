@@ -4,16 +4,22 @@ public class Missile : Projectile
 {
     public float AngleChangeRate;
 
-    public override void Start ()
+    protected override void Start ()
     {
         this.dir = Game.PlayerShip.transform.position - this.transform.position;
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, this.dir.y, 0f));
         this.destroyBoundary = Dimensions.TOP_EDGE;
     }
 
-    public override void Update ()
+    protected override void Update ()
     {
         base.Update ();
+
+        if (this.transform.position.y > this.destroyBoundary)
+        {
+            Destroy();
+            return;
+        }
 
         var change = this.AngleChangeRate * Time.deltaTime;
         if (Mathf.Abs(this.dir.y - Vector3.up.y) > change)

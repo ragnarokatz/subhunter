@@ -2,7 +2,7 @@
 using System.IO;
 using Foundation;
 
-public class Init : MonoBehaviour
+public class ClientInit : MonoBehaviour
 {
     private void HandleOnLog(Log.LogTypes type, string message)
     {
@@ -21,12 +21,12 @@ public class Init : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         Log.OnLog += HandleOnLog;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         Log.OnLog -= HandleOnLog;
     }

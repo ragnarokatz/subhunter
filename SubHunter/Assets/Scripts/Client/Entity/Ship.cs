@@ -1,52 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using Foundation;
 
-public class Ship : MonoBehaviour
+public class Ship : Entity
 {
-    public float Width;
-    public float Height;
-
-    public float Speed;
     public float FireInterval;
 
     private float lastFireLeftTime;
     private float lastFireRightTime;
     private float lastFireMiddleTime;
-
-    public Rect Box
-    {
-        get
-        {
-            return new Rect(
-                    this.transform.position.x - this.Width / 2,
-                    this.transform.position.y - this.Height / 2,
-                    this.Width,
-                    this.Height);
-        }
-    }
+    private bool  isExploding;
 
     public void Explode()
     {
-        Explosion.StartExplosion(this.transform.position);
-    }
+        if (this.isExploding)
+            return;
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Z))
-            FireLeft();
-
-        if (Input.GetKey(KeyCode.X))
-            FireRight();
-
-        if (Input.GetKey(KeyCode.Space))
-            FireMiddle();
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-            MoveLeft();
-
-        if (Input.GetKey(KeyCode.RightArrow))
-            MoveRight();
+        this.isExploding = true;
     }
 
     public void MoveLeft()
@@ -54,7 +24,7 @@ public class Ship : MonoBehaviour
         if (this.transform.position.x <= Dimensions.LEFT_EDGE)
             return;
 
-        this.transform.position += Vector3.left * Speed * Time.deltaTime;
+        this.transform.position += Vector3.left * this.speed * Time.deltaTime;
     }
 
     public void MoveRight()
@@ -62,7 +32,7 @@ public class Ship : MonoBehaviour
         if (this.transform.position.x >= Dimensions.RIGHT_EDGE)
             return;
 
-        this.transform.position += Vector3.right * Speed * Time.deltaTime;
+        this.transform.position += Vector3.right * this.speed * Time.deltaTime;
     }
 
     public void FireLeft()
@@ -92,8 +62,29 @@ public class Ship : MonoBehaviour
         this.lastFireMiddleTime = Time.time;
     }
 
-    public void Destroy()
+    protected override void Start ()
     {
-        Destroy(this.gameObject);
+        base.Start ();
+    }
+
+    protected override void Update()
+    {
+        if (this.isExploding)
+            return;
+
+        if (Input.GetKey(KeyCode.Z))
+            FireLeft();
+
+        if (Input.GetKey(KeyCode.X))
+            FireRight();
+
+        if (Input.GetKey(KeyCode.Space))
+            FireMiddle();
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+            MoveLeft();
+
+        if (Input.GetKey(KeyCode.RightArrow))
+            MoveRight();
     }
 }

@@ -5,30 +5,23 @@ public class Dimensions
 {
     // X dimensions (left and right)
     private static float leftEdge;
-    public static float LEFT_EDGE { get { return Dimensions.leftEdge; } }
-
     private static float rightEdge;
-    public static float RIGHT_EDGE { get { return Dimensions.rightEdge; } }
-
     private static float screenLeft;
-    public static float SCREEN_LEFT { get { return Dimensions.SCREEN_LEFT; } }
-
     private static float screenRight;
+
+    public static float RIGHT_EDGE   { get { return Dimensions.rightEdge; } }
+    public static float LEFT_EDGE    { get { return Dimensions.leftEdge; } }
+    public static float SCREEN_LEFT  { get { return Dimensions.SCREEN_LEFT; } }
     public static float SCREEN_RIGHT { get { return Dimensions.SCREEN_RIGHT; } }
 
     // Y dimensions (up and down)
-    public const float WATER = 2.65f;
-    public const float MEDUSA = 2.35f;
+    public const float WATER    = 2.65f;
+    public const float MEDUSA   = 2.35f;
     public const float TOP_EDGE = 5f;
     public const float BOT_EDGE = -5f;
-    public const float AMMO = 3.5f;
+    public const float AMMO     = 3.5f;
 
     static Dimensions()
-    {
-        Init();
-    }
-
-    private static void Init()
     {
         var width = Screen.width;
         var height = Screen.height;

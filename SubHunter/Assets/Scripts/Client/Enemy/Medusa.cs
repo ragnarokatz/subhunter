@@ -18,6 +18,9 @@ public class Medusa : Enemy
 
     protected override void Update ()
     {
+        if (this.isExploding)
+            return;
+        
         StateUpdate();
         MoveUpdate();
     }

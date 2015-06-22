@@ -2,7 +2,7 @@ using UnityEngine;
 using Foundation;
 using System.Collections.Generic;
 
-public class EnemySpawner : MonoBehaviour
+public class LevelStarter : MonoBehaviour
 {
     public GameObject Scout;
     public GameObject Torpedo;
@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     private List<string> spawned;
 
-    void Start()
+    private void Start()
     {
         var levelInfo = ConfigManager.I.GetConfig("Level1"); ////----
         var length = (float) (int) levelInfo["Length"];
@@ -33,11 +33,11 @@ public class EnemySpawner : MonoBehaviour
         this.spawned = new List<string>();
     }
 
-    void Update()
+    private void Update()
     {
         foreach (var kvp in this.sets)
         {
-            float result;
+            var result = 0f;
             if (! float.TryParse(kvp.Key, out result))
                 continue;
 

@@ -1,32 +1,13 @@
 using UnityEngine;
 using Foundation;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
-    // Public properties
-    public float Width;
-    public float Height;
-    public float SpeedMin;
-    public float SpeedMax;
     public float SpawnCeiling;
     public float SpawnFloor;
     public int   Points;
 
-    protected Vector3 dir;
-    protected float   speed;
-    protected bool    isExploding;
-
-    public Rect Box
-    {
-        get
-        {
-            return new Rect(
-                this.transform.position.x - this.Width / 2,
-                this.transform.position.y - this.Height / 2,
-                this.Width,
-                this.Height);
-        }
-    }
+    protected bool isExploding;
 
     public void Explode()
     {
@@ -36,17 +17,12 @@ public class Enemy : MonoBehaviour
         this.isExploding = true;
     }
 
-    public void Destroy()
+    protected override void Start()
     {
-        Destroy(this.gameObject);
+        base.Start();
     }
 
-    protected virtual void Start()
-    {
-        this.speed = Random.Range(SpeedMin, SpeedMax);
-    }
-
-    protected virtual void Update()
+    protected override void Update()
     {
     }
 }

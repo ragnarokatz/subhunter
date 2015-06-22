@@ -16,6 +16,9 @@ public class Firefish : Sub
 
     protected override void Update ()
     {
+        if (this.isExploding)
+            return;
+        
         MoveUpdate();
         ShootUpdate();
     }
