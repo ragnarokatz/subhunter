@@ -4,7 +4,7 @@ using Foundation;
 
 public class Ship : MonoBehaviour
 {
-    public float Wdith;
+    public float Width;
     public float Height;
 
     public float Speed;
@@ -19,9 +19,9 @@ public class Ship : MonoBehaviour
         get
         {
             return new Rect(
-                    this.transform.position.x - this.Wdith / 2,
+                    this.transform.position.x - this.Width / 2,
                     this.transform.position.y - this.Height / 2,
-                    this.Wdith,
+                    this.Width,
                     this.Height);
         }
     }

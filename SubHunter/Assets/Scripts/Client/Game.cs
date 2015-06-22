@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class Game
 {
+    public List<GameObject> projectiles;
+    public List<Enemy>      enemies;
+
     //===============================Game controls============================
     public static void StartGame()
     {
@@ -44,7 +47,7 @@ public class Game
         var ship = Resources.Load<GameObject>("Ship");
         var shipGO = GameObject.Instantiate(ship) as GameObject;
         shipGO.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
-        Game.PlayerShip = shipGO.GetComponent<Ship>();
+        Game.PlayerShip = shipGO.GetComponent<Sub>();
     }
 
     public static void PauseGame()
@@ -58,7 +61,7 @@ public class Game
     }
 
     //================================Game entities==============================
-    public static Ship PlayerShip;
+    public static Sub PlayerShip;
     private static List<Enemy> enemies = new List<Enemy>();
     private static List<Projectile> projectiles = new List<Projectile>();
 

@@ -3,7 +3,7 @@ using Foundation;
 
 public class Dimensions
 {
-    // X dimensions
+    // X dimensions (left and right)
     private static float leftEdge;
     public static float LEFT_EDGE { get { return Dimensions.leftEdge; } }
 
@@ -16,7 +16,7 @@ public class Dimensions
     private static float screenRight;
     public static float SCREEN_RIGHT { get { return Dimensions.SCREEN_RIGHT; } }
 
-    // Y Dimenions
+    // Y dimensions (up and down)
     public const float WATER = 2.65f;
     public const float MEDUSA = 2.35f;
     public const float TOP_EDGE = 5f;
