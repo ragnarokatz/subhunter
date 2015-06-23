@@ -8,7 +8,7 @@ public class HighscoreConfig
     private static HighscoreConfig instance = new HighscoreConfig();
     public static HighscoreConfig I { get { return HighscoreConfig.instance; } }
 
-    private string                     configPath;
+    private string configPath;
     private Dictionary<string, object> highscore;
 
     public int Highscore { get { return (int) this.highscore["score"]; } }

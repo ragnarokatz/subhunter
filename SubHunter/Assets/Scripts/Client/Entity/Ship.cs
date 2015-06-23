@@ -4,12 +4,15 @@ using Foundation;
 
 public class Ship : Entity
 {
+    public Game  Game;
     public float FireInterval;
 
     private float lastFireLeftTime;
     private float lastFireRightTime;
     private float lastFireMiddleTime;
     private bool  isExploding;
+    private int   clips;
+    private Buff  buff;
 
     public void Explode()
     {
@@ -65,6 +68,9 @@ public class Ship : Entity
     protected override void Start ()
     {
         base.Start ();
+
+        this.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
+        this.clips = Player.I.MaxClip;
     }
 
     protected override void Update()

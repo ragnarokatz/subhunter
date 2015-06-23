@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.IO;
 using Foundation;
 
 public class ClientInit : MonoBehaviour

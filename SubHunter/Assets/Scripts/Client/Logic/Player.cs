@@ -15,12 +15,16 @@ public class Player
     public int Score { get { return this.score; } }
     public int MaxClip { get { return this.maxClip;  } }
 
-    public void StartNewGame(int level)
+    public void StartNewGame()
     {
         this.lives   = 5;
+        this.level   = 0;
         this.score   = 0;
         this.maxClip = 5;
-        this.level   = level;
+    }
+
+    public void EndGame()
+    {
     }
 
     public void AdvanceToNextLevel()
@@ -38,7 +42,7 @@ public class Player
         this.lives++;
     }
 
-    public void Die()
+    public void LoseALife()
     {
         this.lives--;
     }
