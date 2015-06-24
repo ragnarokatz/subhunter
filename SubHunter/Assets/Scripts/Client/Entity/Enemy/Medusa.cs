@@ -18,6 +18,8 @@ public class Medusa : Enemy
 
     protected override void Update ()
     {
+        base.Update();
+
         if (this.isExploding)
             return;
         

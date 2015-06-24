@@ -31,6 +31,8 @@ public class Sub : Enemy
 
     protected override void Update ()
     {
+        base.Update();
+
         if (this.isExploding)
             return;
         

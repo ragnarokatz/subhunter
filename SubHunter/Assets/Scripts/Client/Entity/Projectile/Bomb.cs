@@ -15,6 +15,23 @@ public class Bomb : Projectile
         base.Update ();
 
         if (this.transform.position.y < this.destroyBoundary)
+        {
             Destroy();
+            return;
+        }
+
+        foreach (var enemy in EntityManager.I.Enemies)
+        {
+            if (this.Box.Overlaps(enemy.Box))
+            {
+            }
+        }
+    }
+
+    public override void Destroy ()
+    {
+        base.Destroy ();
+
+        Game.I.Ship.AddClip();
     }
 }

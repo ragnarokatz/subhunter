@@ -1,15 +1,21 @@
 using UnityEngine;
 using Foundation;
 
-public class Buff
+namespace Buff
 {
-    protected float duration;
-}
+    public class Buff
+    {
+        public static Invul   InvulBuff = new Invul();
+        public static Speedup SpeedupBuff = new Speedup();
 
-public class Invulnerability : Buff
-{
-}
+        protected float duration;
+    }
 
-public class SpeedUp : Buff
-{
+    public class Invul : Buff
+    {
+    }
+
+    public class Speedup : Buff
+    {
+    }
 }

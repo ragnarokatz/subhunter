@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 
-public class CollisionDetector
+public class Combo
 {
     private const int COMBO_LIM = 10; // Max number of combos that can happen at any given time
 
-    private static CollisionDetector instance = new CollisionDetector();
-    public static CollisionDetector I { get { return CollisionDetector.instance; } }
+    private static Combo instance = new Combo();
+    public static Combo I { get { return Combo.instance; } }
 
     private int nextComboIdx;
     private Dictionary<int, int> combos;
@@ -17,7 +17,7 @@ public class CollisionDetector
     {
         var comboIdx = this.nextComboIdx;
         this.combos[comboIdx] = 1;
-        this.nextComboIdx = (this.nextComboIdx + 1) % CollisionDetector.COMBO_LIM;
+        this.nextComboIdx = (this.nextComboIdx + 1) % Combo.COMBO_LIM;
 
         return comboIdx;
     }
@@ -34,9 +34,9 @@ public class CollisionDetector
         return chainCounter;
     }
 
-    private CollisionDetector()
+    private Combo()
     {
         this.nextComboIdx = 0;
-        this.combos = new Dictionary<int, int>(CollisionDetector.COMBO_LIM);
+        this.combos = new Dictionary<int, int>(Combo.COMBO_LIM);
     }
 }

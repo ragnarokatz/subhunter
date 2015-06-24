@@ -10,10 +10,10 @@ public class Player
     private int score;
     private int maxClip;
 
-    public int Lives { get { return this.lives; } }
-    public int Level { get { return this.level; } }
-    public int Score { get { return this.score; } }
-    public int MaxClip { get { return this.maxClip;  } }
+    public int Lives   { get { return this.lives; } }
+    public int Level   { get { return this.level; } }
+    public int Score   { get { return this.score; } }
+    public int MaxClip { get { return this.maxClip; } }
 
     public void StartNewGame()
     {

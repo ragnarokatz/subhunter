@@ -2,6 +2,7 @@
 
 public class MyTime : MonoBehaviour
 {
+    private static bool  isWorking;
     private static float t;
     private static float dt;
 
@@ -11,6 +12,17 @@ public class MyTime : MonoBehaviour
     public static void StartTime()
     {
         MyTime.t = Time.time;
+    }
+
+    public static void PauseTime(float duration)
+    {
+        MyTime.isWorking = false;
+        Invoke("ResumeTime", duration);
+    }
+
+    private static void ResumeTime()
+    {
+        MyTime.isWorking = true;
     }
 
     private void Start()

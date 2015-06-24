@@ -16,6 +16,8 @@ public class Firefish : Sub
 
     protected override void Update ()
     {
+        base.Update();
+
         if (this.isExploding)
             return;
         

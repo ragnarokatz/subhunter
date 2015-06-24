@@ -11,4 +11,10 @@ public class BonusSub : Sub
     {
         base.Update();
     }
+
+    public override void Destroy ()
+    {
+        // TODO: GameObject.Instantiate(Powerup); ////----
+        base.Destroy ();
+    }
 }

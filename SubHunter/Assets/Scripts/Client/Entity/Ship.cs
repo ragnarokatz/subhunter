@@ -11,6 +11,7 @@ public class Ship : Entity
     private float lastFireMiddleTime;
     private bool  isExploding;
     private int   clips;
+    private int   nukes;
     private Buff  buff;
 
     public void Explode()
@@ -19,6 +20,17 @@ public class Ship : Entity
             return;
 
         this.isExploding = true;
+    }
+
+    // Called only by 1. when bombs have been destroyed 2. when player picks up an extra clip
+    public void AddClip()
+    {
+        this.clips++;
+    }
+
+    public void AddNuke()
+    {
+        this.nukes++;
     }
 
     public void MoveLeft()
