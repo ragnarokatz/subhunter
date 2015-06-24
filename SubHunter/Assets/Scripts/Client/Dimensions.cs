@@ -11,8 +11,8 @@ public class Dimensions
 
     public static float RIGHT_EDGE   { get { return Dimensions.rightEdge; } }
     public static float LEFT_EDGE    { get { return Dimensions.leftEdge; } }
-    public static float SCREEN_LEFT  { get { return Dimensions.SCREEN_LEFT; } }
-    public static float SCREEN_RIGHT { get { return Dimensions.SCREEN_RIGHT; } }
+    public static float SCREEN_LEFT  { get { return Dimensions.screenLeft; } }
+    public static float SCREEN_RIGHT { get { return Dimensions.screenRight; } }
 
     // Y dimensions (up and down)
     public const float WATER    = 2.65f;

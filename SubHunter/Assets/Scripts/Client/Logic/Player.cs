@@ -29,7 +29,7 @@ public class Player
 
     public void AdvanceToNextLevel()
     {
-        this.level++ % 20;
+        this.level = (this.level + 1) % 20;
     }
 
     public void AddScore(int score)

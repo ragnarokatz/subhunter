@@ -80,19 +80,6 @@ public class Sub : Enemy
     }
 }
 
-public class BonusSub : Sub
-{
-    protected override void Start ()
-    {
-        base.Start();
-    }
-
-    protected override void Update ()
-    {
-        base.Update();
-    }
-}
-
 public class ScoutSub : Sub
 {
     protected override void Start ()

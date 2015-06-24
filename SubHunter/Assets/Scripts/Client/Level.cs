@@ -3,31 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Foundation;
 
+[RequireComponent(typeof(Game))]
 public class Level : MonoBehaviour
 {
-    public Game Game;
-
-    private bool  isRunning;
-    private float elapsedTime;
+    private float startTime;
     private int   length;
+    private bool  isRunning;
 
     public void StartLevel()
     {
-        this.isRunning = true;
-        this.elapsedTime = 0f;
-
         var level = Player.I.Level;
         var levelConfig = ConfigManager.I.GetConfig(String.Format("Level{0}", level));
         this.length = (int) levelConfig["Length"];
-    }
 
-    public void PauseLevel()
-    {
-        this.isRunning = false;
-    }
-
-    public void ResumeLevel()
-    {
+        this.startTime = MyTime.time;
         this.isRunning = true;
     }
 
@@ -40,9 +29,8 @@ public class Level : MonoBehaviour
     {
         if (! this.isRunning)
             return;
-
-        this.elapsedTime += Time.deltaTime;
-        if (this.elapsedTime > this.length)
-            this.Game.LevelBreak();
+        
+        if (MyTime.time - this.startTime > this.length)
+            Game.I.LevelBreak();
     }
 }

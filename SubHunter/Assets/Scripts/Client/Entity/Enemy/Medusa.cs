@@ -32,7 +32,7 @@ public class Medusa : Enemy
             this.isPaused = false;
             this.lastStateChangeTime = Time.time;
 
-            this.dir = (GameObserver.PlayerShip.transform.position - this.transform.position).normalized;
+            this.dir = (Game.I.Ship.transform.position - this.transform.position).normalized;
 
             return;
         }

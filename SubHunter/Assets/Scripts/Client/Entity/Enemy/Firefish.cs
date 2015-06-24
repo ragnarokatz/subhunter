@@ -25,7 +25,7 @@ public class Firefish : Sub
 
     private void MoveUpdate()
     {
-        var dist = Mathf.Abs(this.transform.position.x - GameObserver.PlayerShip.transform.position.x);
+        var dist = Mathf.Abs(this.transform.position.x - Game.I.Ship.transform.position.x);
         if (dist > DETECT_RANGE)
         {
             this.transform.position += this.dir * this.initSpeed * Time.deltaTime;
@@ -44,7 +44,7 @@ public class Firefish : Sub
         if (Time.time < this.nextShootTime)
             return;
         
-        if (Mathf.Abs(this.transform.position.x - GameObserver.PlayerShip.transform.position.x) > SHOOT_RANGE)
+        if (Mathf.Abs(this.transform.position.x - Game.I.Ship.transform.position.x) > SHOOT_RANGE)
             return;
 
         Shoot();

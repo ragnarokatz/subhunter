@@ -40,28 +40,37 @@ public class Ship : Entity
 
     public void FireLeft()
     {
+        if (this.clips <= 0)
+            return;
+
         if (Time.time - this.lastFireLeftTime < this.FireInterval)
             return;
 
-        Log.Trace("Firing left.");
+        this.clips--;
         this.lastFireLeftTime = Time.time;
     }
 
     public void FireRight()
     {
+        if (this.clips <= 0)
+            return;
+
         if (Time.time - this.lastFireRightTime < this.FireInterval)
             return;
 
-        Log.Trace("Firing right.");
+        this.clips--;
         this.lastFireRightTime = Time.time;
     }
 
     public void FireMiddle()
     {
+        if (this.clips <= 0)
+            return;
+
         if (Time.time - this.lastFireMiddleTime < this.FireInterval)
             return;
 
-        Log.Trace("Firing middle.");
+        this.clips--;
         this.lastFireMiddleTime = Time.time;
     }
 

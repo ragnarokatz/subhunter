@@ -30,7 +30,7 @@ public class Torpedo : Projectile
         {
             this.isInDelay = true;
             this.delayStartTime = Time.time;
-            this.Speed = 0f;
+            this.speed = 0f;
             this.dir = Vector3.zero;
             return;
         }
