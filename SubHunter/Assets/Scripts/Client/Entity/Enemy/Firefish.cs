@@ -3,7 +3,7 @@ using UnityEngine;
 public class Firefish : Sub
 {
     private const float DETECT_RANGE = 1.5f;
-    private const float SHOOT_RANGE = 0.05f;
+    private const float SHOOT_RANGE = 0.15f;
 
     private float initSpeed;
 

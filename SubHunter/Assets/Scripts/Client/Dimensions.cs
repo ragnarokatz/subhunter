@@ -21,7 +21,7 @@ public class Dimensions
     public const float BOT_EDGE = -5f;
     public const float AMMO     = 3.5f;
 
-    static Dimensions()
+    public static void Init()
     {
         var width = Screen.width;
         var height = Screen.height;

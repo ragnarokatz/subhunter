@@ -4,7 +4,6 @@ using Foundation;
 
 public class Ship : Entity
 {
-    public Game  Game;
     public float FireInterval;
 
     private float lastFireLeftTime;

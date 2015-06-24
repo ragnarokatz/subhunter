@@ -48,7 +48,7 @@ public class Sub : Enemy
 
     private void GenerateNextShootTime()
     {
-        this.nextShootTime = Time.time + nextShootTime;
+        this.nextShootTime = this.shootInterval + Time.time;
     }
 
     private void MoveUpdate()

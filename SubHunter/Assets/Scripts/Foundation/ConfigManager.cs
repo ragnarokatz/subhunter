@@ -11,45 +11,23 @@ namespace Foundation
         public static ConfigManager I { get { return ConfigManager.instance; } }
 
         private Dictionary<string, object> allConfigs;
-        private bool isInitialized = false;
+        private bool isInitialized;
 
         private ConfigManager()
         {
             Log.Assert(! this.isInitialized);
 
-            var configPath = Path.Combine(UnityEngine.Application.dataPath, "Configs");
-            LoadConfigs(configPath);
+            this.allConfigs = new Dictionary<string, object>();
 
             this.isInitialized = true;
         }
 
-        private void LoadConfigs(string configPath)
+        public void LoadConfig(string assetName, string assetText)
         {
-            this.allConfigs = new Dictionary<string, object>();
+            System.Diagnostics.Debug.Assert(! String.IsNullOrEmpty(assetName) && ! String.IsNullOrEmpty(assetText));
 
-            var paths = Directory.GetFiles(configPath, "*.txt");
-            var files = GetFiles(paths);
-
-            System.Diagnostics.Debug.Assert(files.Length == paths.Length);
-
-            for (int i = 0; i < paths.Length; i++)
-            {
-                var path = paths[i];
-                var json = File.ReadAllText(path);
-                var config = Json.JsonReader.Deserialize<Dictionary<string, object>>(json);
-                this.allConfigs.Add(files[i], config);
-            }
-        }
-
-        private string[] GetFiles(string[] paths)
-        {
-            string[] fileNames = new string[paths.Length];
-            for (int i = 0; i < paths.Length; i++)
-            {
-                var path = paths[i];
-                fileNames[i] = Path.GetFileNameWithoutExtension(path);
-            }
-            return fileNames;
+            var config = Json.JsonReader.Deserialize<Dictionary<string, object>>(assetText);
+            this.allConfigs.Add(assetName, config);
         }
 
         public Dictionary<string, object> GetConfig(string fileName)
@@ -59,6 +37,7 @@ namespace Foundation
                 Log.Error("Config with name {0} is not found.", fileName);
                 return null;
             }
+
             return this.allConfigs[fileName] as Dictionary<string, object>;
         }
     }

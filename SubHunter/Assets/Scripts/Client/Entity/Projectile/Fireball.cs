@@ -4,6 +4,8 @@ public class Fireball : Projectile
 {
     protected override void Start ()
     {
+        base.Start();
+
         this.dir = Vector3.up;
         this.destroyBoundary = Dimensions.TOP_EDGE;
     }

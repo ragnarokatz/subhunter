@@ -23,6 +23,12 @@ public class ClientInit : MonoBehaviour
     private void Start()
     {
         Log.OnLog += HandleOnLog;
+
+        Dimensions.Init();
+
+        var configAssets = Resources.LoadAll("Configs", typeof(TextAsset));
+        foreach (TextAsset asset in configAssets)
+            ConfigManager.I.LoadConfig(asset.name, asset.text);
     }
 
     private void OnDestroy()

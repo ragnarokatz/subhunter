@@ -3,8 +3,8 @@ using Foundation;
 
 public class Enemy : Entity
 {
-    public float SpawnCeiling;
     public float SpawnFloor;
+    public float SpawnCeiling;
     public int   Points;
 
     protected bool isExploding;

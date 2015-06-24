@@ -6,6 +6,8 @@ public class Missile : Projectile
 
     protected override void Start ()
     {
+        base.Start();
+
         this.dir = Game.I.Ship.transform.position - this.transform.position;
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, this.dir.y, 0f));
         this.destroyBoundary = Dimensions.TOP_EDGE;
