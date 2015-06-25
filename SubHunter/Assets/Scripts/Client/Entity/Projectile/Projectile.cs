@@ -11,6 +11,6 @@ public class Projectile : Entity
 
     protected override void Update()
     {
-        this.transform.position += this.dir * this.speed * Time.deltaTime;
+        base.Update();
     }
 }

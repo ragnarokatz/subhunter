@@ -3,27 +3,41 @@
 public class Powerup : Entity
 {
     protected float destroyBoundary;
+    protected float delayDuration;
+    protected float delayStartTime;
+    protected bool  isInDelay;
 
     protected override void Start()
     {
         base.Start();
 
-        this.destroyBoundary = Dimensions.WATER;
         this.dir = Vector3.up;
+        this.destroyBoundary = Dimensions.WATER;
     }
 
     protected override void Update()
     {
+        base.Update();
+
+        if (this.isInDelay)
+        {
+            if (Time.time - this.delayStartTime < this.delayDuration)
+                return;
+            
+            Destroy();
+            return;
+        }
+
         if (this.transform.position.y > this.destroyBoundary)
         {
-            StartDelay();
+            this.isInDelay = true;
+            this.delayStartTime = Time.time;
+            this.speed = 0f;
+            this.dir = Vector3.zero;
+            return;
         }
 
         this.transform.position += this.dir * this.speed * Time.deltaTime;
-    }
-
-    private void StartDelay()
-    {
     }
 
     public virtual void Effect()
@@ -51,7 +65,7 @@ public class StopTime : Powerup
 {
     public override void Effect()
     {
-        MyTime.PauseTime(10f);
+
     }
 }
 
@@ -75,7 +89,7 @@ public class Speedup : Powerup
 {
     public override void Effect()
     {
-        Game.I.Ship.AddBuff(Speedup);
+        Buff.BuffManager.AddSpeedupBuff();
     }
 }
 
@@ -83,6 +97,6 @@ public class Invulnerability : Powerup
 {
     public override void Effect()
     {
-        Game.I.Ship.AddBuff(Invulnerability);
+        Buff.BuffManager.AddInvulBuff();
     }
 }

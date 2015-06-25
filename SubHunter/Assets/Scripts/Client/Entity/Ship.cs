@@ -12,7 +12,6 @@ public class Ship : Entity
     private bool  isExploding;
     private int   clips;
     private int   nukes;
-    private Buff  buff;
 
     public void Explode()
     {
@@ -20,6 +19,9 @@ public class Ship : Entity
             return;
 
         this.isExploding = true;
+
+        GameObject.Instantiate(Game.I.Spawner.Explosion, this.transform.position, Quaternion.identity);
+        Destroy ();
     }
 
     // Called only by 1. when bombs have been destroyed 2. when player picks up an extra clip
@@ -31,6 +33,16 @@ public class Ship : Entity
     public void AddNuke()
     {
         this.nukes++;
+    }
+
+    public void Speedup()
+    {
+        this.speed = 10f;
+    }
+
+    public void RestoreSpeed()
+    {
+        this.speed = UnityEngine.Random(this.SpeedMin, this.SpeedMax);
     }
 
     public void MoveLeft()

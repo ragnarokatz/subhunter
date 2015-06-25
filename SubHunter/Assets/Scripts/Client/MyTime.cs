@@ -14,17 +14,6 @@ public class MyTime : MonoBehaviour
         MyTime.t = Time.time;
     }
 
-    public static void PauseTime(float duration)
-    {
-        MyTime.isWorking = false;
-        Invoke("ResumeTime", duration);
-    }
-
-    private static void ResumeTime()
-    {
-        MyTime.isWorking = true;
-    }
-
     private void Start()
     {
         MyTime.StartTime();

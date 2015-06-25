@@ -11,7 +11,6 @@ public class EntityManager : MonoBehaviour
     public List<Powerup>    Powerups;
     public List<Projectile> Projectiles;
     public List<Bomb>       Bombs;
-    public List<Explosion>  Explosions;
 
     private void Start()
     {
@@ -21,18 +20,15 @@ public class EntityManager : MonoBehaviour
         this.Powerups    = new List<Powerup>();
         this.Projectiles = new List<Projectile>();
         this.Bombs       = new List<Bomb>();
-        this.Explosions  = new List<Explosion>();
     }
 
     private void Update()
     {
-        if (! GameState.IsInPlayState())
-            return;
-
         EnemyUpdate();
         PowerupUpdate();
         ProjectileUpdate();
         BombUpdate();
+        ComboUpdate();
     }
 
     private void EnemyUpdate()
@@ -44,7 +40,7 @@ public class EntityManager : MonoBehaviour
 
             if (Game.I.Ship.Box.Overlaps(enemy.Box))
             {
-                enemy.ExplodeByBomb();
+                enemy.Explode();
                 Game.I.DieBreak();
                 return;
             }
@@ -55,12 +51,11 @@ public class EntityManager : MonoBehaviour
     {
         foreach (var powerup in this.Powerups)
         {
-            if (Game.I.Ship.Box.Overlaps(powerup.Box))
-            {
-                powerup.Effect();
-                powerup.Destroy();
+            if (! Game.I.Ship.Box.Overlaps(powerup.Box))
                 continue;
-            }
+
+            powerup.Effect();
+            powerup.Destroy();
         }
     }
 
@@ -68,12 +63,12 @@ public class EntityManager : MonoBehaviour
     {
         foreach (var projectile in this.Projectiles)
         {
-            if (Game.I.Ship.Box.Overlaps(projectile.Box))
-            {
-                projectile.Destroy();
-                Game.I.DieBreak();
-                return;
-            }
+            if (! Game.I.Ship.Box.Overlaps(projectile.Box))
+                continue;
+
+            projectile.Destroy();
+            Game.I.DieBreak();
+            return;
         }
     }
 
@@ -86,22 +81,27 @@ public class EntityManager : MonoBehaviour
                 if (! enemy.Box.Overlaps(bomb.Box))
                     continue;
 
-                enemy.ExplodeByBomb();
+                enemy.Explode();
                 bomb.Destroy();
             }
         }
     }
 
-    private void ExplosionUpdate()
+    // May need to be optimized for performance
+    private void ComboUpdate()
     {
-        foreach (var explosion in this.Explosions)
+        foreach (var enemy in this.Enemies)
         {
-            foreach (var enemy in this.Enemies)
+            if (! enemy.IsExploding)
+                continue;
+
+            foreach (var target in this.Enemies)
             {
-                if (! enemy.Box.Overlaps(explosion.Box))
+                if (target.IsExploding)
                     continue;
 
-                enemy.ExplodeByExplosion(explosion.ComboIdx);
+                if (target.Box.Overlaps(enemy.Box))
+                    target.Explode(enemy.ComboIdx);
             }
         }
     }

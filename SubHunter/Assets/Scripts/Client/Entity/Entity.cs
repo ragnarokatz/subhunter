@@ -35,5 +35,6 @@ public class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
+        this.transform.position += this.dir * this.speed * Time.deltaTime;
     }
 }
