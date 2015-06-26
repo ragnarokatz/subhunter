@@ -16,21 +16,31 @@ public class Firefish : Sub
 
     protected override void Update ()
     {
-        base.Update();
-
         if (this.isExploding)
+        {
+            if (Time.time - this.explodeStartTime < Enemy.EXPLODE_DURATION)
+                return;
+
+            Destroy();
             return;
-        
+        }
+
         MoveUpdate();
         ShootUpdate();
     }
 
     private void MoveUpdate()
     {
-        var dist = Mathf.Abs(this.transform.position.x - Game.I.Ship.transform.position.x);
-        if (dist > DETECT_RANGE)
+        if (Game.I.Ship == null)
         {
-            this.transform.position += this.dir * this.initSpeed * Time.deltaTime;
+            this.transform.position += this.dir * this.speed * Time.deltaTime;
+            return;
+        }
+
+        var dist = Mathf.Abs(this.transform.position.x - Game.I.Ship.transform.position.x);
+        if (dist <= DETECT_RANGE)
+        {
+            this.transform.position += this.dir * this.speed * Time.deltaTime;
             return;
         }
 
@@ -41,6 +51,9 @@ public class Firefish : Sub
     private void ShootUpdate()
     {
         if (this.Weapon == null)
+            return;
+
+        if (Game.I.Ship == null)
             return;
 
         if (Time.time < this.nextShootTime)

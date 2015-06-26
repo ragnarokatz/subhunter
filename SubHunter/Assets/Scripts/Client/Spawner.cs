@@ -84,6 +84,8 @@ public class Spawner : MonoBehaviour
             var count = (int) kvp.Value;
             for (int i = 0; i < count; i++)
                 GameObject.Instantiate(this.entityTypes[type]);
+
+            Log.Trace("Instantiating enemies type {0} x {1}.", type, count);
         }
 
         this.index++;

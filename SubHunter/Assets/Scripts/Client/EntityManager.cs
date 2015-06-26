@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using SubHunter.Powerup;
 
 public class EntityManager : MonoBehaviour
 {
     private static EntityManager instance;
     public static EntityManager I { get { return EntityManager.instance; } }
 
-    public List<Enemy>      Enemies;
-    public List<Powerup>    Powerups;
-    public List<Projectile> Projectiles;
-    public List<Bomb>       Bombs;
+    public Transform EnemyParent;
+    public Transform ProjectileParent;
+    public Transform PowerupParent;
+
+    [HideInInspector] public List<Enemy>      Enemies;
+    [HideInInspector] public List<Powerup>    Powerups;
+    [HideInInspector] public List<Projectile> Projectiles;
+    [HideInInspector] public List<Bomb>       Bombs;
 
     private void Start()
     {
@@ -24,6 +29,9 @@ public class EntityManager : MonoBehaviour
 
     private void Update()
     {
+        if (! GameState.IsInPlayState())
+            return;
+
         EnemyUpdate();
         PowerupUpdate();
         ProjectileUpdate();

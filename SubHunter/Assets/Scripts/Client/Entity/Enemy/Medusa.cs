@@ -18,8 +18,6 @@ public class Medusa : Enemy
 
     protected override void Update ()
     {
-        base.Update();
-
         if (this.isExploding)
             return;
         
@@ -34,7 +32,8 @@ public class Medusa : Enemy
             this.isPaused = false;
             this.lastStateChangeTime = Time.time;
 
-            this.dir = (Game.I.Ship.transform.position - this.transform.position).normalized;
+            var targetPos = Game.I.Ship == null ? new Vector3(Dimensions.SCREEN_LEFT, Dimensions.MEDUSA, 0f) : Game.I.Ship.transform.position;
+            this.dir = (targetPos - this.transform.position).normalized;
 
             return;
         }
@@ -55,5 +54,7 @@ public class Medusa : Enemy
             return;
 
         this.transform.position += this.dir * this.speed * Time.deltaTime;
+        if (this.transform.position.y > Dimensions.MEDUSA)
+            this.transform.position = new Vector3(this.transform.position.x, Dimensions.MEDUSA, this.transform.position.z);
     }
 }

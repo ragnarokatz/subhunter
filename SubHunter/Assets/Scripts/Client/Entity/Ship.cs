@@ -4,53 +4,30 @@ using Foundation;
 
 public class Ship : Entity
 {
-    public float FireInterval;
+    public class Data
+    {
+        public static int   Clips { get; set; }
+        public static int   Nukes { get; set; }
+        public static float Speed { get; set; }
+    }
+
+    private static Ship instance;
+    public static Ship I { get { return Ship.instance; } }
+    public static bool IsAlive { get { return Ship.instance != null; } }
+
+    public GameObject Weapon;
+    public float      FireInterval;
 
     private float lastFireLeftTime;
     private float lastFireRightTime;
     private float lastFireMiddleTime;
-    private bool  isExploding;
-    private int   clips;
-    private int   nukes;
-
-    public void Explode()
-    {
-        if (this.isExploding)
-            return;
-
-        this.isExploding = true;
-
-        GameObject.Instantiate(Game.I.Spawner.Explosion, this.transform.position, Quaternion.identity);
-        Destroy ();
-    }
-
-    // Called only by 1. when bombs have been destroyed 2. when player picks up an extra clip
-    public void AddClip()
-    {
-        this.clips++;
-    }
-
-    public void AddNuke()
-    {
-        this.nukes++;
-    }
-
-    public void Speedup()
-    {
-        this.speed = 10f;
-    }
-
-    public void RestoreSpeed()
-    {
-        this.speed = UnityEngine.Random(this.SpeedMin, this.SpeedMax);
-    }
 
     public void MoveLeft()
     {
         if (this.transform.position.x <= Dimensions.LEFT_EDGE)
             return;
 
-        this.transform.position += Vector3.left * this.speed * Time.deltaTime;
+        this.transform.position += Vector3.left * Data.Speed * Time.deltaTime;
     }
 
     public void MoveRight()
@@ -58,58 +35,81 @@ public class Ship : Entity
         if (this.transform.position.x >= Dimensions.RIGHT_EDGE)
             return;
 
-        this.transform.position += Vector3.right * this.speed * Time.deltaTime;
+        this.transform.position += Vector3.right * Data.Speed * Time.deltaTime;
     }
 
     public void FireLeft()
     {
-        if (this.clips <= 0)
+        if (Data.Clips <= 0)
             return;
-
+        
         if (Time.time - this.lastFireLeftTime < this.FireInterval)
             return;
-
-        this.clips--;
+        
+        Data.Clips--;
         this.lastFireLeftTime = Time.time;
-    }
 
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, this.transform.position.y, 0f), Quaternion.identity);
+    }
+    
     public void FireRight()
     {
-        if (this.clips <= 0)
+        if (Data.Clips <= 0)
             return;
-
+        
         if (Time.time - this.lastFireRightTime < this.FireInterval)
             return;
-
-        this.clips--;
+        
+        Data.Clips--;
         this.lastFireRightTime = Time.time;
-    }
 
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, this.transform.position.y, 0f), Quaternion.identity);
+    }
+    
     public void FireMiddle()
     {
-        if (this.clips <= 0)
+        if (Data.Clips <= 0)
             return;
-
+        
         if (Time.time - this.lastFireMiddleTime < this.FireInterval)
             return;
-
-        this.clips--;
+        
+        Data.Clips--;
         this.lastFireMiddleTime = Time.time;
+
+        GameObject.Instantiate(this.Weapon, this.transform.position, Quaternion.identity);
+    }
+
+    public void UseNuke()
+    {
+        if (Data.Nukes <= 0)
+            return;
+
+        Data.Nukes--;
+        var comboIdx = Combo.StartCombo();
+        foreach (var enemy in EntityManager.I.Enemies)
+            enemy.Explode(comboIdx);
+    }
+
+    public override void Destroy ()
+    {
+        base.Destroy ();
+
+        Ship.instance = null;
+        GameObject.Instantiate(Game.I.Spawner.Explosion, this.transform.position, Quaternion.identity);
     }
 
     protected override void Start ()
     {
-        base.Start ();
+        System.Diagnostics.Debug.Assert(Ship.instance == null);
 
+        Ship.instance = this;
         this.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
-        this.clips = Player.I.MaxClip;
+        Data.Speed = UnityEngine.Random.Range(this.SpeedMin, this.SpeedMax);
     }
 
     protected override void Update()
     {
-        if (this.isExploding)
-            return;
-
         if (Input.GetKey(KeyCode.Z))
             FireLeft();
 

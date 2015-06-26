@@ -1,111 +1,122 @@
 using UnityEngine;
 using Foundation;
 
-namespace Buff
+public class BuffManager : MonoBehaviour
 {
-    public class BuffManager : MonoBehaviour
+    private class Buff
     {
-        private class Buff
+        protected float duration;
+        public float Duration { get { return this.duration; } }
+
+        public Buff(float duration)
         {
-            protected float duration;
-            public float Duration { get { return this.duration; } }
+            this.duration = duration;
+        }
 
-            public Buff(float duration)
-            {
-                this.duration = duration;
-            }
+        public virtual void StartEffect()
+        {
+        }
 
-            public virtual void StartEffect()
-            {
-            }
+        public virtual void EndEffect()
+        {
+        }
+    }
+    
+    private class Invul : Buff
+    {
+        public Invul(float duration) : base(duration)
+        {
+        }
 
-            public virtual void EndEffect()
-            {
-            }
+    }
+    
+    private class Speedup : Buff
+    {
+        public Speedup(float duration) : base(duration)
+        {
+        }
+
+        public override void StartEffect()
+        {
+            Ship.Data.Speed = 10f;
         }
         
-        private class Invul : Buff
+        public override void EndEffect()
         {
-            public Invul(float duration) : base(duration)
-            {
-            }
+            Ship.Data.Speed = 5f;
         }
-        
-        private class Speedup : Buff
-        {
-            public Speedup(float duration) : base(duration)
-            {
-            }
+    }
 
-            public override void StartEffect()
-            {
-                Game.I.Ship.Speedup();
-            }
-            
-            public override void EndEffect()
-            {
-                Game.I.Ship.RestoreSpeed();
-            }
-        }
+    private static BuffManager instance;
+    public static BuffManager I { get { return BuffManager.instance; } }
 
-        private static BuffManager instance;
+    private static Invul   StartBuff   = new Invul(3f);
+    private static Invul   InvulBuff   = new Invul(15f);
+    private static Speedup SpeedupBuff = new Speedup(15f);
 
-        private static Invul   StartBuff   = new Invul(3f);
-        private static Invul   InvulBuff   = new Invul(15f);
-        private static Speedup SpeedupBuff = new Speedup(15f);
+    private Buff  current;
+    private bool  isInBuff;
+    private float startTime;
 
-        private static Buff current;
+    public float TimeLeft { get { return this.current.Duration - (Time.time - this.startTime); } }
 
-        public static void AddStartBuff()
-        {
-            AddBuff(BuffManager.InvulBuff);
-        }
+    public void AddStartBuff()
+    {
+        AddBuff(BuffManager.StartBuff);
+    }
 
-        public static void AddInvulBuff()
-        {
-            AddBuff(BuffManager.InvulBuff);
-        }
+    public void AddInvulBuff()
+    {
+        AddBuff(BuffManager.InvulBuff);
+    }
 
-        public static void AddSpeedupBuff()
-        {
-            AddBuff(BuffManager.SpeedupBuff);
-        }
+    public void AddSpeedupBuff()
+    {
+        AddBuff(BuffManager.SpeedupBuff);
+    }
 
-        private static void AddBuff(Buff buff)
-        {
-            if (BuffManager.current != null)
-                BuffManager.current.EndEffect();
+    public bool IsInInvulState()
+    {
+        return this.current.GetType() == typeof(Invul);
+    }
 
-            BuffManager.current = buff;
-            BuffManager.current.StartEffect();
+    public bool IsInSpeedupState()
+    {
+        return this.current.GetType() == typeof(Speedup);
+    }
 
-            BuffManager.instance.isInBuff = true;
-            BuffManager.instance.startTime = Time.time;
-        }
+    private void AddBuff(Buff buff)
+    {
+        if (this.current != null)
+            this.current.EndEffect();
 
-        private bool  isInBuff;
-        private float startTime;
+        this.current = buff;
+        this.current.StartEffect();
 
-        public float TimeLeft { get { return BuffManager.current.Duration - (Time.time - this.startTime); } }
+        this.isInBuff = true;
+        this.startTime = Time.time;
+    }
 
-        private void Start()
-        {
-            BuffManager.instance = this;
-        }
+    private void Start()
+    {
+        System.Diagnostics.Debug.Assert(BuffManager.instance == null);
 
-        private void Update()
-        {
-            if (! this.isInBuff)
-                return;
+        BuffManager.instance = this;
+        this.isInBuff = false;
+    }
 
-            System.Diagnostics.Debug.Assert(BuffManager.current != null);
+    private void Update()
+    {
+        if (! this.isInBuff)
+            return;
 
-            if (this.TimeLeft > 0f)
-                return;
+        System.Diagnostics.Debug.Assert(this.current != null);
 
-            this.isInBuff = false;
-            BuffManager.current.EndEffect();
-            BuffManager.current = null;
-        }
+        if (this.TimeLeft > 0f)
+            return;
+
+        this.isInBuff = false;
+        this.current.EndEffect();
+        this.current = null;
     }
 }

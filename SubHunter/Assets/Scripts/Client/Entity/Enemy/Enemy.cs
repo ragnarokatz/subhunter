@@ -5,15 +5,15 @@ using System;
 
 public class Enemy : Entity
 {
+    protected const float EXPLODE_DURATION = 5f;
+
     public float SpawnFloor;
     public float SpawnCeiling;
     public int   Points;
 
+    protected float explodeStartTime;
     protected bool  isExploding;
     protected int   comboIdx;
-
-    private float explodeDuration;
-    private float explodeStartTime;
 
     public bool IsExploding { get { return this.isExploding; } }
     public int  ComboIdx    { get { return this.comboIdx; } }
@@ -25,26 +25,32 @@ public class Enemy : Entity
 
         this.isExploding = true;
         this.explodeStartTime = Time.time;
-        var multiplier = 1;
 
         if (comboIdx == -1)
-        {
-            this.comboIdx = Combo.I.StartCombo();
-            Player.I.AddScore(this.Points);
-        } else
-        {
-            multiplier = Combo.I.ChainCombo(comboIdx);
-            Player.I.AddScore(this.Points * multiplier);
-        }
-        
+            this.comboIdx = Combo.StartCombo();
+        else
+            this.comboIdx = comboIdx;
+
+        var multiplier = Combo.ChainCombo(this.comboIdx);
+        Player.I.AddScore(this.Points * multiplier);
+
         GameObject.Instantiate(Game.I.Spawner.Explosion, this.transform.position, Quaternion.identity);
-        var scoreGO = GameObject.Instantiate(Game.I.Spawner.Score, this.transform.position, Quaternion.identity) as GameObject;
-        scoreGO.GetComponent<Text>().text = String.Format("{0} X {1}", this.Points, multiplier);
+        HUDControls.I.InstantiateScoreHUD(this.Points, multiplier, this.transform.position);
+    }
+
+    public override void Destroy ()
+    {
+        base.Destroy ();
+
+        EntityManager.I.Enemies.Remove(this);
     }
 
     protected override void Start()
     {
         base.Start();
+
+        EntityManager.I.Enemies.Add(this);
+        this.transform.SetParent(EntityManager.I.EnemyParent, true);
     }
 
     protected override void Update()
@@ -55,26 +61,9 @@ public class Enemy : Entity
             return;
         }
 
-        if (Time.time - this.explodeStartTime < this.explodeDuration)
+        if (Time.time - this.explodeStartTime < Enemy.EXPLODE_DURATION)
             return;
 
         Destroy ();
     }
-
-    // TODO: ////----
-    #if false
-    private void AlignScoreToEnemy()
-    {
-        var canvasRect = this.mainCanvas.GetComponent<RectTransform>();
-        var bfCamera = this.battlefieldCamera.gameObject.GetComponent<Camera>();
-        var uiMount = character.FindChild("UIMount");
-        var viewportPos = bfCamera.WorldToViewportPoint(uiMount.transform.position);
-        var screenPos = new Vector2(
-            ((viewportPos.x * canvasRect.sizeDelta.x)-(canvasRect.sizeDelta.x * 0.5f)),
-            ((viewportPos.y * canvasRect.sizeDelta.y)-(canvasRect.sizeDelta.y * 0.5f)));
-        
-        var rect = hud.GetComponent<RectTransform>();
-        rect.anchoredPosition = screenPos;
-    }
-    #endif
 }

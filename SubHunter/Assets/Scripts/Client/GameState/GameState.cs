@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Foundation;
 
 public class GameState
 {
@@ -55,6 +56,8 @@ public class GameState
         GameState.current.End();
         GameState.current = newState;
         GameState.current.Start();
+
+        Log.Trace ("Game state changed to {0}", newState.GetType().Name);
     }
 
     protected virtual void Start()

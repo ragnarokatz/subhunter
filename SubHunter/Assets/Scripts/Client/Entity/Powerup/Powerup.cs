@@ -1,102 +1,115 @@
 ﻿using UnityEngine;
 
-public class Powerup : Entity
+namespace SubHunter.Powerup
 {
-    protected float destroyBoundary;
-    protected float delayDuration;
-    protected float delayStartTime;
-    protected bool  isInDelay;
-
-    protected override void Start()
+    public class Powerup : Entity
     {
-        base.Start();
+        protected float destroyBoundary;
+        protected float delayDuration;
+        protected float delayStartTime;
+        protected bool  isInDelay;
 
-        this.dir = Vector3.up;
-        this.destroyBoundary = Dimensions.WATER;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        if (this.isInDelay)
+        protected override void Start()
         {
-            if (Time.time - this.delayStartTime < this.delayDuration)
+            base.Start();
+
+            this.dir = Vector3.up;
+            this.destroyBoundary = Dimensions.WATER;
+
+            EntityManager.I.Powerups.Add(this);
+            this.transform.SetParent(EntityManager.I.PowerupParent, true);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            if (this.isInDelay)
+            {
+                if (Time.time - this.delayStartTime < this.delayDuration)
+                    return;
+                
+                Destroy();
                 return;
-            
-            Destroy();
-            return;
+            }
+
+            if (this.transform.position.y > this.destroyBoundary)
+            {
+                this.isInDelay = true;
+                this.delayStartTime = Time.time;
+                this.speed = 0f;
+                this.dir = Vector3.zero;
+                return;
+            }
+
+            this.transform.position += this.dir * this.speed * Time.deltaTime;
         }
 
-        if (this.transform.position.y > this.destroyBoundary)
+        public override void Destroy ()
         {
-            this.isInDelay = true;
-            this.delayStartTime = Time.time;
-            this.speed = 0f;
-            this.dir = Vector3.zero;
-            return;
+            base.Destroy ();
+
+            EntityManager.I.Powerups.Remove(this);
         }
 
-        this.transform.position += this.dir * this.speed * Time.deltaTime;
+        public virtual void Effect()
+        {
+        }
     }
 
-    public virtual void Effect()
+    public class ExtraLife : Powerup
     {
+        public override void Effect()
+        {
+            Player.I.GainAnExtraLife();
+        }
     }
-}
 
-public class ExtraLife : Powerup
-{
-    public override void Effect()
+    public class ExtraClip : Powerup
     {
-        Player.I.GainAnExtraLife();
+        public override void Effect()
+        {
+            Player.I.GainAnExtraClip();
+        }
     }
-}
 
-public class ExtraClip : Powerup
-{
-    public override void Effect()
+    public class StopTime : Powerup
     {
-        Player.I.GainAnExtraClip();
+        public override void Effect()
+        {
+
+        }
     }
-}
 
-public class StopTime : Powerup
-{
-    public override void Effect()
+    public class BonusPoints : Powerup
     {
-
+        public override void Effect()
+        {
+            Player.I.AddScore(2000);
+        }
     }
-}
 
-public class BonusPoints : Powerup
-{
-    public override void Effect()
+    public class Nuke : Powerup
     {
-        Player.I.AddScore(2000);
+        public override void Effect()
+        {
+            Ship.Data.Nukes++();
+        }
     }
-}
 
-public class Nuke : Powerup
-{
-    public override void Effect()
+    public class Speedup : Powerup
     {
-        Game.I.Ship.AddNuke();
+        public override void Effect()
+        {
+            Buff.BuffManager.AddSpeedupBuff();
+        }
     }
-}
 
-public class Speedup : Powerup
-{
-    public override void Effect()
+    public class Invulnerability : Powerup
     {
-        Buff.BuffManager.AddSpeedupBuff();
-    }
-}
-
-public class Invulnerability : Powerup
-{
-    public override void Effect()
-    {
-        Buff.BuffManager.AddInvulBuff();
+        public override void Effect()
+        {
+            Buff.BuffManager.AddInvulBuff();
+        }
     }
 }
