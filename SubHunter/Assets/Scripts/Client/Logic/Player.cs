@@ -1,4 +1,5 @@
 using System;
+using Foundation;
 
 public class Player
 {
@@ -21,15 +22,20 @@ public class Player
         this.level   = 0;
         this.score   = 0;
         this.maxClip = 5;
+
+        Log.Trace("Start new game.");
     }
 
     public void EndGame()
     {
+        Log.Trace("End game.");
     }
 
     public void AdvanceToNextLevel()
     {
         this.level = (this.level + 1) % 20;
+
+        Log.Trace("Advance to leve {0}.", this.level);
     }
 
     public void AddScore(int score)

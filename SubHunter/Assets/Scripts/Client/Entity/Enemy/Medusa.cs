@@ -3,7 +3,7 @@ using UnityEngine;
 public class Medusa : Enemy
 {
     private const float PAUSE_INTERVAL = 2f;
-    private const float MOVE_INTERVAL = 1f;
+    private const float MOVE_INTERVAL  = 1f;
 
     private float lastStateChangeTime;
     private bool  isPaused;
@@ -19,7 +19,13 @@ public class Medusa : Enemy
     protected override void Update ()
     {
         if (this.isExploding)
+        {
+            if (Time.time - this.explodeStartTime < Enemy.EXPLODE_DURATION)
+                return;
+            
+            Destroy();
             return;
+        }
         
         StateUpdate();
         MoveUpdate();

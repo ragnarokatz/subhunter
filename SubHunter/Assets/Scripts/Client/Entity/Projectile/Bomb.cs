@@ -6,6 +6,7 @@ public class Bomb : Projectile
     protected override void Start ()
     {
         this.gameObject.name = this.GetType().Name;
+
         Log.Trace("Instantiate entity {0}.", this.gameObject.name);
 
         this.speed = Random.Range(SpeedMin, SpeedMax);

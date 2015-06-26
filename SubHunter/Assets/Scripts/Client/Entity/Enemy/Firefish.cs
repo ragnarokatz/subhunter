@@ -7,6 +7,11 @@ public class Firefish : Sub
 
     private float initSpeed;
 
+    public override void Destroy ()
+    {
+        base.Destroy ();
+    }
+
     protected override void Start ()
     {
         base.Start();
@@ -31,6 +36,18 @@ public class Firefish : Sub
 
     private void MoveUpdate()
     {
+        if (this.dir == Vector3.right && this.transform.position.x > Dimensions.RIGHT_EDGE)
+        {
+            Destroy();
+            return;
+        }
+        
+        if (this.dir == Vector3.left && this.transform.position.x < Dimensions.LEFT_EDGE)
+        {
+            Destroy();
+            return;
+        }
+
         if (! Ship.IsAlive)
         {
             this.transform.position += this.dir * this.speed * Time.deltaTime;

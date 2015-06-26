@@ -25,7 +25,7 @@ public class Prefabs : MonoBehaviour
     public GameObject medusa;
     public GameObject firefish;
 
-    private void Start()
+    private void Awake()
     {
         System.Diagnostics.Debug.Assert(Prefabs.instance == null);
 

@@ -11,6 +11,7 @@ public class EntityManager : MonoBehaviour
     public Transform EnemyParent;
     public Transform ProjectileParent;
     public Transform PowerupParent;
+    public Transform ExplosionParent;
 
     [HideInInspector] public List<Enemy>      Enemies;
     [HideInInspector] public List<Powerup>    Powerups;
@@ -29,11 +30,62 @@ public class EntityManager : MonoBehaviour
 
     private void Update()
     {
+        BombUpdate();
+        ComboUpdate();
+
+        if (! GameState.IsInPlayState())
+            return;
+
         EnemyUpdate();
         PowerupUpdate();
         ProjectileUpdate();
-        BombUpdate();
-        ComboUpdate();
+    }
+
+    private void BombUpdate()
+    {
+        foreach (var bomb in this.Bombs)
+        {
+            foreach (var enemy in this.Enemies)
+            {
+                if (! enemy.Box.Overlaps(bomb.Box))
+                    continue;
+                
+                enemy.Explode();
+                bomb.Destroy();
+                return;
+            }
+        }
+    }
+    
+    // May need to be optimized for performance
+    private void ComboUpdate()
+    {
+        foreach (var enemy in this.Enemies)
+        {
+            if (! enemy.IsExploding)
+                continue;
+            
+            foreach (var target in this.Enemies)
+            {
+                if (target.IsExploding)
+                    continue;
+                
+                if (target.Box.Overlaps(enemy.Box))
+                    target.Explode(enemy.ComboIdx);
+            }
+        }
+    }
+    
+    private void PowerupUpdate()
+    {
+        foreach (var powerup in this.Powerups)
+        {
+            if (! Ship.I.Box.Overlaps(powerup.Box))
+                continue;
+            
+            powerup.Effect();
+            powerup.Destroy();
+        }
     }
 
     private void EnemyUpdate()
@@ -52,18 +104,6 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    private void PowerupUpdate()
-    {
-        foreach (var powerup in this.Powerups)
-        {
-            if (! Ship.I.Box.Overlaps(powerup.Box))
-                continue;
-
-            powerup.Effect();
-            powerup.Destroy();
-        }
-    }
-
     private void ProjectileUpdate()
     {
         foreach (var projectile in this.Projectiles)
@@ -74,40 +114,6 @@ public class EntityManager : MonoBehaviour
             projectile.Destroy();
             Game.I.DieBreak();
             return;
-        }
-    }
-
-    private void BombUpdate()
-    {
-        foreach (var bomb in this.Bombs)
-        {
-            foreach (var enemy in this.Enemies)
-            {
-                if (! enemy.Box.Overlaps(bomb.Box))
-                    continue;
-
-                enemy.Explode();
-                bomb.Destroy();
-            }
-        }
-    }
-
-    // May need to be optimized for performance
-    private void ComboUpdate()
-    {
-        foreach (var enemy in this.Enemies)
-        {
-            if (! enemy.IsExploding)
-                continue;
-
-            foreach (var target in this.Enemies)
-            {
-                if (target.IsExploding)
-                    continue;
-
-                if (target.Box.Overlaps(enemy.Box))
-                    target.Explode(enemy.ComboIdx);
-            }
         }
     }
 }

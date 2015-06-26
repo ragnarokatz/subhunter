@@ -10,6 +10,8 @@ public class ExplosionAutoEnd : MonoBehaviour
     private void Start()
     {
         this.startTime = Time.time;
+
+        this.transform.SetParent(EntityManager.I.ExplosionParent, true);
     }
 
     private void Update()

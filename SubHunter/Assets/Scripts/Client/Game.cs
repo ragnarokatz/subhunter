@@ -18,6 +18,7 @@ public class Game : MonoBehaviour
 
         Player.I.StartNewGame();
         InstantiateShip();
+        Ship.Data.Clips = Player.I.MaxClip;
         this.Level.StartLevel();
         this.Spawner.StartSpawn();
     }

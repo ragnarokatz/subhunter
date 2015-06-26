@@ -45,7 +45,9 @@ public class Ship : Entity
         
         if (Time.time - this.lastFireLeftTime < this.FireInterval)
             return;
-        
+
+        Log.Trace("Fire left.");
+
         Data.Clips--;
         this.lastFireLeftTime = Time.time;
 
@@ -59,7 +61,9 @@ public class Ship : Entity
         
         if (Time.time - this.lastFireRightTime < this.FireInterval)
             return;
-        
+
+        Log.Trace("Fire right.");
+
         Data.Clips--;
         this.lastFireRightTime = Time.time;
 
@@ -73,7 +77,9 @@ public class Ship : Entity
         
         if (Time.time - this.lastFireMiddleTime < this.FireInterval)
             return;
-        
+
+        Log.Trace("Fire middle.");
+
         Data.Clips--;
         this.lastFireMiddleTime = Time.time;
 

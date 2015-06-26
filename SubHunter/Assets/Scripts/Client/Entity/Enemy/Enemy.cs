@@ -5,7 +5,7 @@ using System;
 
 public class Enemy : Entity
 {
-    protected const float EXPLODE_DURATION = 5f;
+    protected const float EXPLODE_DURATION = 1f;
 
     public float SpawnFloor;
     public float SpawnCeiling;

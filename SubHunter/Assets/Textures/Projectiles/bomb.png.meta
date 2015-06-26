@@ -12,6 +12,11 @@ TextureImporter:
     21300014: ammo_2
     21300016: ammo_3
     21300018: ammo_4
+    21300020: bomb_0
+    21300022: bomb_1
+    21300024: bomb_2
+    21300026: bomb_3
+    21300028: bomb_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,7 +58,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: ammo_0
+    - name: bomb_0
       rect:
         serializedVersion: 2
         x: 5
@@ -63,7 +68,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ammo_1
+    - name: bomb_1
       rect:
         serializedVersion: 2
         x: 21
@@ -73,7 +78,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ammo_2
+    - name: bomb_2
       rect:
         serializedVersion: 2
         x: 43
@@ -83,7 +88,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ammo_3
+    - name: bomb_3
       rect:
         serializedVersion: 2
         x: 61
@@ -93,7 +98,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ammo_4
+    - name: bomb_4
       rect:
         serializedVersion: 2
         x: 85
