@@ -8,7 +8,8 @@ public class Missile : Projectile
     {
         base.Start();
 
-        this.dir = Game.I.Ship.transform.position - this.transform.position;
+        var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(0f, Dimensions.WATER, 0f);
+        this.dir = targetPos - this.transform.position;
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, this.dir.y, 0f));
         this.destroyBoundary = Dimensions.TOP_EDGE;
     }

@@ -34,7 +34,7 @@ public class Enemy : Entity
         var multiplier = Combo.ChainCombo(this.comboIdx);
         Player.I.AddScore(this.Points * multiplier);
 
-        GameObject.Instantiate(Game.I.Spawner.Explosion, this.transform.position, Quaternion.identity);
+        GameObject.Instantiate(Prefabs.Explosion, this.transform.position, Quaternion.identity);
         HUDControls.I.InstantiateScoreHUD(this.Points, multiplier, this.transform.position);
     }
 

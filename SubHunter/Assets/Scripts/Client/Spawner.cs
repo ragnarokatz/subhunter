@@ -3,19 +3,9 @@ using Foundation;
 using System;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Level))]
-[RequireComponent(typeof(Game))]
+[RequireComponent(typeof(Prefabs))]
 public class Spawner : MonoBehaviour
 {
-    public GameObject Ship;
-    public GameObject Explosion;
-    public GameObject Scout;
-    public GameObject Torpedo;
-    public GameObject Bonus;
-    public GameObject Missile;
-    public GameObject Medusa;
-    public GameObject Firefish;
-
     private Dictionary<string, GameObject> entityTypes;
 
     private bool  isWorking;
@@ -53,12 +43,12 @@ public class Spawner : MonoBehaviour
     {
         this.entityTypes = new Dictionary<string, GameObject>(6);
 
-        this.entityTypes.Add("Scout", this.Scout);
-        this.entityTypes.Add("Missile", this.Missile);
-        this.entityTypes.Add("Torpedo", this.Torpedo);
-        this.entityTypes.Add("Bonus", this.Bonus);
-        this.entityTypes.Add("Firefish", this.Firefish);
-        this.entityTypes.Add("Medusa", this.Medusa);
+        this.entityTypes.Add("Scout", Prefabs.Scout);
+        this.entityTypes.Add("Missile", Prefabs.Missile);
+        this.entityTypes.Add("Torpedo", Prefabs.Torpedo);
+        this.entityTypes.Add("Bonus", Prefabs.Bonus);
+        this.entityTypes.Add("Firefish", Prefabs.Firefish);
+        this.entityTypes.Add("Medusa", Prefabs.Medusa);
     }
 
     private void Update()

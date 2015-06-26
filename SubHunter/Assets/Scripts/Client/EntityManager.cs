@@ -29,9 +29,6 @@ public class EntityManager : MonoBehaviour
 
     private void Update()
     {
-        if (! GameState.IsInPlayState())
-            return;
-
         EnemyUpdate();
         PowerupUpdate();
         ProjectileUpdate();
@@ -46,7 +43,7 @@ public class EntityManager : MonoBehaviour
             if (! (enemy is Medusa))
                 continue;
 
-            if (Game.I.Ship.Box.Overlaps(enemy.Box))
+            if (Ship.I.Box.Overlaps(enemy.Box))
             {
                 enemy.Explode();
                 Game.I.DieBreak();
@@ -59,7 +56,7 @@ public class EntityManager : MonoBehaviour
     {
         foreach (var powerup in this.Powerups)
         {
-            if (! Game.I.Ship.Box.Overlaps(powerup.Box))
+            if (! Ship.I.Box.Overlaps(powerup.Box))
                 continue;
 
             powerup.Effect();
@@ -71,7 +68,7 @@ public class EntityManager : MonoBehaviour
     {
         foreach (var projectile in this.Projectiles)
         {
-            if (! Game.I.Ship.Box.Overlaps(projectile.Box))
+            if (! Ship.I.Box.Overlaps(projectile.Box))
                 continue;
 
             projectile.Destroy();

@@ -3,33 +3,31 @@ using System.IO;
 using System.Collections.Generic;
 using Foundation;
 
-public class HighscoreConfig
+public class Highscore
 {
-    private static HighscoreConfig instance = new HighscoreConfig();
-    public static HighscoreConfig I { get { return HighscoreConfig.instance; } }
-
-    private string configPath;
-    private Dictionary<string, object> highscore;
-
-    public int Highscore { get { return (int) this.highscore["score"]; } }
-
-    public bool TrySubmitHighscore(int score)
+    static Highscore()
     {
-        if (score <= this.Highscore)
+        Highscore.configPath = Path.Combine(Application.persistentDataPath, "Highscore.json");
+        Highscore.config  = IOCore.I.LoadConfig(configPath) ?? new Dictionary<string, object>();
+    }
+
+    private static string configPath;
+    private static Dictionary<string, object> config;
+
+    public static int Score { get { return (int) Highscore.config["score"]; } }
+
+    public static bool TrySubmitHighscore(int score)
+    {
+        if (score <= Highscore.Score)
             return false;
 
-        this.highscore["score"] = score;
-        IOCore.I.SaveConfig(this.configPath, this.highscore);
+        Highscore.config["score"] = score;
+        IOCore.I.SaveConfig(Highscore.configPath, Highscore.config);
         return true;
     }
 
-    private HighscoreConfig()
-    {
-        this.configPath = Path.Combine(Application.persistentDataPath, "Highscore.json");
-        this.highscore  = IOCore.I.LoadConfig(configPath) ?? new Dictionary<string, object>();
-    }
-
-    #if false // Old design ////----
+    // Old design ////----
+    #if false
     private class Record
     {
         public string name;

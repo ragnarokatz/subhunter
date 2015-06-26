@@ -31,13 +31,13 @@ public class Firefish : Sub
 
     private void MoveUpdate()
     {
-        if (Game.I.Ship == null)
+        if (! Ship.IsAlive)
         {
             this.transform.position += this.dir * this.speed * Time.deltaTime;
             return;
         }
 
-        var dist = Mathf.Abs(this.transform.position.x - Game.I.Ship.transform.position.x);
+        var dist = Mathf.Abs(this.transform.position.x - Ship.I.transform.position.x);
         if (dist <= DETECT_RANGE)
         {
             this.transform.position += this.dir * this.speed * Time.deltaTime;
@@ -53,13 +53,13 @@ public class Firefish : Sub
         if (this.Weapon == null)
             return;
 
-        if (Game.I.Ship == null)
+        if (! Ship.IsAlive)
             return;
 
         if (Time.time < this.nextShootTime)
             return;
         
-        if (Mathf.Abs(this.transform.position.x - Game.I.Ship.transform.position.x) > SHOOT_RANGE)
+        if (Mathf.Abs(this.transform.position.x - Ship.I.transform.position.x) > SHOOT_RANGE)
             return;
 
         Shoot();

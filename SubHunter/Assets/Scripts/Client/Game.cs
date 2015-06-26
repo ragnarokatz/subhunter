@@ -7,7 +7,6 @@ public class Game : MonoBehaviour
     private static Game instance;
     public static Game I { get { return Game.instance; } }
 
-    public Ship    Ship;
     public Level   Level;
     public Spawner Spawner;
 
@@ -27,12 +26,12 @@ public class Game : MonoBehaviour
     {
         GameState.ChangeToWaitState();
 
-        DestroyShip();
         Player.I.EndGame();
+        DestroyShip();
         this.Level.EndLevel();
         this.Spawner.FinishSpawn();
 
-        HighscoreConfig.I.TrySubmitHighscore(Player.I.Score);
+        Highscore.TrySubmitHighscore(Player.I.Score);
     }
 
     public void PauseGame()
@@ -88,14 +87,12 @@ public class Game : MonoBehaviour
 
     private void InstantiateShip()
     {
-        var shipGO = GameObject.Instantiate(Spawner.Ship) as GameObject;
-        this.Ship = shipGO.GetComponent<Ship>();
+        GameObject.Instantiate(Prefabs.Ship);
     }
 
     private void DestroyShip()
     {
-        this.Ship.Destroy();
-        this.Ship = null;
+        Ship.I.Destroy();
     }
 
     private void Start()

@@ -96,7 +96,7 @@ public class Ship : Entity
         base.Destroy ();
 
         Ship.instance = null;
-        GameObject.Instantiate(Game.I.Spawner.Explosion, this.transform.position, Quaternion.identity);
+        GameObject.Instantiate(Prefabs.Explosion, this.transform.position, Quaternion.identity);
     }
 
     protected override void Start ()

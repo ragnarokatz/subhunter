@@ -32,7 +32,7 @@ public class Medusa : Enemy
             this.isPaused = false;
             this.lastStateChangeTime = Time.time;
 
-            var targetPos = Game.I.Ship == null ? new Vector3(Dimensions.SCREEN_LEFT, Dimensions.MEDUSA, 0f) : Game.I.Ship.transform.position;
+            var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(Dimensions.SCREEN_LEFT, Dimensions.MEDUSA, 0f);
             this.dir = (targetPos - this.transform.position).normalized;
 
             return;

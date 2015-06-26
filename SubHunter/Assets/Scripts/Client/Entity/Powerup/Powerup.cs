@@ -93,7 +93,7 @@ namespace SubHunter.Powerup
     {
         public override void Effect()
         {
-            Ship.Data.Nukes++();
+            Ship.Data.Nukes++;
         }
     }
 
@@ -101,7 +101,7 @@ namespace SubHunter.Powerup
     {
         public override void Effect()
         {
-            Buff.BuffManager.AddSpeedupBuff();
+            BuffManager.I.AddSpeedupBuff();
         }
     }
 
@@ -109,7 +109,7 @@ namespace SubHunter.Powerup
     {
         public override void Effect()
         {
-            Buff.BuffManager.AddInvulBuff();
+            BuffManager.I.AddInvulBuff();
         }
     }
 }
