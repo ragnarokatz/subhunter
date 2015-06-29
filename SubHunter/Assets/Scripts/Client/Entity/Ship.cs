@@ -6,9 +6,52 @@ public class Ship : Entity
 {
     public class Data
     {
-        public static int   Clip  { get; set; }
-        public static int   Nukes { get; set; }
-        public static float Speed { get; set; }
+        private static int   clip;
+        private static int   nuke;
+        private static float speed;
+
+        public static int   Clip  { get { return Data.clip; } }
+        public static int   Nuke  { get { return Data.nuke; } }
+        public static float Speed { get { return Data.speed; } }
+
+        public static void Init()
+        {
+            Data.clip  = 5;
+            Data.nuke  = 0;
+            Data.speed = 3f;
+        }
+
+        public static void UseClip()
+        {
+            Data.clip--;
+            EventManager.UpdateAttrib("Clip", Data.clip);
+        }
+
+        public static void AddClip()
+        {
+            Data.clip++;
+            EventManager.UpdateAttrib("Clip", Data.clip);
+        }
+
+        public static void UseNuke()
+        {
+            Data.nuke--;
+        }
+
+        public static void AddNuke()
+        {
+            Data.nuke++;
+        }
+
+        public static void Speedup()
+        {
+            Data.speed = 7f;
+        }
+
+        public static void RestoreSpeed()
+        {
+            Data.speed = 3f;
+        }
     }
 
     private static Ship instance;
@@ -48,7 +91,7 @@ public class Ship : Entity
 
         Log.Trace("Fire left.");
 
-        Data.Clip--;
+        Data.UseClip();
         this.lastFireLeftTime = Time.time;
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, this.transform.position.y, 0f), Quaternion.identity);
@@ -64,7 +107,7 @@ public class Ship : Entity
 
         Log.Trace("Fire right.");
 
-        Data.Clip--;
+        Data.UseClip();
         this.lastFireRightTime = Time.time;
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, this.transform.position.y, 0f), Quaternion.identity);
@@ -80,7 +123,7 @@ public class Ship : Entity
 
         Log.Trace("Fire middle.");
 
-        Data.Clip--;
+        Data.UseClip();
         this.lastFireMiddleTime = Time.time;
 
         GameObject.Instantiate(this.Weapon, this.transform.position, Quaternion.identity);
@@ -88,10 +131,10 @@ public class Ship : Entity
 
     public void UseNuke()
     {
-        if (Data.Nukes <= 0)
+        if (Data.Nuke <= 0)
             return;
 
-        Data.Nukes--;
+        Data.UseNuke();
         var comboIdx = Combo.StartCombo();
         foreach (var enemy in EntityManager.I.Enemies)
             enemy.Explode(comboIdx);

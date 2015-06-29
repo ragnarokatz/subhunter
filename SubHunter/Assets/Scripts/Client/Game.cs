@@ -17,8 +17,6 @@ public class Game : MonoBehaviour
 
         GameState.ChangeToPlayState();
 
-        MyTime.StartTime();
-
         Player.I.StartNewGame();
         InstantiateShip();
         Ship.Data.Clip = Player.I.MaxClip;
@@ -62,7 +60,7 @@ public class Game : MonoBehaviour
         if (Player.I.Lives > 0)
             Invoke("ResumeLevel", 5f);
         else
-            Invoke("EndGame", 2f);
+            Invoke("EndGame", 1f);
     }
 
     public void LevelBreak()
@@ -89,8 +87,6 @@ public class Game : MonoBehaviour
     {
         GameState.ChangeToPlayState();
 
-        MyTime.StartTime();
-
         InstantiateShip();
         Player.I.AdvanceToNextLevel();
         this.Level.StartLevel();
@@ -112,9 +108,5 @@ public class Game : MonoBehaviour
         Game.instance = this;
 
         GameState.ChangeToWaitState();
-    }
-
-    private void Update()
-    {
     }
 }

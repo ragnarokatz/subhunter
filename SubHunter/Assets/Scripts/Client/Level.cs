@@ -16,7 +16,7 @@ public class Level : MonoBehaviour
         var levelConfig = ConfigManager.I.GetConfig(String.Format("Level{0}", level));
         this.length = (int) levelConfig["Length"];
 
-        this.startTime = MyTime.time;
+        this.startTime = Time.time;
         this.isRunning = true;
 
         Log.Trace("Starting level {0}.", level);
@@ -32,7 +32,7 @@ public class Level : MonoBehaviour
         if (! this.isRunning)
             return;
         
-        if (MyTime.time - this.startTime > this.length)
+        if (Time.time - this.startTime > this.length)
             Game.I.LevelBreak();
     }
 }

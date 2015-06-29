@@ -38,12 +38,12 @@ public class BuffManager : MonoBehaviour
 
         public override void StartEffect()
         {
-            Ship.Data.Speed = 10f;
+            Ship.Data.Speedup();
         }
         
         public override void EndEffect()
         {
-            Ship.Data.Speed = 5f;
+            Ship.Data.RestoreSpeed();
         }
     }
 

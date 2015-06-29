@@ -92,14 +92,20 @@ public class EntityManager : MonoBehaviour
     {
         foreach (var enemy in this.Enemies)
         {
-            if (! (enemy is Medusa))
+            if (! Ship.I.Box.Overlaps(enemy.Box))
                 continue;
 
-            if (Ship.I.Box.Overlaps(enemy.Box))
+            if (enemy is Medusa)
             {
                 enemy.Explode();
                 Game.I.DieBreak();
                 return;
+            }
+
+            if (enemy.IsExploding)
+            {
+                enemy.Explode();
+                Game.I.DieBreak();
             }
         }
     }

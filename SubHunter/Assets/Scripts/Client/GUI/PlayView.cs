@@ -11,32 +11,24 @@ public class PlayView : MonoBehaviour
 
     private void Start()
     {
-        Player.I.OnUpdatePlayerInfo += HandleOnUpdatePlayerInfo;
+        EventManager.OnUpdate += UpdateAttribs;
     }
 
-    private void HandleOnUpdatePlayerInfo (string type, int value)
+    private void UpdateAttribs(string type)
     {
         switch (type)
         {
-        case "Level":
-            this.Level.text = value.ToString();
-            var anim = this.Level.GetComponent<Animator>();
-            anim.SetTrigger("Play");
+        case "level":
+            this.Level.text = Player.I.Level.ToString();
             break;
-        case "Score":
-            this.Score.text = value.ToString();
-            anim = this.Score.GetComponent<Animator>();
-            anim.SetTrigger("Play");
+        case "life":
+            this.Life.text = Player.I.Lives.ToString();
             break;
-        case "Life":
-            this.Life.text = value.ToString();
-            anim = this.Life.GetComponent<Animator>();
-            anim.SetTrigger("Play");
+        case "clip":
+            this.Clip.text = Ship.Data.Clip.ToString();
             break;
-        case "Clip":
-            this.Clip.text = value.ToString();
-            anim = this.Clip.GetComponent<Animator>();
-            anim.SetTrigger("Play");
+        case "score":
+            this.Score.text = Player.I.Score.ToString();
             break;
         default:
             System.Diagnostics.Debug.Assert(false, "Impossible here.");

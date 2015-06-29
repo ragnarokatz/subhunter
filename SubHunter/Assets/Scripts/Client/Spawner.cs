@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
             i++;
         }
 
-        this.startTime = MyTime.time;
+        this.startTime = Time.time;
         this.index = 0;
     }
 
@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour
         }
 
         var nextTime = this.times[this.index];
-        if (MyTime.time - this.startTime < nextTime)
+        if (Time.time - this.startTime < nextTime)
             return;
 
         var key = this.times[this.index].ToString();
