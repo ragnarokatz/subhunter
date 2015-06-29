@@ -2,6 +2,7 @@
     "Length" : 60,
     "Sets" : {
         "0" : {
+            "Missile" : 5,
             "Medusa" : 3,
             "Firefish" : 2,
         },

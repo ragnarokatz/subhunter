@@ -6,7 +6,7 @@ public class Ship : Entity
 {
     public class Data
     {
-        public static int   Clips { get; set; }
+        public static int   Clip  { get; set; }
         public static int   Nukes { get; set; }
         public static float Speed { get; set; }
     }
@@ -40,7 +40,7 @@ public class Ship : Entity
 
     public void FireLeft()
     {
-        if (Data.Clips <= 0)
+        if (Data.Clip <= 0)
             return;
         
         if (Time.time - this.lastFireLeftTime < this.FireInterval)
@@ -48,7 +48,7 @@ public class Ship : Entity
 
         Log.Trace("Fire left.");
 
-        Data.Clips--;
+        Data.Clip--;
         this.lastFireLeftTime = Time.time;
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, this.transform.position.y, 0f), Quaternion.identity);
@@ -56,7 +56,7 @@ public class Ship : Entity
     
     public void FireRight()
     {
-        if (Data.Clips <= 0)
+        if (Data.Clip <= 0)
             return;
         
         if (Time.time - this.lastFireRightTime < this.FireInterval)
@@ -64,7 +64,7 @@ public class Ship : Entity
 
         Log.Trace("Fire right.");
 
-        Data.Clips--;
+        Data.Clip--;
         this.lastFireRightTime = Time.time;
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, this.transform.position.y, 0f), Quaternion.identity);
@@ -72,7 +72,7 @@ public class Ship : Entity
     
     public void FireMiddle()
     {
-        if (Data.Clips <= 0)
+        if (Data.Clip <= 0)
             return;
         
         if (Time.time - this.lastFireMiddleTime < this.FireInterval)
@@ -80,7 +80,7 @@ public class Ship : Entity
 
         Log.Trace("Fire middle.");
 
-        Data.Clips--;
+        Data.Clip--;
         this.lastFireMiddleTime = Time.time;
 
         GameObject.Instantiate(this.Weapon, this.transform.position, Quaternion.identity);

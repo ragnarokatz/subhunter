@@ -18,6 +18,8 @@ public class Level : MonoBehaviour
 
         this.startTime = MyTime.time;
         this.isRunning = true;
+
+        Log.Trace("Starting level {0}.", level);
     }
 
     public void EndLevel()

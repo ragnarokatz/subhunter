@@ -23,6 +23,9 @@ public class Sub : Enemy
         {
             this.dir = Vector3.left;
             this.transform.position = new Vector3(Dimensions.RIGHT_EDGE, spawnPos, this.transform.position.z);
+
+            // All directional sprites default are face right
+            this.transform.Rotate(0f, 180f, 0f);
         }
 
         this.shootInterval = Random.Range(this.ShootIntervalMin, this.ShootIntervalMax);

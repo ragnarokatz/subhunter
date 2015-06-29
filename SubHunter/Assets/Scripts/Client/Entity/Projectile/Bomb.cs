@@ -1,14 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Foundation;
 
 public class Bomb : Projectile
 {
     protected override void Start ()
     {
-        this.gameObject.name = this.GetType().Name;
-
-        Log.Trace("Instantiate entity {0}.", this.gameObject.name);
-
         this.speed = Random.Range(SpeedMin, SpeedMax);
         this.dir = Vector3.down;
         this.destroyBoundary = Dimensions.BOT_EDGE;
@@ -29,7 +25,7 @@ public class Bomb : Projectile
     {
         GameObject.Destroy(this.gameObject);
 
-        Ship.Data.Clips++;
+        Ship.Data.Clip++;
         EntityManager.I.Bombs.Remove(this);
     }
 }

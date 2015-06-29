@@ -31,7 +31,6 @@ public class Entity : MonoBehaviour
     protected virtual void Start()
     {
         this.speed = Random.Range(SpeedMin, SpeedMax);
-        this.gameObject.name = this.GetType().Name;
     }
 
     protected virtual void Update()

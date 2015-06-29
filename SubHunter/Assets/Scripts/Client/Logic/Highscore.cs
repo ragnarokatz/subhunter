@@ -8,7 +8,12 @@ public class Highscore
     static Highscore()
     {
         Highscore.configPath = Path.Combine(Application.persistentDataPath, "Highscore.json");
-        Highscore.config  = IOCore.I.LoadConfig(configPath) ?? new Dictionary<string, object>();
+        Highscore.config  = IOCore.I.LoadConfig(configPath);
+        if (Highscore.config == null)
+        {
+            Highscore.config = new Dictionary<string, object>();
+            Highscore.config["score"] = 0;
+        }
     }
 
     private static string configPath;

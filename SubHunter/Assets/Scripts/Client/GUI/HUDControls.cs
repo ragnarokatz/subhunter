@@ -9,6 +9,7 @@ public class HUDControls : MonoBehaviour
     public void InstantiateScoreHUD(int points, int multiplier, Vector3 worldPoint)
     {
         var go = GameObject.Instantiate(this.Template) as GameObject;
+        go.transform.SetParent(this.transform);
         var hud = go.GetComponent<HUD>();
         hud.SetHUD(points, multiplier, worldPoint);
     }

@@ -34,8 +34,17 @@ public class Enemy : Entity
         var multiplier = Combo.ChainCombo(this.comboIdx);
         Player.I.AddScore(this.Points * multiplier);
 
+        // Graphic changes:
+        // Instantiate explosion, score, and disable sprite/animation
         GameObject.Instantiate(Prefabs.Explosion, this.transform.position, Quaternion.identity);
         HUDControls.I.InstantiateScoreHUD(this.Points, multiplier, this.transform.position);
+
+        var animator = GetComponent<Animator>();
+        if (animator != null)
+            animator.enabled = false;
+
+        var renderer = GetComponent<SpriteRenderer>();
+        renderer.enabled = false;
     }
 
     public override void Destroy ()

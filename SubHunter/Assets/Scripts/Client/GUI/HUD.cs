@@ -5,13 +5,22 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class HUD : MonoBehaviour
 {
+    public float  Duration;
+
+    private bool  started;
+    private float startTime;
+
+
     public void SetHUD(int points, int multiplier, Vector3 worldPoint)
     {
         this.gameObject.SetActive(true);
 
         var text = GetComponent<Text>();
-        text.text = String.Format("{0} X {1}", points, multiplier);
+        text.text = String.Format("{0} x {1}", points, multiplier);
         AlignScoreToEnemy(worldPoint);
+
+        this.started = true;
+        this.startTime = Time.time;
     }
 
     private void AlignScoreToEnemy(Vector3 worldPoint)
@@ -25,5 +34,16 @@ public class HUD : MonoBehaviour
         
         var rect = GetComponent<RectTransform>();
         rect.anchoredPosition = screenPos;
+    }
+
+    private void Update()
+    {
+        if (! this.started)
+            return;
+
+        if (Time.time - this.startTime < this.Duration)
+            return;
+
+        GameObject.Destroy(this.gameObject);
     }
 }

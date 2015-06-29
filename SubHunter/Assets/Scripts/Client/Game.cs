@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Foundation;
 
 public class Game : MonoBehaviour
 {
@@ -12,19 +13,23 @@ public class Game : MonoBehaviour
 
     public void StartNewGame()
     {
+        Log.Trace ("Starting new game.");
+
         GameState.ChangeToPlayState();
 
         MyTime.StartTime();
 
         Player.I.StartNewGame();
         InstantiateShip();
-        Ship.Data.Clips = Player.I.MaxClip;
+        Ship.Data.Clip = Player.I.MaxClip;
         this.Level.StartLevel();
         this.Spawner.StartSpawn();
     }
 
     public void EndGame()
     {
+        Log.Trace("End game.");
+
         GameState.ChangeToWaitState();
 
         Player.I.EndGame();
@@ -47,6 +52,8 @@ public class Game : MonoBehaviour
 
     public void DieBreak()
     {
+        Log.Trace("Player died.");
+
         GameState.ChangeToWaitState();
 
         DestroyShip();
@@ -60,6 +67,8 @@ public class Game : MonoBehaviour
 
     public void LevelBreak()
     {
+        Log.Trace("Player has completed level {0}.", Player.I.Level);
+
         GameState.ChangeToWaitState();
 
         DestroyShip();
@@ -79,6 +88,8 @@ public class Game : MonoBehaviour
     private void AdvanceToNextLevel()
     {
         GameState.ChangeToPlayState();
+
+        MyTime.StartTime();
 
         InstantiateShip();
         Player.I.AdvanceToNextLevel();
