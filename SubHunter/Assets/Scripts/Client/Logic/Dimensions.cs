@@ -15,6 +15,7 @@ public class Dimensions
     public static float SCREEN_RIGHT { get { return Dimensions.screenRight; } }
 
     // Y dimensions (up and down)
+    public const float SHIP     = 2.75f;
     public const float WATER    = 2.65f;
     public const float MEDUSA   = 2.35f;
     public const float TOP_EDGE = 5f;

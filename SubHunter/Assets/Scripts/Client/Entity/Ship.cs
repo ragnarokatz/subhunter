@@ -96,7 +96,7 @@ public class Ship : Entity
         Data.UseClip();
         this.lastFireLeftTime = Time.time;
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, this.transform.position.y, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER, 0f), Quaternion.identity);
     }
     
     public void FireRight()
@@ -112,7 +112,7 @@ public class Ship : Entity
         Data.UseClip();
         this.lastFireRightTime = Time.time;
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, this.transform.position.y, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER, 0f), Quaternion.identity);
     }
     
     public void FireMiddle()
@@ -128,7 +128,7 @@ public class Ship : Entity
         Data.UseClip();
         this.lastFireMiddleTime = Time.time;
 
-        GameObject.Instantiate(this.Weapon, this.transform.position, Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER, 0f), Quaternion.identity);
     }
 
     public void UseNuke()
@@ -155,7 +155,7 @@ public class Ship : Entity
         Log.Assert(Ship.instance == null);
 
         Ship.instance = this;
-        this.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
+        this.transform.position = new Vector3(0f, Dimensions.SHIP, 0f);
     }
 
     protected override void Update()

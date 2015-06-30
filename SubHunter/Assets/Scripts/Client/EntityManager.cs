@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SubHunter.Powerup;
+using Foundation;
 
 public class EntityManager : MonoBehaviour
 {
@@ -49,7 +50,10 @@ public class EntityManager : MonoBehaviour
             {
                 if (! enemy.Box.Overlaps(bomb.Box))
                     continue;
-                
+
+                if (enemy.IsExploding)
+                    continue;
+
                 enemy.Explode();
                 bomb.Destroy();
                 return;
@@ -85,6 +89,9 @@ public class EntityManager : MonoBehaviour
             
             powerup.Effect();
             powerup.Destroy();
+
+            Log.Trace("Picked up power up {0}.", powerup.GetType());
+
             return;
         }
     }
@@ -105,7 +112,6 @@ public class EntityManager : MonoBehaviour
 
             if (enemy.IsExploding)
             {
-                enemy.Explode();
                 Game.I.DieBreak();
                 return;
             }

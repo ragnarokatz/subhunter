@@ -11,7 +11,7 @@ public class Missile : Projectile
 
         // Init direction targets ship if exists, or target the center point if not.
         // If angle is more than 45 deg away from vertical line, then adjust maximum angle to 45 deg.
-        var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(0f, Dimensions.WATER, 0f);
+        var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(0f, Dimensions.SHIP, 0f);
         if (targetPos.y < targetPos.x)
             targetPos.y = targetPos.x;
 
