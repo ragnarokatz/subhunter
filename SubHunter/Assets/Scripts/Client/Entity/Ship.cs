@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.IO;
 using Foundation;
 
 public class Ship : Entity
@@ -142,20 +141,31 @@ public class Ship : Entity
             enemy.Explode(comboIdx);
     }
 
+    public void Explode()
+    {
+        GameObject.Instantiate(Prefabs.Explosion, this.transform.position, Quaternion.identity);
+        Destroy ();
+    }
+
+    // Destroy without explosion
     public override void Destroy ()
     {
         base.Destroy ();
 
         Ship.instance = null;
-        GameObject.Instantiate(Prefabs.Explosion, this.transform.position, Quaternion.identity);
     }
 
-    protected override void Start ()
+    protected void Awake ()
     {
         Log.Assert(Ship.instance == null);
 
         Ship.instance = this;
+    }
+
+    protected override void Start()
+    {
         this.transform.position = new Vector3(0f, Dimensions.SHIP, 0f);
+        BuffManager.I.AddStartBuff();
     }
 
     protected override void Update()

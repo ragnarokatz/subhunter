@@ -1,60 +1,59 @@
 ﻿using UnityEngine;
+using Foundation;
 
-namespace SubHunter.Powerup
+public class Powerup : Entity
 {
-    public class Powerup : Entity
+    public float DelayDuration;
+
+    protected float destroyBoundary;
+    protected float delayStartTime;
+    protected bool  isInDelay;
+
+    protected override void Start()
     {
-        public float DelayDuration;
+        base.Start();
 
-        protected float destroyBoundary;
-        protected float delayStartTime;
-        protected bool  isInDelay;
+        this.dir = Vector3.up;
+        this.destroyBoundary = Dimensions.WATER;
 
-        protected override void Start()
+        EntityManager.I.Powerups.Add(this);
+        this.transform.SetParent(EntityManager.I.PowerupParent, true);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (this.isInDelay)
         {
-            base.Start();
-
-            this.dir = Vector3.up;
-            this.destroyBoundary = Dimensions.WATER;
-
-            EntityManager.I.Powerups.Add(this);
-            this.transform.SetParent(EntityManager.I.PowerupParent, true);
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            if (this.isInDelay)
-            {
-                if (Time.time - this.delayStartTime < this.DelayDuration)
-                    return;
-                
-                Destroy();
+            if (Time.time - this.delayStartTime < this.DelayDuration)
                 return;
-            }
-
-            if (this.transform.position.y > this.destroyBoundary)
-            {
-                this.isInDelay = true;
-                this.delayStartTime = Time.time;
-                this.speed = 0f;
-                this.dir = Vector3.zero;
-                return;
-            }
-
-            this.transform.position += this.dir * this.speed * Time.deltaTime;
+            
+            Destroy();
+            return;
         }
 
-        public override void Destroy ()
+        if (this.transform.position.y > this.destroyBoundary)
         {
-            base.Destroy ();
-
-            EntityManager.I.Powerups.Remove(this);
+            this.isInDelay = true;
+            this.delayStartTime = Time.time;
+            this.speed = 0f;
+            this.dir = Vector3.zero;
+            return;
         }
 
-        public virtual void Effect()
-        {
-        }
+        this.transform.position += this.dir * this.speed * Time.deltaTime;
+    }
+
+    public override void Destroy ()
+    {
+        base.Destroy ();
+
+        EntityManager.I.Powerups.Remove(this);
+    }
+
+    public virtual void Effect()
+    {
+
     }
 }

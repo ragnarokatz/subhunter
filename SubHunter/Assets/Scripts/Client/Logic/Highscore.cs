@@ -23,6 +23,8 @@ public class Highscore
 
     public static bool TrySubmitHighscore(int score)
     {
+        Log.Trace("Submit new score {0} compared to old score {1}.", score, Highscore.Score);
+
         if (score <= Highscore.Score)
             return false;
 

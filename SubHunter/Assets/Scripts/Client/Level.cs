@@ -31,7 +31,13 @@ public class Level : MonoBehaviour
     {
         if (! this.isRunning)
             return;
-        
+
+        if (! GameState.IsInPlayState())
+        {
+            this.startTime += Time.deltaTime;
+            return;
+        }
+
         if (Time.time - this.startTime > this.length)
             Game.I.LevelBreak();
     }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using SubHunter.Powerup;
 using Foundation;
 
 public class EntityManager : MonoBehaviour
@@ -13,6 +12,7 @@ public class EntityManager : MonoBehaviour
     public Transform ProjectileParent;
     public Transform PowerupParent;
     public Transform ExplosionParent;
+    public Transform HUDParent;
 
     [HideInInspector] public List<Enemy>      Enemies;
     [HideInInspector] public List<Powerup>    Powerups;
@@ -37,8 +37,12 @@ public class EntityManager : MonoBehaviour
         if (! GameState.IsInPlayState())
             return;
 
-        EnemyUpdate();
         PowerupUpdate();
+
+        if (BuffManager.I.IsInInvulState())
+            return;
+
+        EnemyUpdate();
         ProjectileUpdate();
     }
 
@@ -120,6 +124,9 @@ public class EntityManager : MonoBehaviour
 
     private void ProjectileUpdate()
     {
+        if (! Ship.IsAlive)
+            return;
+
         foreach (var projectile in this.Projectiles)
         {
             if (! Ship.I.Box.Overlaps(projectile.Box))

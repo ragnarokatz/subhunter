@@ -15,10 +15,12 @@ public class BuffManager : MonoBehaviour
 
         public virtual void StartEffect()
         {
+            Log.Trace("Start buff {0}", this.GetType());
         }
 
         public virtual void EndEffect()
         {
+            Log.Trace("End buff {0}", this.GetType());
         }
     }
     
@@ -27,7 +29,6 @@ public class BuffManager : MonoBehaviour
         public Invul(float duration) : base(duration)
         {
         }
-
     }
     
     private class Speedup : Buff
@@ -39,11 +40,15 @@ public class BuffManager : MonoBehaviour
         public override void StartEffect()
         {
             Ship.Data.Speedup();
+
+            base.StartEffect();
         }
         
         public override void EndEffect()
         {
             Ship.Data.RestoreSpeed();
+
+            base.EndEffect();
         }
     }
 
@@ -77,11 +82,17 @@ public class BuffManager : MonoBehaviour
 
     public bool IsInInvulState()
     {
+        if (! this.isInBuff)
+            return false;
+
         return this.current.GetType() == typeof(Invul);
     }
 
     public bool IsInSpeedupState()
     {
+        if (! this.isInBuff)
+            return false;
+
         return this.current.GetType() == typeof(Speedup);
     }
 

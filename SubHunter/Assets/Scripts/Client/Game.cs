@@ -39,7 +39,6 @@ public class Game : MonoBehaviour
         GameState.ChangeToWaitState();
 
         Player.I.EndGame();
-        DestroyShip();
         this.Level.EndLevel();
         this.Spawner.FinishSpawn();
 
@@ -77,7 +76,7 @@ public class Game : MonoBehaviour
 
         GameState.ChangeToWaitState();
 
-        DestroyShip();
+        DestroyShip(false);
         this.Level.EndLevel();
         this.Spawner.FinishSpawn();
 
@@ -106,9 +105,12 @@ public class Game : MonoBehaviour
         GameObject.Instantiate(Prefabs.Ship);
     }
 
-    private void DestroyShip()
+    private void DestroyShip(bool explosion = true)
     {
-        Ship.I.Destroy();
+        if (explosion)
+            Ship.I.Explode();
+        else
+            Ship.I.Destroy();
     }
 
     private void Start()
