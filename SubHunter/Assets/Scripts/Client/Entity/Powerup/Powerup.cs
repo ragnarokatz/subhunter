@@ -4,8 +4,9 @@ namespace SubHunter.Powerup
 {
     public class Powerup : Entity
     {
+        public float DelayDuration;
+
         protected float destroyBoundary;
-        protected float delayDuration;
         protected float delayStartTime;
         protected bool  isInDelay;
 
@@ -26,7 +27,7 @@ namespace SubHunter.Powerup
 
             if (this.isInDelay)
             {
-                if (Time.time - this.delayStartTime < this.delayDuration)
+                if (Time.time - this.delayStartTime < this.DelayDuration)
                     return;
                 
                 Destroy();

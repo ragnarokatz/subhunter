@@ -2,21 +2,14 @@
 
 public class BonusSub : Sub
 {
-    protected override void Start ()
+    public override void Explode (int comboIdx)
     {
-        base.Start();
-    }
+        if (this.isExploding)
+            return;
 
-    protected override void Update ()
-    {
-        base.Update();
-    }
-
-    public override void Destroy ()
-    {
         var powerup = Prefabs.GetRandomPowerup();
         GameObject.Instantiate(powerup, this.transform.position, Quaternion.identity);
 
-        base.Destroy ();
+        base.Explode (comboIdx);
     }
 }

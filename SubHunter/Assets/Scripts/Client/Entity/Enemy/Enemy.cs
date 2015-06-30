@@ -18,7 +18,7 @@ public class Enemy : Entity
     public bool IsExploding { get { return this.isExploding; } }
     public int  ComboIdx    { get { return this.comboIdx; } }
 
-    public void Explode(int comboIdx = -1)
+    public virtual void Explode(int comboIdx = -1)
     {
         if (this.isExploding)
             return;

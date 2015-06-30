@@ -113,9 +113,6 @@ public class EntityManager : MonoBehaviour
 
     private void ProjectileUpdate()
     {
-        if (! Ship.IsAlive)
-            return;
-
         foreach (var projectile in this.Projectiles)
         {
             if (! Ship.I.Box.Overlaps(projectile.Box))
