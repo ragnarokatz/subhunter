@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Foundation;
 
 public class Prefabs : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Prefabs : MonoBehaviour
 
     private void Awake()
     {
-        System.Diagnostics.Debug.Assert(Prefabs.instance == null);
+        Log.Assert(Prefabs.instance == null);
 
         Prefabs.instance = this;
     }

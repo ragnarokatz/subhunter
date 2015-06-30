@@ -25,7 +25,7 @@ public class Bomb : Projectile
     {
         GameObject.Destroy(this.gameObject);
 
-        Ship.Data.Clip++;
+        Ship.Data.AddClip();
         EntityManager.I.Bombs.Remove(this);
     }
 }

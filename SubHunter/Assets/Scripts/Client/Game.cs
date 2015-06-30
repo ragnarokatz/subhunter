@@ -8,18 +8,23 @@ public class Game : MonoBehaviour
     private static Game instance;
     public static Game I { get { return Game.instance; } }
 
-    public Level   Level;
-    public Spawner Spawner;
+    public Level    Level;
+    public Spawner  Spawner;
+    public PlayView PlayView;
+    public WaitView WaitView;
 
     public void StartNewGame()
     {
         Log.Trace ("Starting new game.");
 
+        PlayView.gameObject.SetActive(true);
+        WaitView.gameObject.SetActive(false);
+
         GameState.ChangeToPlayState();
 
         Player.I.StartNewGame();
+        Ship.Data.Init();
         InstantiateShip();
-        Ship.Data.Clip = Player.I.MaxClip;
         this.Level.StartLevel();
         this.Spawner.StartSpawn();
     }
@@ -27,6 +32,9 @@ public class Game : MonoBehaviour
     public void EndGame()
     {
         Log.Trace("End game.");
+
+        PlayView.gameObject.SetActive(false);
+        WaitView.gameObject.SetActive(true);
 
         GameState.ChangeToWaitState();
 

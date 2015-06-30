@@ -1,4 +1,5 @@
 using System;
+using Foundation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class PlayView : MonoBehaviour
     public Text Life;
     public Text Clip;
 
-    private void Start()
+    private void Awake()
     {
         EventManager.OnUpdate += UpdateAttribs;
     }
@@ -31,7 +32,7 @@ public class PlayView : MonoBehaviour
             this.Score.text = Player.I.Score.ToString();
             break;
         default:
-            System.Diagnostics.Debug.Assert(false, "Impossible here.");
+            Log.Assert(false, "Impossible here.");
             break;
         }
     }

@@ -24,7 +24,7 @@ namespace Foundation
 
         public void LoadConfig(string assetName, string assetText)
         {
-            System.Diagnostics.Debug.Assert(! String.IsNullOrEmpty(assetName) && ! String.IsNullOrEmpty(assetText));
+            Log.Assert(! String.IsNullOrEmpty(assetName) && ! String.IsNullOrEmpty(assetText));
 
             var config = Json.JsonReader.Deserialize<Dictionary<string, object>>(assetText);
             this.allConfigs.Add(assetName, config);

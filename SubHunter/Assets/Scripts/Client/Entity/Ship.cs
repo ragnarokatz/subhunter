@@ -19,18 +19,20 @@ public class Ship : Entity
             Data.clip  = 5;
             Data.nuke  = 0;
             Data.speed = 3f;
+
+            EventManager.UpdateAttrib("clip");
         }
 
         public static void UseClip()
         {
             Data.clip--;
-            EventManager.UpdateAttrib("Clip", Data.clip);
+            EventManager.UpdateAttrib("clip");
         }
 
         public static void AddClip()
         {
             Data.clip++;
-            EventManager.UpdateAttrib("Clip", Data.clip);
+            EventManager.UpdateAttrib("clip");
         }
 
         public static void UseNuke()
@@ -150,11 +152,11 @@ public class Ship : Entity
 
     protected override void Start ()
     {
-        System.Diagnostics.Debug.Assert(Ship.instance == null);
+        Log.Assert(Ship.instance == null);
 
         Ship.instance = this;
         this.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
-        Data.Speed = UnityEngine.Random.Range(this.SpeedMin, this.SpeedMax);
+        Data.RestoreSpeed();
     }
 
     protected override void Update()

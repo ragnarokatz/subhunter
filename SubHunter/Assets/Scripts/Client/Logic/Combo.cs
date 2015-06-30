@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Foundation;
 
 public class Combo
 {
@@ -28,7 +29,7 @@ public class Combo
     // Chains upon an existing combo, returns chain counter.
     public static int ChainCombo(int comboIdx)
     {
-        System.Diagnostics.Debug.Assert(Combo.combos.ContainsKey(comboIdx));
+        Log.Assert(Combo.combos.ContainsKey(comboIdx));
 
         var chainCounter = Combo.combos[comboIdx];
         chainCounter++;

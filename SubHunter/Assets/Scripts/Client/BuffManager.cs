@@ -99,7 +99,7 @@ public class BuffManager : MonoBehaviour
 
     private void Start()
     {
-        System.Diagnostics.Debug.Assert(BuffManager.instance == null);
+        Log.Assert(BuffManager.instance == null);
 
         BuffManager.instance = this;
         this.isInBuff = false;
@@ -110,7 +110,7 @@ public class BuffManager : MonoBehaviour
         if (! this.isInBuff)
             return;
 
-        System.Diagnostics.Debug.Assert(this.current != null);
+        Log.Assert(this.current != null);
 
         if (this.TimeLeft > 0f)
             return;
