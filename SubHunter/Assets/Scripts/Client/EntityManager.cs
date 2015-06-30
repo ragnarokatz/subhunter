@@ -85,6 +85,7 @@ public class EntityManager : MonoBehaviour
             
             powerup.Effect();
             powerup.Destroy();
+            return;
         }
     }
 

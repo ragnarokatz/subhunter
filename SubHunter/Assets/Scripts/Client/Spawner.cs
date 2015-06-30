@@ -39,6 +39,12 @@ public class Spawner : MonoBehaviour
         this.isWorking = false;
     }
 
+    private void RestartSpawn()
+    {
+        this.startTime = Time.time;
+        this.index = 0;
+    }
+
     private void Start()
     {
         this.entityTypes = new Dictionary<string, GameObject>(6);
@@ -58,7 +64,8 @@ public class Spawner : MonoBehaviour
 
         if (this.index >= this.times.Length)
         {
-            FinishSpawn();
+            // Cyclic spawning
+            RestartSpawn();
             return;
         }
 
