@@ -18,7 +18,7 @@ public class Ship : Entity
         {
             Data.clip  = 5;
             Data.nuke  = 0;
-            Data.speed = 3f;
+            Data.speed = 3.5f;
 
             EventManager.UpdateAttrib("clip");
         }
@@ -52,7 +52,7 @@ public class Ship : Entity
 
         public static void RestoreSpeed()
         {
-            Data.speed = 3f;
+            Data.speed = 3.5f;
         }
     }
 
@@ -156,7 +156,6 @@ public class Ship : Entity
 
         Ship.instance = this;
         this.transform.position = new Vector3(0f, Dimensions.WATER, 0f);
-        Data.RestoreSpeed();
     }
 
     protected override void Update()

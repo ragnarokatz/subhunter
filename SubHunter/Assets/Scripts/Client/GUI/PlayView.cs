@@ -39,7 +39,7 @@ public class PlayView : MonoBehaviour
         switch (type)
         {
             case "level":
-            this.Level.text = Player.I.Level.ToString();
+            this.Level.text = (Player.I.Level + 1).ToString();
             break;
             case "life":
             this.Life.text = Player.I.Lives.ToString();
