@@ -12,7 +12,7 @@ public class PlayView : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.OnUpdate += UpdateAttribs;
+        EventManager.OnUpdateAttrib += UpdateAttribs;
     }
 
     private void UpdateAttribs(object type)

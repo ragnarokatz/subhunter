@@ -63,6 +63,7 @@ public class BuffManager : MonoBehaviour
     private bool  isInBuff;
     private float startTime;
 
+    public bool  IsInBuff { get { return this.isInBuff; } }
     public float TimeLeft { get { return this.current.Duration - (Time.time - this.startTime); } }
 
     public void AddStartBuff()
@@ -101,11 +102,13 @@ public class BuffManager : MonoBehaviour
         if (this.current != null)
             this.current.EndEffect();
 
+        this.isInBuff = true;
+        this.startTime = Time.time;
+        
         this.current = buff;
         this.current.StartEffect();
 
-        this.isInBuff = true;
-        this.startTime = Time.time;
+        EventManager.UpdateBuff();
     }
 
     private void Start()
