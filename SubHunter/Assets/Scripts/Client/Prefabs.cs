@@ -26,10 +26,37 @@ public class Prefabs : MonoBehaviour
     public GameObject medusa;
     public GameObject firefish;
 
+    public GameObject bonuspts;
+    public GameObject extraclip;
+    public GameObject extralife;
+    public GameObject invul;
+    public GameObject nuke;
+    public GameObject speedup;
+    public GameObject stoptime;
+
+    private GameObject[] powerups;
+
+    public static GameObject GetRandomPowerup()
+    {
+        var powerups = Prefabs.instance.powerups;
+        var rndIdx = UnityEngine.Random.Range(0, powerups.Length);
+        return powerups[rndIdx];
+    }
+
     private void Awake()
     {
         Log.Assert(Prefabs.instance == null);
 
         Prefabs.instance = this;
+
+        this.powerups = new GameObject[] {
+            this.bonuspts,
+            this.extraclip,
+            this.extralife,
+            this.invul,
+            this.nuke,
+            this.speedup,
+            this.stoptime
+        };
     }
 }

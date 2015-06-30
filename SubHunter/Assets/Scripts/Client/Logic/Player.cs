@@ -20,9 +20,7 @@ public class Player
         this.level = 0;
         this.score = 0;
 
-        EventManager.UpdateAttrib("score");
-        EventManager.UpdateAttrib("level");
-        EventManager.UpdateAttrib("life");
+        EventManager.UpdateAttrib( new string[] { "score", "level", "life" });
     }
 
     public void EndGame()

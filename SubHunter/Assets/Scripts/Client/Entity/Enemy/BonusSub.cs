@@ -14,7 +14,9 @@ public class BonusSub : Sub
 
     public override void Destroy ()
     {
-        // TODO: GameObject.Instantiate(Powerup); ////----
+        var powerup = Prefabs.GetRandomPowerup();
+        GameObject.Instantiate(powerup, this.transform.position, Quaternion.identity);
+
         base.Destroy ();
     }
 }
