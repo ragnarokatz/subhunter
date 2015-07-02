@@ -12,7 +12,7 @@ public class PlayView : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.OnUpdateAttrib += UpdateAttribs;
+        EventManager.OnUpdateAttribs += UpdateAttribs;
     }
 
     private void UpdateAttribs(object type)
@@ -54,5 +54,10 @@ public class PlayView : MonoBehaviour
             Log.Assert(false, String.Format("Impossible here, wrong attrib {0}.", type));
             break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.OnUpdateAttribs -= UpdateAttribs;
     }
 }

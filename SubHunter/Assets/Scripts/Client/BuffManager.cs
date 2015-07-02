@@ -132,5 +132,7 @@ public class BuffManager : MonoBehaviour
         this.isInBuff = false;
         this.current.EndEffect();
         this.current = null;
+
+        EventManager.UpdateBuff();
     }
 }

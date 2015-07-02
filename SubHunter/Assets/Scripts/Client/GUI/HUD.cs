@@ -13,8 +13,6 @@ public class HUD : MonoBehaviour
     public void SetHUD(int points, int multiplier, Vector3 worldPoint)
     {
         this.gameObject.SetActive(true);
-        var anim = GetComponent<Animator>();
-        anim.SetTrigger("Play");
 
         var text = GetComponent<Text>();
         text.text = String.Format("{0} x {1}", points, multiplier);

@@ -3,20 +3,14 @@ using Foundation;
 
 public class ShipBuff : MonoBehaviour
 {
-    public Sprite Normal;
-    public Sprite Speedup;
-    public Sprite Invul;
-
-    private bool           isFlashing;
-    private Animator       anim;
-    private SpriteRenderer renderer;
+    private bool     isFlashing;
+    private Animator anim;
 
     private void Awake()
     {
         EventManager.OnUpdateBuff += UpdateShipSprite;
 
         this.anim = GetComponent<Animator>();
-        this.renderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -33,35 +27,34 @@ public class ShipBuff : MonoBehaviour
         this.isFlashing = true;
 
         if (BuffManager.I.IsInInvulState())
-            this.anim.SetTrigger("Invul");
+            this.anim.Play ("invulflash");
         else if (BuffManager.I.IsInSpeedupState())
-            this.anim.SetTrigger("Speedup");
-
-        this.Invoke("RestoreToNormalSprite", 3f);
+            this.anim.Play ("speedupflash");
     }
     
     private void UpdateShipSprite (object type)
     {
-        if (this.IsInvoking("RestoreToNormalSprite"))
-            this.CancelInvoke("RestoreToNormalSprite");
+        Log.Trace("Update ship sprite.");
 
         this.isFlashing = false;
 
         if (BuffManager.I.IsInInvulState())
         {
-            this.renderer.sprite = this.Invul;
+            this.anim.Play ("invul");
             return;
         }
         
         if (BuffManager.I.IsInSpeedupState())
         {
-            this.renderer.sprite = this.Speedup;
+            this.anim.Play ("speedup");
             return;
         }
-    }
 
-    private void RestoreToNormalSprite()
+        this.anim.Play ("normal");
+    }
+    
+    private void OnDestroy()
     {
-        this.renderer.sprite = this.Normal;
+        EventManager.OnUpdateBuff -= UpdateShipSprite;
     }
 }

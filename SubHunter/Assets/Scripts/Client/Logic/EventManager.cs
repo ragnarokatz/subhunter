@@ -3,13 +3,13 @@ using System;
 public class EventManager
 {
     public delegate void UpdateHandler(object type);
-    public static event UpdateHandler OnUpdateAttrib;
+    public static event UpdateHandler OnUpdateAttribs;
     public static event UpdateHandler OnUpdateBuff;
 
-    public static void UpdateAttrib(object type)
+    public static void UpdateAttribs(object type)
     {
-        if (EventManager.OnUpdateAttrib != null)
-            EventManager.OnUpdateAttrib(type);
+        if (EventManager.OnUpdateAttribs != null)
+            EventManager.OnUpdateAttribs(type);
     }
 
     public static void UpdateBuff()

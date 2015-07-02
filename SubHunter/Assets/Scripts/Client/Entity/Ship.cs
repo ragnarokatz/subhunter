@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Foundation;
 
 public class Ship : Entity
@@ -19,19 +19,19 @@ public class Ship : Entity
             Data.nuke  = 0;
             Data.speed = 3.5f;
 
-            EventManager.UpdateAttrib("clip");
+            EventManager.UpdateAttribs("clip");
         }
 
         public static void UseClip()
         {
             Data.clip--;
-            EventManager.UpdateAttrib("clip");
+            EventManager.UpdateAttribs("clip");
         }
 
         public static void AddClip()
         {
             Data.clip++;
-            EventManager.UpdateAttrib("clip");
+            EventManager.UpdateAttribs("clip");
         }
 
         public static void UseNuke()
@@ -46,7 +46,7 @@ public class Ship : Entity
 
         public static void Speedup()
         {
-            Data.speed = 7f;
+            Data.speed = 6f;
         }
 
         public static void RestoreSpeed()
@@ -90,8 +90,6 @@ public class Ship : Entity
         if (Time.time - this.lastFireLeftTime < this.FireInterval)
             return;
 
-        Log.Trace("Fire left.");
-
         Data.UseClip();
         this.lastFireLeftTime = Time.time;
 
@@ -106,8 +104,6 @@ public class Ship : Entity
         if (Time.time - this.lastFireRightTime < this.FireInterval)
             return;
 
-        Log.Trace("Fire right.");
-
         Data.UseClip();
         this.lastFireRightTime = Time.time;
 
@@ -121,8 +117,6 @@ public class Ship : Entity
         
         if (Time.time - this.lastFireMiddleTime < this.FireInterval)
             return;
-
-        Log.Trace("Fire middle.");
 
         Data.UseClip();
         this.lastFireMiddleTime = Time.time;
