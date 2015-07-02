@@ -18,6 +18,16 @@ public class Enemy : Entity
     public bool IsExploding { get { return this.isExploding; } }
     public int  ComboIdx    { get { return this.comboIdx; } }
 
+    public void StopMovement()
+    {
+        this.speed = 0f;
+    }
+
+    public void ResumeMovement()
+    {
+        this.speed = UnityEngine.Random.Range(this.SpeedMin, this.SpeedMax);
+    }
+
     public virtual void Explode(int comboIdx = -1)
     {
         if (this.isExploding)

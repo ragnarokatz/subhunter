@@ -52,12 +52,38 @@ public class BuffManager : MonoBehaviour
         }
     }
 
+    private class Stoptime : Buff
+    {
+        public Stoptime(float duration) : base(duration)
+        {
+        }
+
+        public override void StartEffect()
+        {
+            Game.I.Spawner.PauseSpawn();
+            foreach (var enemy in EntityManager.I.Enemies)
+                enemy.StopMovement();
+
+            base.StartEffect();
+        }
+
+        public override void EndEffect()
+        {
+            Game.I.Spawner.ResumeSpawn();
+            foreach (var enemy in EntityManager.I.Enemies)
+                enemy.ResumeMovement();
+
+            base.EndEffect();
+        }
+    }
+
     private static BuffManager instance;
     public static BuffManager I { get { return BuffManager.instance; } }
 
-    private static Invul   StartBuff   = new Invul(3f);
-    private static Invul   InvulBuff   = new Invul(15f);
-    private static Speedup SpeedupBuff = new Speedup(15f);
+    private static Invul    StartBuff    = new Invul(3f);
+    private static Invul    InvulBuff    = new Invul(15f);
+    private static Speedup  SpeedupBuff  = new Speedup(15f);
+    private static Stoptime StoptimeBuff = new Stoptime(15f);
 
     private Buff  current;
     private bool  isInBuff;
@@ -79,6 +105,11 @@ public class BuffManager : MonoBehaviour
     public void AddSpeedupBuff()
     {
         AddBuff(BuffManager.SpeedupBuff);
+    }
+
+    public void AddStoptimeBuff()
+    {
+        AddBuff(BuffManager.StoptimeBuff);
     }
 
     public bool IsInInvulState()

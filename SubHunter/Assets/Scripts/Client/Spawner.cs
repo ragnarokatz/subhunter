@@ -14,6 +14,9 @@ public class Spawner : MonoBehaviour
     private int   index;
     private Dictionary<string, object> entitySets;
 
+    // Only for pausing spawn
+    private float pauseTime;
+
     public void StartSpawn()
     {
         this.isWorking = true;
@@ -37,6 +40,20 @@ public class Spawner : MonoBehaviour
     public void FinishSpawn()
     {
         this.isWorking = false;
+    }
+
+    public void PauseSpawn()
+    {
+        this.isWorking = false;
+        this.pauseTime = Time.time;
+    }
+
+    public void ResumeSpawn()
+    {
+        this.isWorking = true;
+
+        var deltaTime = Time.time - this.pauseTime;
+        this.startTime += deltaTime;
     }
 
     private void RestartSpawn()
