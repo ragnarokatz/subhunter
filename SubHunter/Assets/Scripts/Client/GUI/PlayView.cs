@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class PlayView : MonoBehaviour
 {
-    public Text Level;
-    public Text Score;
-    public Text Life;
-    public Text Clip;
+    public Text     Level;
+    public Text     Score;
+    public Text     Life;
+    public Text     Clip;
+    public Animator Levelup;
+    public Animator Addscore;
+    public Animator LifeChange;
 
     private void Awake()
     {
@@ -40,15 +43,18 @@ public class PlayView : MonoBehaviour
         {
             case "level":
             this.Level.text = (Player.I.Level + 1).ToString();
+            this.Levelup.Play("levelup");
             break;
             case "life":
             this.Life.text = Player.I.Lives.ToString();
+            this.LifeChange.Play ("lifechange");
             break;
             case "clip":
             this.Clip.text = Ship.Data.Clip.ToString();
             break;
             case "score":
             this.Score.text = Player.I.Score.ToString();
+            this.Addscore.Play("scoreshake");
             break;
             default:
             Log.Assert(false, String.Format("Impossible here, wrong attrib {0}.", type));

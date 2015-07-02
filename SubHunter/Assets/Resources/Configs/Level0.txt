@@ -1,5 +1,5 @@
 {
-    "Length" : 60,
+    "Length" : 10,
     "Sets" : {
         "0" : {
             "Scout" : 3,
