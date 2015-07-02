@@ -19,19 +19,25 @@ public class Ship : Entity
             Data.nuke  = 0;
             Data.speed = 3.5f;
 
-            EventManager.UpdateAttribs("clip");
+            EventManager.UpdateAttribs("clip", false);
         }
 
         public static void UseClip()
         {
             Data.clip--;
-            EventManager.UpdateAttribs("clip");
+            EventManager.UpdateAttribs("clip", false);
         }
 
         public static void AddClip()
         {
             Data.clip++;
-            EventManager.UpdateAttribs("clip");
+            EventManager.UpdateAttribs("clip", true);
+        }
+
+        public static void RestoreClip()
+        {
+            Data.clip++;
+            EventManager.UpdateAttribs("clip", false);
         }
 
         public static void UseNuke()

@@ -12,50 +12,48 @@ public class PlayView : MonoBehaviour
     public Animator Levelup;
     public Animator Addscore;
     public Animator LifeChange;
+    public Animator AddClip;
 
     private void Awake()
     {
         EventManager.OnUpdateAttribs += UpdateAttribs;
     }
 
-    private void UpdateAttribs(object type)
+    private void UpdateAttribs(object[] para)
     {
-        if (type is Array)
-        {
-            var arr = type as Array;
-            foreach (String t in arr)
-                UpdateAttrib(t);
-            return;
-        }
-
-        if (type is String)
-        {
-            UpdateAttrib(type as String);
-            return;
-        }
-
-        Log.Assert(false, String.Format("Impossible here, wrong type {0}.", type.GetType()));
+        var type = para[0] as String;
+        var playAnim = (Boolean) para[1];
+        UpdateAttrib(type, playAnim);
     }
 
-    private void UpdateAttrib(string type)
+    private void UpdateAttrib(string type, bool playAnim)
     {
         switch (type)
         {
             case "level":
             this.Level.text = (Player.I.Level + 1).ToString();
-            this.Levelup.Play("levelup");
+            if (playAnim)
+                this.Levelup.Play("levelup");
             break;
+
             case "life":
             this.Life.text = Player.I.Lives.ToString();
-            this.LifeChange.Play ("lifechange");
+            if (playAnim)
+                this.LifeChange.Play ("lifechange");
             break;
+
             case "clip":
             this.Clip.text = Ship.Data.Clip.ToString();
+            if (playAnim)
+                this.AddClip.Play ("addclip");
             break;
+
             case "score":
             this.Score.text = Player.I.Score.ToString();
-            this.Addscore.Play("scoreshake");
+            if (playAnim)
+                this.Addscore.Play("scoreshake");
             break;
+
             default:
             Log.Assert(false, String.Format("Impossible here, wrong attrib {0}.", type));
             break;

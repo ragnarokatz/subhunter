@@ -2,14 +2,14 @@ using System;
 
 public class EventManager
 {
-    public delegate void UpdateHandler(object type);
+    public delegate void UpdateHandler(object[] para);
     public static event UpdateHandler OnUpdateAttribs;
     public static event UpdateHandler OnUpdateBuff;
 
-    public static void UpdateAttribs(object type)
+    public static void UpdateAttribs(string type, bool playAnim)
     {
         if (EventManager.OnUpdateAttribs != null)
-            EventManager.OnUpdateAttribs(type);
+            EventManager.OnUpdateAttribs(new object[] { type, playAnim });
     }
 
     public static void UpdateBuff()

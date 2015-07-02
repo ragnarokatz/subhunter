@@ -20,7 +20,9 @@ public class Player
         this.level = 0;
         this.score = 0;
 
-        EventManager.UpdateAttribs( new string[] { "score", "level", "life" });
+        EventManager.UpdateAttribs("score", false);
+        EventManager.UpdateAttribs("level", false);
+        EventManager.UpdateAttribs("life", false);
     }
 
     public void EndGame()
@@ -30,7 +32,7 @@ public class Player
     public void AdvanceToNextLevel()
     {
         this.level = (this.level + 1) % 20;
-        EventManager.UpdateAttribs("level");
+        EventManager.UpdateAttribs("level", true);
 
         Log.Trace("Advance to level {0}.", this.level);
     }
@@ -38,18 +40,18 @@ public class Player
     public void AddScore(int score)
     {
         this.score += score;
-        EventManager.UpdateAttribs("score");
+        EventManager.UpdateAttribs("score", true);
     }
 
     public void GainAnExtraLife()
     {
         this.lives++;
-        EventManager.UpdateAttribs("life");
+        EventManager.UpdateAttribs("life", true);
     }
 
     public void LoseALife()
     {
         this.lives--;
-        EventManager.UpdateAttribs("life");
+        EventManager.UpdateAttribs("life", true);
     }
 }
