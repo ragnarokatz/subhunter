@@ -158,6 +158,8 @@ public class Ship : Entity
 
     protected override void Start()
     {
+        this.transform.SetParent(EntityManager.I.ShipParent, true);
+
         this.transform.position = new Vector3(0f, Dimensions.SHIP, 0f);
         BuffManager.I.AddStartBuff();
     }

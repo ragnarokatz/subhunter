@@ -13,6 +13,7 @@ public class EntityManager : MonoBehaviour
     public Transform PowerupParent;
     public Transform ExplosionParent;
     public Transform HUDParent;
+    public Transform ShipParent;
 
     [HideInInspector] public List<Enemy>      Enemies;
     [HideInInspector] public List<Powerup>    Powerups;
