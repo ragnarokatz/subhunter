@@ -16,7 +16,7 @@ public class Player
 
     public void StartNewGame()
     {
-        this.lives = 1;
+        this.lives = 5;
         this.level = 0;
         this.score = 0;
 

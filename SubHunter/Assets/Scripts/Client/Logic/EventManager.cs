@@ -6,10 +6,10 @@ public class EventManager
     public static event UpdateHandler OnUpdateAttribs;
     public static event UpdateHandler OnUpdateBuff;
 
-    public static void UpdateAttribs(string type, bool playAnim)
+    public static void UpdateAttribs(string type, bool playAnim, string animType = null)
     {
         if (EventManager.OnUpdateAttribs != null)
-            EventManager.OnUpdateAttribs(new object[] { type, playAnim });
+            EventManager.OnUpdateAttribs(new object[] { type, playAnim, animType });
     }
 
     public static void UpdateBuff()

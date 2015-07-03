@@ -71,10 +71,10 @@ TextureImporter:
     - name: levelup_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 776
-        width: 188
-        height: 175
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -82,239 +82,239 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 724
+        y: 768
         width: 192
-        height: 225
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 787
-        width: 184
-        height: 153
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_3
       rect:
         serializedVersion: 2
-        x: 589
-        y: 792
-        width: 167
-        height: 142
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_4
       rect:
         serializedVersion: 2
-        x: 790
-        y: 799
-        width: 147
-        height: 127
+        x: 768
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_5
       rect:
         serializedVersion: 2
-        x: 24
-        y: 603
-        width: 139
-        height: 158
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_6
       rect:
         serializedVersion: 2
-        x: 270
-        y: 755
-        width: 9
-        height: 12
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_7
       rect:
         serializedVersion: 2
-        x: 386
-        y: 583
-        width: 175
-        height: 185
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_8
       rect:
         serializedVersion: 2
-        x: 588
-        y: 593
-        width: 159
-        height: 174
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_9
       rect:
         serializedVersion: 2
-        x: 791
-        y: 601
-        width: 140
-        height: 153
+        x: 768
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_10
       rect:
         serializedVersion: 2
-        x: 32
-        y: 419
-        width: 123
-        height: 132
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_11
       rect:
         serializedVersion: 2
-        x: 232
-        y: 427
-        width: 108
-        height: 112
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_12
       rect:
         serializedVersion: 2
-        x: 432
-        y: 435
-        width: 93
-        height: 92
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_13
       rect:
         serializedVersion: 2
-        x: 633
-        y: 441
-        width: 76
-        height: 77
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_14
       rect:
         serializedVersion: 2
-        x: 822
-        y: 439
-        width: 82
-        height: 82
+        x: 768
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_15
       rect:
         serializedVersion: 2
-        x: 52
-        y: 242
-        width: 86
-        height: 91
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_16
       rect:
         serializedVersion: 2
-        x: 241
-        y: 240
-        width: 93
-        height: 97
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_17
       rect:
         serializedVersion: 2
-        x: 431
-        y: 238
-        width: 97
-        height: 100
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_18
       rect:
         serializedVersion: 2
-        x: 626
-        y: 238
-        width: 92
-        height: 100
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_19
       rect:
         serializedVersion: 2
-        x: 823
-        y: 241
-        width: 82
-        height: 95
+        x: 768
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_20
       rect:
         serializedVersion: 2
-        x: 58
-        y: 53
-        width: 72
-        height: 89
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_21
       rect:
         serializedVersion: 2
-        x: 259
-        y: 59
-        width: 55
-        height: 75
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_22
       rect:
         serializedVersion: 2
-        x: 456
-        y: 66
-        width: 48
-        height: 60
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_23
       rect:
         serializedVersion: 2
-        x: 654
-        y: 75
-        width: 37
-        height: 42
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: levelup_24
       rect:
         serializedVersion: 2
-        x: 853
-        y: 85
-        width: 21
-        height: 20
+        x: 768
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

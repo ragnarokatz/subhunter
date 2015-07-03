@@ -17,7 +17,7 @@ public class Ship : Entity
         {
             Data.clip  = 5;
             Data.nuke  = 0;
-            Data.speed = 3.5f;
+            Data.speed = 2.5f;
 
             EventManager.UpdateAttribs("clip", false);
         }
@@ -31,13 +31,13 @@ public class Ship : Entity
         public static void AddClip()
         {
             Data.clip++;
-            EventManager.UpdateAttribs("clip", true);
+            EventManager.UpdateAttribs("clip", true, "add");
         }
 
         public static void RestoreClip()
         {
             Data.clip++;
-            EventManager.UpdateAttribs("clip", false);
+            EventManager.UpdateAttribs("clip", true, "restore");
         }
 
         public static void UseNuke()
@@ -52,12 +52,12 @@ public class Ship : Entity
 
         public static void Speedup()
         {
-            Data.speed = 6f;
+            Data.speed = 5f;
         }
 
         public static void RestoreSpeed()
         {
-            Data.speed = 3.5f;
+            Data.speed = 2.5f;
         }
     }
 
@@ -160,14 +160,15 @@ public class Ship : Entity
         Log.Assert(Ship.instance == null);
 
         Ship.instance = this;
+
+        this.transform.SetParent(EntityManager.I.ShipParent, true);
+        this.transform.position = new Vector3(0f, Dimensions.SHIP, 0f);
+        BuffManager.I.AddStartBuff();
     }
 
     protected override void Start()
     {
-        this.transform.SetParent(EntityManager.I.ShipParent, true);
 
-        this.transform.position = new Vector3(0f, Dimensions.SHIP, 0f);
-        BuffManager.I.AddStartBuff();
     }
 
     protected override void Update()

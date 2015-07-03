@@ -1,43 +1,36 @@
 fileFormatVersion: 2
-guid: 342e629de7231034b88a480ceaadb0d4
+guid: a0078627f1382694fa356c639defdb90
 TextureImporter:
   fileIDToRecycleName:
-    21300000: addclip_0
-    21300002: addclip_1
-    21300004: addclip_2
-    21300006: addclip_3
-    21300008: addclip_4
-    21300010: addclip_5
-    21300012: addclip_6
-    21300014: addclip_7
-    21300016: addclip_8
-    21300018: addclip_9
-    21300020: addclip_10
-    21300022: addclip_11
-    21300024: addclip_12
-    21300026: addclip_13
-    21300028: addclip_14
-    21300030: addclip_15
-    21300032: addclip_16
-    21300034: addclip_17
-    21300036: addclip_18
-    21300038: addclip_19
-    21300040: addclip_20
-    21300042: addclip_21
-    21300044: addclip_22
-    21300046: addclip_23
-    21300048: addclip_24
-    21300050: addclip_25
-    21300052: addclip_26
-    21300054: addclip_27
-    21300056: addclip_28
-    21300058: addclip_29
-    21300060: addclip_30
-    21300062: addclip_31
-    21300064: addclip_32
-    21300066: addclip_33
-    21300068: addclip_34
-    21300070: addclip_35
+    21300000: effect_006_0
+    21300002: effect_006_1
+    21300004: effect_006_2
+    21300006: effect_006_3
+    21300008: effect_006_4
+    21300010: effect_006_5
+    21300012: effect_006_6
+    21300014: effect_006_7
+    21300016: effect_006_8
+    21300018: effect_006_9
+    21300020: effect_006_10
+    21300022: effect_006_11
+    21300024: effect_006_12
+    21300026: effect_006_13
+    21300028: effect_006_14
+    21300030: effect_006_15
+    21300032: effect_006_16
+    21300034: effect_006_17
+    21300036: effect_006_18
+    21300038: effect_006_19
+    21300040: effect_006_20
+    21300042: effect_006_21
+    21300044: effect_006_22
+    21300046: effect_006_23
+    21300048: effect_006_24
+    21300050: effect_006_25
+    21300052: effect_006_26
+    21300054: effect_006_27
+    21300056: effect_006_28
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -79,7 +72,47 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: addclip_0
+    - name: effect_006_0
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 960
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: effect_006_1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 960
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: effect_006_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 960
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: effect_006_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 960
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: effect_006_4
       rect:
         serializedVersion: 2
         x: 0
@@ -89,7 +122,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_1
+    - name: effect_006_5
       rect:
         serializedVersion: 2
         x: 192
@@ -99,7 +132,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_2
+    - name: effect_006_6
       rect:
         serializedVersion: 2
         x: 384
@@ -109,7 +142,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_3
+    - name: effect_006_7
       rect:
         serializedVersion: 2
         x: 576
@@ -119,7 +152,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_4
+    - name: effect_006_8
       rect:
         serializedVersion: 2
         x: 768
@@ -129,7 +162,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_5
+    - name: effect_006_9
       rect:
         serializedVersion: 2
         x: 0
@@ -139,7 +172,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_6
+    - name: effect_006_10
       rect:
         serializedVersion: 2
         x: 192
@@ -149,7 +182,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_7
+    - name: effect_006_11
       rect:
         serializedVersion: 2
         x: 384
@@ -159,7 +192,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_8
+    - name: effect_006_12
       rect:
         serializedVersion: 2
         x: 576
@@ -169,7 +202,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_9
+    - name: effect_006_13
       rect:
         serializedVersion: 2
         x: 768
@@ -179,7 +212,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_10
+    - name: effect_006_14
       rect:
         serializedVersion: 2
         x: 0
@@ -189,7 +222,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_11
+    - name: effect_006_15
       rect:
         serializedVersion: 2
         x: 192
@@ -199,7 +232,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_12
+    - name: effect_006_16
       rect:
         serializedVersion: 2
         x: 384
@@ -209,7 +242,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_13
+    - name: effect_006_17
       rect:
         serializedVersion: 2
         x: 576
@@ -219,7 +252,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_14
+    - name: effect_006_18
       rect:
         serializedVersion: 2
         x: 768
@@ -229,7 +262,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_15
+    - name: effect_006_19
       rect:
         serializedVersion: 2
         x: 0
@@ -239,7 +272,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_16
+    - name: effect_006_20
       rect:
         serializedVersion: 2
         x: 192
@@ -249,7 +282,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_17
+    - name: effect_006_21
       rect:
         serializedVersion: 2
         x: 384
@@ -259,7 +292,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_18
+    - name: effect_006_22
       rect:
         serializedVersion: 2
         x: 576
@@ -269,7 +302,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_19
+    - name: effect_006_23
       rect:
         serializedVersion: 2
         x: 768
@@ -279,7 +312,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_20
+    - name: effect_006_24
       rect:
         serializedVersion: 2
         x: 0
@@ -289,7 +322,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_21
+    - name: effect_006_25
       rect:
         serializedVersion: 2
         x: 192
@@ -299,7 +332,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_22
+    - name: effect_006_26
       rect:
         serializedVersion: 2
         x: 384
@@ -309,7 +342,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_23
+    - name: effect_006_27
       rect:
         serializedVersion: 2
         x: 576
@@ -319,7 +352,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: addclip_24
+    - name: effect_006_28
       rect:
         serializedVersion: 2
         x: 768

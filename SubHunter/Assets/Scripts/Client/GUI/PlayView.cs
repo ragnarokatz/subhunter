@@ -13,6 +13,7 @@ public class PlayView : MonoBehaviour
     public Animator Addscore;
     public Animator LifeChange;
     public Animator AddClip;
+    public Animator RestoreClip;
 
     private void Awake()
     {
@@ -23,10 +24,11 @@ public class PlayView : MonoBehaviour
     {
         var type = para[0] as String;
         var playAnim = (Boolean) para[1];
-        UpdateAttrib(type, playAnim);
+        var animType = para[2] as String;
+        UpdateAttrib(type, playAnim, animType);
     }
 
-    private void UpdateAttrib(string type, bool playAnim)
+    private void UpdateAttrib(string type, bool playAnim, string animType)
     {
         switch (type)
         {
@@ -44,8 +46,16 @@ public class PlayView : MonoBehaviour
 
             case "clip":
             this.Clip.text = Ship.Data.Clip.ToString();
-            if (playAnim)
+            if (! playAnim)
+                break;
+
+            if (animType == "add")
                 this.AddClip.Play ("addclip");
+            else if (animType == "restore")
+                this.RestoreClip.Play ("restoreclip");
+            else
+                Log.Assert(false, "Unrecognized anim type {0}.");
+
             break;
 
             case "score":
