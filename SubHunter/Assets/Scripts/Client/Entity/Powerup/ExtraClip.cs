@@ -7,5 +7,7 @@ public class ExtraClip : Powerup
         Ship.Data.AddClip();
 
         Foundation.Log.Trace("Gain an extra clip.");
+
+        Notification.I.DisplayMessage("Extra ammo.");
     }
 }

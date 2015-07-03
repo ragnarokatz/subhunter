@@ -7,6 +7,8 @@ public class WaitView : MonoBehaviour
     public Text     Score;
     public Animator StartText;
 
+    private Vector3 startPosition;
+
     public void StartNewGame()
     {
         this.StartText.Play("textflyup");
@@ -18,8 +20,18 @@ public class WaitView : MonoBehaviour
         Game.I.StartNewGame();
     }
 
+    private void Awake()
+    {
+        this.startPosition = this.StartText.transform.position;
+    }
+
     private void OnEnable()
     {
         this.Score.text = Highscore.Score.ToString();
+    }
+
+    private void OnDisable()
+    {
+        this.StartText.transform.position = this.startPosition;
     }
 }

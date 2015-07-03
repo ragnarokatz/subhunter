@@ -7,5 +7,7 @@ public class StopTime : Powerup
         BuffManager.I.AddStoptimeBuff();
 
         Foundation.Log.Trace("Start stop time effect.");
+
+        Notification.I.DisplayMessage("Freeze!");
     }
 }

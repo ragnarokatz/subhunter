@@ -7,5 +7,7 @@ public class BonusPoints : Powerup
         Player.I.AddScore(2000);
 
         Foundation.Log.Trace("Gain bonus points.");
+
+        Notification.I.DisplayMessage("Gained 2000 points.");
     }
 }

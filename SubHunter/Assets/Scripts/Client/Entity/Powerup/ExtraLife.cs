@@ -7,5 +7,7 @@ public class ExtraLife : Powerup
         Player.I.GainAnExtraLife();
 
         Foundation.Log.Trace("Gain an extra life.");
+
+        Notification.I.DisplayMessage("Extra life.");
     }
 }

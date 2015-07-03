@@ -10,5 +10,7 @@ public class Nuke : Powerup
         Ship.I.UseNuke();
 
         Foundation.Log.Trace("Pick up a nuke.");
+
+        Notification.I.DisplayMessage("BOOM BOOM BURN!");
     }
 }

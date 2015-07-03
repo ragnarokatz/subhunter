@@ -6,6 +6,8 @@ public class Speedup : Powerup
     {
         BuffManager.I.AddSpeedupBuff();
 
-        Foundation.Log.Trace("Start speed up effect.");
+        Foundation.Log.Trace("Start speedup effect.");
+
+        Notification.I.DisplayMessage("I'm like the wind.");
     }
 }

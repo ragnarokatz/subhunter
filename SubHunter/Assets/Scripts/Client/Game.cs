@@ -65,7 +65,10 @@ public class Game : MonoBehaviour
         Player.I.LoseALife();
 
         if (Player.I.Lives > 0)
+        {
             Invoke("ResumeLevel", 5f);
+            Notification.I.DisplayMessage("Aww. Resuming level...");
+        }
         else
             Invoke("EndGame", 1f);
     }
@@ -81,6 +84,8 @@ public class Game : MonoBehaviour
         this.Spawner.FinishSpawn();
 
         Invoke("AdvanceToNextLevel", 5f);
+
+        Notification.I.DisplayMessage("Congratulations! Next level coming up soon...");
     }
 
     private void ResumeLevel()
