@@ -8,6 +8,6 @@ public class Speedup : Powerup
 
         Foundation.Log.Trace("Start speedup effect.");
 
-        Notification.I.DisplayMessage("I'm like the wind.");
+        Notification.I.DisplayMessage("Like the wind.");
     }
 }

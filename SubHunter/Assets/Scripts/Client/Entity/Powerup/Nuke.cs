@@ -11,6 +11,6 @@ public class Nuke : Powerup
 
         Foundation.Log.Trace("Pick up a nuke.");
 
-        Notification.I.DisplayMessage("BOOM BOOM BURN!");
+        Notification.I.DisplayMessage("BOOM!");
     }
 }

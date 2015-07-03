@@ -12,7 +12,7 @@ public class Medusa : Enemy
     {
         base.Start();
 
-        var spawnPos = Random.Range(SpawnFloor, SpawnCeiling);
+        var spawnPos = Random.Range(Dimensions.SCREEN_LEFT, Dimensions.SCREEN_RIGHT);
         this.transform.position = new Vector3(spawnPos, Dimensions.BOT_EDGE, this.transform.position.z);
     }
 
@@ -26,7 +26,13 @@ public class Medusa : Enemy
             Destroy();
             return;
         }
-        
+
+        if (this.transform.position.x < Dimensions.LEFT_EDGE)
+        {
+            Destroy();
+            return;
+        }
+
         StateUpdate();
         MoveUpdate();
     }
@@ -38,7 +44,7 @@ public class Medusa : Enemy
             this.isPaused = false;
             this.lastStateChangeTime = Time.time;
 
-            var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(Dimensions.SCREEN_LEFT, Dimensions.MEDUSA, 0f);
+            var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(Dimensions.LEFT_EDGE, Dimensions.MEDUSA, 0f);
             this.dir = (targetPos - this.transform.position).normalized;
 
             return;

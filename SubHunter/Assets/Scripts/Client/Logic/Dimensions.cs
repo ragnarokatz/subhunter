@@ -43,5 +43,8 @@ public class Dimensions
 
         worldPt = camera.ScreenToWorldPoint(new Vector3(width + offset, 0f, 0f));
         Dimensions.rightEdge = worldPt.x;
+
+        Log.Trace("Left edge: {0}, right edge: {1}, screen left: {2}, screen right: {3}",
+                  Dimensions.leftEdge, Dimensions.rightEdge, Dimensions.screenLeft, Dimensions.screenRight);
     }
 }
