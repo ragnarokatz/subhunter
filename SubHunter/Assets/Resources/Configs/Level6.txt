@@ -1,26 +1,66 @@
 {
-    "Length" : 60,
+    "Length" : 115,
     "Sets" : {
         "0" : {
-            "Medusa" : 3,
-            "Firefish" : 2,
+            "Medusa" : 2,
+            "Torpedo": 3,
+        },
+        "2" : {
+            "Torpedo" : 4,
+        },
+        "3" : {
+            "Torpedo" : 2,
+            "Medusa" : 1,
+        },
+        "4" : {
+            "Medusa" : 1,
+            "Torpedo" : 5,
         },
         "5" : {
-            "Torpedo" : 3,
-            "Missile" : 5,
+            "Torpedo" : 5,
+        },
+        "8" : {
+            "Medusa" : 1,
+            "Torpedo" : 4,
+            "Bonus": 1,
         },
         "10" : {
-            "Scout" : 8,
+            "Torpedo" : 3,
+        },
+        "12" : {
             "Torpedo" : 4,
         },
         "15": {
-            "Scout" : 4,
-            "Torpedo" : 6,
+            "Torpedo" : 3,
+            "Medusa" : 2,
+        },
+        "20": {
+            "Torpedo" : 4,
+            "Medusa" : 1,
         },
         "25": {
             "Bonus" : 1,
+            "Medusa" : 1,
+        },
+        "28" : {
             "Torpedo" : 4,
-            "Scout" : 3,
+            "Medusa" : 2,
+        },
+        "30" : {
+            "Medusa" : 1,
+            "Torpedo" : 6,
+        },
+        "34" : {
+            "Medusa" : 2,
+            "Torpedo" : 4,
+        },
+        "37" : {
+            "Torpedo" : 5,
+            "Medusa" : 1,
+        },
+        "40" : {
+            "Medusa" : 1,
+            "Torpedo" : 3,
         },
     },
 }

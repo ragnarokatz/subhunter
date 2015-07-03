@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayView : MonoBehaviour
 {
-    private const float DURATION = 0.5f;
+    private const float DURATION = 0.4f;
 
     public Text     Level;
     public Text     Score;
@@ -178,7 +178,8 @@ public class PlayView : MonoBehaviour
     private void UpdateScore()
     {
         var currentScore = Int32.Parse(this.Score.text);
-        currentScore += (int) (this.addScoreRate * Time.deltaTime);
+        currentScore += (int) (this.addScoreRate * Time.deltaTime + 1);
+        // ATTENION: WHY ADD 1? To force a change in score when the change is too little (< 1).
 
         if (currentScore > Player.I.Score)
         {

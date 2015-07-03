@@ -16,7 +16,7 @@ public class Player
 
     public void StartNewGame()
     {
-        this.lives = 1;
+        this.lives = 5;
         this.level = 0;
         this.score = 0;
 
@@ -31,7 +31,7 @@ public class Player
 
     public void AdvanceToNextLevel()
     {
-        this.level = (this.level + 1) % 20;
+        this.level = (this.level + 1) % 15;
         EventManager.UpdateAttribs("level", true);
 
         Log.Trace("Advance to level {0}.", this.level);
