@@ -16,6 +16,7 @@ public class PlayView : MonoBehaviour
     public Animator LifeChange;
     public Animator AddClip;
     public Animator RestoreClip;
+    public AudioSource LevelupSound;
 
     private bool  isMovingLeft;
     private bool  isMovingRight;
@@ -116,62 +117,65 @@ public class PlayView : MonoBehaviour
     {
         switch (type)
         {
-            case "level":
-                this.Level.text = (Player.I.Level + 1).ToString();
-                if (playAnim)
-                    this.Levelup.Play("levelup");
+        case "level":
+            this.Level.text = (Player.I.Level + 1).ToString();
+            if (playAnim)
+            {
+                this.Levelup.Play("levelup");
+                this.LevelupSound.Play();
+            }
+            break;
+
+        case "life":
+            this.Life.text = Player.I.Lives.ToString();
+            if (playAnim)
+                this.LifeChange.Play ("lifechange");
+            break;
+
+        case "clip":
+            this.Clip.text = Ship.Data.Clip.ToString();
+            if (! playAnim)
                 break;
 
-            case "life":
-                this.Life.text = Player.I.Lives.ToString();
-                if (playAnim)
-                    this.LifeChange.Play ("lifechange");
-                break;
+            if (animType == "add")
+                this.AddClip.Play ("addclip");
+            else if (animType == "restore")
+                this.RestoreClip.Play ("restoreclip");
+            else
+                Log.Assert(false, "Unrecognized anim type {0}.");
 
-            case "clip":
-                this.Clip.text = Ship.Data.Clip.ToString();
-                if (! playAnim)
-                    break;
+            break;
 
-                if (animType == "add")
-                    this.AddClip.Play ("addclip");
-                else if (animType == "restore")
-                    this.RestoreClip.Play ("restoreclip");
-                else
-                    Log.Assert(false, "Unrecognized anim type {0}.");
+        case "score":
+            if (! playAnim)
+            {
+                this.Score.text = Player.I.Score.ToString();
+                return;
+            }
 
-                break;
+            this.Addscore.Play("scoreshake");
 
-            case "score":
-                if (! playAnim)
-                {
-                    this.Score.text = Player.I.Score.ToString();
-                    return;
-                }
+            var currentScore = 0;
+            if (! Int32.TryParse(this.Score.text, out currentScore))
+            {
+                this.Score.text = Player.I.Score.ToString();
+                return;
+            }
 
-                this.Addscore.Play("scoreshake");
+            if (currentScore >= Player.I.Score)
+            {
+                this.Score.text = Player.I.Score.ToString();
+                return;
+            }
 
-                var currentScore = 0;
-                if (! Int32.TryParse(this.Score.text, out currentScore))
-                {
-                    this.Score.text = Player.I.Score.ToString();
-                    return;
-                }
+            this.isAddingScore = true;
+            this.addScoreRate = (Player.I.Score - currentScore) / PlayView.DURATION;
 
-                if (currentScore >= Player.I.Score)
-                {
-                    this.Score.text = Player.I.Score.ToString();
-                    return;
-                }
+            break;
 
-                this.isAddingScore = true;
-                this.addScoreRate = (Player.I.Score - currentScore) / PlayView.DURATION;
-
-                break;
-
-            default:
-                Log.Assert(false, String.Format("Impossible here, wrong attrib {0}.", type));
-                break;
+        default:
+            Log.Assert(false, String.Format("Impossible here, wrong attrib {0}.", type));
+            break;
         }
     }
 

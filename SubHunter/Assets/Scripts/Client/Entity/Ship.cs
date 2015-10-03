@@ -65,8 +65,9 @@ public class Ship : Entity
     public static Ship I { get { return Ship.instance; } }
     public static bool IsAlive { get { return Ship.instance != null; } }
 
+    public AudioSource fireSound;
     public GameObject Weapon;
-    public float      FireInterval;
+    public float FireInterval;
 
     private float lastFireLeftTime;
     private float lastFireRightTime;
@@ -98,6 +99,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireLeftTime = Time.time;
+        this.audio.Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER, 0f), Quaternion.identity);
     }
@@ -112,6 +114,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireRightTime = Time.time;
+        this.audio.Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER, 0f), Quaternion.identity);
     }
@@ -126,6 +129,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireMiddleTime = Time.time;
+        this.audio.Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER, 0f), Quaternion.identity);
     }
