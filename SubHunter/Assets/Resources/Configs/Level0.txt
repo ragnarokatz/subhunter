@@ -1,5 +1,5 @@
 {
-    "Length" : 45,
+    "Length" : 25,
     "Sets" : {
         "0" : {
             "Scout" : 3,
@@ -12,31 +12,31 @@
             "Torpedo" : 2,
         },
         "5" : {
-            "Torpedo" : 1,
-            "Scout" : 4,
+            "Torpedo" : 2,
+            "Scout" : 3,
         },
         "8" : {
             "Scout" : 3,
-            "Torpedo" : 1,
+            "Torpedo" : 2,
         },
         "10" : {
-            "Scout" : 6,
-            "Torpedo" : 2,
+            "Scout" : 5,
+            "Torpedo" : 3,
         },
         "15": {
             "Scout" : 4,
-            "Torpedo" : 2,
+            "Torpedo" : 3,
         },
         "20": {
-            "Scout": 3,
-            "Torpedo": 1,
+            "Scout": 2,
+            "Torpedo": 3,
         },
         "25": {
             "Bonus" : 1,
         },
         "28" : {
-            "Scout" : 1,
-            "Torpedo" : 2,
+            "Scout" : 3,
+            "Torpedo" : 4,
         },
         "30" : {
             "Torpedo" : 1,
@@ -44,7 +44,7 @@
         },
         "32" : {
             "Scout" : 3,
-            "Torpedo" : 2,
+            "Torpedo" : 1,
         },
     },
 }

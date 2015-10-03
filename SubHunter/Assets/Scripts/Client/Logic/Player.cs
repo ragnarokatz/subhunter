@@ -31,7 +31,7 @@ public class Player
 
     public void AdvanceToNextLevel()
     {
-        this.level = (this.level + 1) % 15;
+        this.level = (this.level + 1) % 10;
         EventManager.UpdateAttribs("level", true);
 
         Log.Trace("Advance to level {0}.", this.level);

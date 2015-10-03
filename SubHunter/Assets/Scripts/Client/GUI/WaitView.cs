@@ -11,6 +11,9 @@ public class WaitView : MonoBehaviour
 
     public void StartNewGame()
     {
+        if (this.IsInvoking("StartGame"))
+            return;
+
         this.StartText.Play("textflyup");
         this.Invoke("StartGame", 2f);
     }
@@ -20,14 +23,14 @@ public class WaitView : MonoBehaviour
         Game.I.StartNewGame();
     }
 
-    private void Awake()
-    {
-        this.startPosition = this.StartText.transform.position;
-    }
-
     private void OnEnable()
     {
         this.Score.text = Highscore.Score.ToString();
+    }
+
+    private void Start()
+    {
+        this.startPosition = this.StartText.transform.position;
     }
 
     private void OnDisable()

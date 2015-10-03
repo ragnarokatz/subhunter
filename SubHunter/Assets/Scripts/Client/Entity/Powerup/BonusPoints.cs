@@ -8,6 +8,6 @@ public class BonusPoints : Powerup
 
         Foundation.Log.Trace("Gain bonus points.");
 
-        Notification.I.DisplayMessage("Gained 2000 points.");
+        Notification.I.DisplayMessage("$2000~");
     }
 }

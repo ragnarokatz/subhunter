@@ -8,6 +8,6 @@ public class ExtraClip : Powerup
 
         Foundation.Log.Trace("Gain an extra clip.");
 
-        Notification.I.DisplayMessage("Extra ammo.");
+        Notification.I.DisplayMessage("+1 Ammo");
     }
 }

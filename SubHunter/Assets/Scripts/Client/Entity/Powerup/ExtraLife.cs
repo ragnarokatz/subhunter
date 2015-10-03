@@ -8,6 +8,6 @@ public class ExtraLife : Powerup
 
         Foundation.Log.Trace("Gain an extra life.");
 
-        Notification.I.DisplayMessage("Extra life.");
+        Notification.I.DisplayMessage("+1 Life");
     }
 }

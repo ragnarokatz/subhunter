@@ -1,80 +1,69 @@
 {
-    "Length" : 120,
+    "Length" : 2147483640,
     "Sets" : {
         "0" : {
-            "Scout" : 5,
-            "Torpedo": 4,
+            "Firefish" : 3,
+            "Missile": 12,
         },
         "2" : {
-            "Missile" : 4,
-            "Torpedo": 2,
+            "Firefish": 3,
+            "Missile": 9,
         },
         "3" : {
-            "Torpedo" : 2,
-            "Missile" : 2,
-            "Scout" : 3,
+            "Firefish": 4,
+            "Missile": 5,
         },
         "4" : {
-            "Scout" : 4,
-            "Torpedo" : 3,
-            "Missile" : 3,
+            "Missile": 8,
         },
         "5" : {
-            "Torpedo" : 3,
+            "Firefish": 2,
+            "Missile": 9,
         },
         "8" : {
-            "Firefish" : 1,
-            "Torpedo" : 4,
-            "Bonus": 1,
-            "Missile" : 3,
+            "Missile" : 6,
         },
         "10" : {
-            "Torpedo" : 3,
-            "Missile" : 3,
+            "Firefish": 2,
+            "Missile": 6,
         },
         "12" : {
-            "Torpedo" : 4,
-            "Missile" : 3,
+            "Bonus": 1,
+            "Missile": 6,
+            "Firefish": 3,
         },
         "15": {
-            "Torpedo" : 3,
-            "Scout" : 2,
-            "Missile" : 4,
+            "Firefish": 7,
+            "Missile": 3,
         },
         "20": {
-            "Torpedo" : 4,
-            "Scout" : 2,
-            "Missile" : 2,
+            "Missile" : 9,
+            "Firefish": 3,
         },
         "25": {
-            "Scout" : 3,
             "Missile" : 4,
-            "Bonus" : 1,
+            "Firefish": 2
         },
         "28" : {
-            "Torpedo" : 4,
-            "Scout" : 2,
+            "Bonus" : 1,
+            "Firefish": 2,
+            "Missile": 12
         },
         "30" : {
-            "Scout" : 4,
-            "Missile" : 2,
-            "Torpedo" : 3,
+            "Missile" : 12,
+            "Firefish": 3,
         },
         "34" : {
-            "Firefish" : 1,
-            "Missile" : 3,
-            "Torpedo" : 4,
+            "Firefish": 1,
+            "Missile": 8
         },
         "37" : {
-            "Torpedo" : 3,
-            "Missile" : 4,
-            "Scout" : 3,
+            "Firefish": 2,
         },
         "40" : {
-            "Scout" : 3,
-            "Missile" : 2,
-            "Torpedo" : 3,
-            "Bonus" : 1,
+            "Missile" : 12,
+            "Firefish": 3,
+            "Bonus": 1,
         },
     },
 }

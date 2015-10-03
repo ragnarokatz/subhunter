@@ -8,6 +8,6 @@ public class StopTime : Powerup
 
         Foundation.Log.Trace("Start stop time effect.");
 
-        Notification.I.DisplayMessage("Freeze!");
+        Notification.I.DisplayMessage("FREEZE");
     }
 }

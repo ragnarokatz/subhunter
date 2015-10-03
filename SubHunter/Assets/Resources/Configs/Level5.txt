@@ -1,68 +1,63 @@
 {
-    "Length" : 110,
+    "Length" : 100,
     "Sets" : {
         "0" : {
-            "Medusa" : 1,
-            "Scout" : 5,
-            "Torpedo": 2,
+            "Medusa" : 3,
+            "Torpedo": 6,
         },
         "2" : {
             "Medusa" : 1,
-            "Scout" : 6,
+            "Torpedo": 4,
         },
         "3" : {
-            "Scout" : 4,
-            "Torpedo" : 2,
+            "Torpedo" : 6,
         },
         "4" : {
-            "Medusa" : 1,
+            "Medusa" : 5,
         },
         "5" : {
-            "Scout" : 4,
             "Torpedo" : 5,
+            "Medusa": 2,
+            "Bonus" : 1,
         },
         "8" : {
-            "Medusa" : 1,
+            "Medusa" : 3,
         },
         "10" : {
             "Torpedo" : 3,
-            "Scout" : 2,
+            "Medusa": 5
         },
         "12" : {
-            "Scout" : 5
+            "Torpedo": 12,
         },
         "15": {
-            "Scout" : 4,
-            "Torpedo" : 3,
+            "Torpedo" : 4,
         },
         "20": {
-            "Scout" : 4,
             "Torpedo" : 4,
-            "Medusa" : 1,
+            "Medusa" : 6,
         },
         "25": {
             "Bonus" : 1,
-            "Medusa" : 1
+            "Medusa" : 5
         },
         "28" : {
-            "Scout" : 5,
             "Torpedo" : 4,
-            "Medusa" : 2,
+            "Medusa" : 4,
         },
         "30" : {
-            "Scout" : 3,
-            "Medusa" : 1,
+            "Medusa" : 3,
+            "Torpedo" : 4,
         },
         "34" : {
-            "Medusa" : 1,
-            "Scout" : 4,
+            "Medusa" : 5,
+            "Torpedo" : 6,
         },
         "37" : {
             "Torpedo" : 5,
-            "Scout" : 6,
         },
         "40" : {
-            "Medusa" : 1,
+            "Medusa" : 4,
             "Torpedo" : 3,
         },
     },
