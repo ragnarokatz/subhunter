@@ -11,15 +11,10 @@ namespace Foundation
         public static ConfigManager I { get { return ConfigManager.instance; } }
 
         private Dictionary<string, object> allConfigs;
-        private bool isInitialized;
 
         private ConfigManager()
         {
-            Log.Assert(! this.isInitialized);
-
             this.allConfigs = new Dictionary<string, object>();
-
-            this.isInitialized = true;
         }
 
         public void LoadConfig(string assetName, string assetText)

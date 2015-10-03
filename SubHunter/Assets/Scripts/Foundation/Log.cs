@@ -21,12 +21,12 @@ namespace Foundation
 
         public static void Trace(string format, params object[] objs)
         {
-            if (OnLog != null) OnLog(LogTypes.Trace, string.Format(format, objs));
+            if (OnLog != null) OnLog(LogTypes.Trace, String.Format(format, objs));
         }
 
         public static void Error(string format, params object[] objs)
         {
-            if (OnLog != null) OnLog(LogTypes.Error, string.Format(format, objs));
+            if (OnLog != null) OnLog(LogTypes.Error, String.Format(format, objs));
         }
 
         public static void Assert(bool condition)
@@ -34,17 +34,17 @@ namespace Foundation
             Assert(condition, DEFAULT_ASSERT_MESSAGE);
         }
 
-        public static void Assert(bool condition, string message)
+        public static void Assert(bool condition, string format, params object[] objs)
         {
             if (condition)
                 return;
 
-            if (OnLog != null) OnLog(LogTypes.Error, message);
+            if (OnLog != null) OnLog(LogTypes.Error, String.Format(format, objs));
         }
 
         public static void Warning(string format, params object[] objs)
         {
-            if (OnLog != null) OnLog(LogTypes.Warning, string.Format(format, objs));
+            if (OnLog != null) OnLog(LogTypes.Warning, String.Format(format, objs));
         }
     }
 }
