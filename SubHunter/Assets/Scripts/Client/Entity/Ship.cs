@@ -99,7 +99,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireLeftTime = Time.time;
-        this.audio.Play();
+        this.GetComponent<AudioSource>().Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER, 0f), Quaternion.identity);
     }
@@ -114,7 +114,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireRightTime = Time.time;
-        this.audio.Play();
+        this.GetComponent<AudioSource>().Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER, 0f), Quaternion.identity);
     }
@@ -129,7 +129,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireMiddleTime = Time.time;
-        this.audio.Play();
+        this.GetComponent<AudioSource>().Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER, 0f), Quaternion.identity);
     }
