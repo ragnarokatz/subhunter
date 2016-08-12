@@ -79,6 +79,7 @@ public class Game : MonoBehaviour
         Log.Trace("Player has completed level {0}.", Player.I.Level);
 
         GameState.ChangeToWaitState();
+        AudioManager.I.AudioSources[3].Play();
 
         DestroyShip(false);
         this.Level.EndLevel();

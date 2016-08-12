@@ -3,7 +3,6 @@ using Foundation;
 
 public class Powerup : Entity
 {
-    public AudioSource source;
     public float DelayDuration;
 
     protected float destroyBoundary;
@@ -55,7 +54,7 @@ public class Powerup : Entity
 
     public virtual void Effect()
     {
-        this.source.Play();
+        AudioManager.I.AudioSources[2].Play();
         Log.Trace("Picked up powerup {0}.", this.GetType().Name);
     }
 }

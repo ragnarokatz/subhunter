@@ -11,12 +11,12 @@ public class PlayView : MonoBehaviour
     public Text     Score;
     public Text     Life;
     public Text     Clip;
-    public Animator Levelup;
-    public Animator Addscore;
-    public Animator LifeChange;
-    public Animator AddClip;
-    public Animator RestoreClip;
-    public AudioSource LevelupSound;
+    // public Animator Levelup;
+    // public Animator Addscore;
+    // public Animator LifeChange;
+    // public Animator AddClip;
+    // public Animator RestoreClip;
+    // public AudioSource LevelupSound;
 
     private bool  isMovingLeft;
     private bool  isMovingRight;
@@ -122,14 +122,17 @@ public class PlayView : MonoBehaviour
             if (playAnim)
             {
                 // this.Levelup.Play("levelup");
-                this.LevelupSound.Play();
+                // this.LevelupSound.Play();
             }
             break;
 
         case "life":
             this.Life.text = Player.I.Lives.ToString();
             if (playAnim)
-                this.LifeChange.Play ("lifechange");
+            {
+                // this.LifeChange.Play ("lifechange");
+            }
+
             break;
 
         case "clip":
@@ -141,8 +144,9 @@ public class PlayView : MonoBehaviour
             {
                 // this.AddClip.Play ("addclip");
             } else if (animType == "restore")
-                this.RestoreClip.Play ("restoreclip");
-            else
+            {
+                // this.RestoreClip.Play ("restoreclip");
+            } else
                 Log.Assert(false, "Unrecognized anim type {0}.");
 
             break;

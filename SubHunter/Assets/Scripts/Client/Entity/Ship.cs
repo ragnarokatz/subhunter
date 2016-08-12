@@ -65,7 +65,6 @@ public class Ship : Entity
     public static Ship I { get { return Ship.instance; } }
     public static bool IsAlive { get { return Ship.instance != null; } }
 
-    public AudioSource fireSound;
     public GameObject Weapon;
     public float FireInterval;
 
@@ -100,9 +99,9 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireTime = Time.time;
-        this.GetComponent<AudioSource>().Play();
+        AudioManager.I.AudioSources[0].Play();
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin - 0.1f, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }
     
     public void FireRight()
@@ -115,9 +114,9 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireTime = Time.time;
-        this.GetComponent<AudioSource>().Play();
+        AudioManager.I.AudioSources[0].Play();
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax + 0.2f, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }
     
     public void FireMiddle()
@@ -130,7 +129,7 @@ public class Ship : Entity
 
         Data.UseClip();
         this.lastFireTime = Time.time;
-        this.GetComponent<AudioSource>().Play();
+        AudioManager.I.AudioSources[0].Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class WaitView : MonoBehaviour
 {
-    public Text     Score;
+    public Text Score;
     public Animator StartText;
 
     private Vector3 startPosition;
@@ -14,8 +14,8 @@ public class WaitView : MonoBehaviour
         if (this.IsInvoking("StartGame"))
             return;
 
-        this.StartText.Play("textflyup");
-        this.Invoke("StartGame", 2f);
+        this.StartText.enabled = true;
+        this.Invoke("StartGame", 1.8f);
     }
 
     private void StartGame()
@@ -25,16 +25,11 @@ public class WaitView : MonoBehaviour
 
     private void OnEnable()
     {
-        this.Score.text = String.Format("HighScore: {0}", Highscore.Score);
-    }
-
-    private void Start()
-    {
-        this.startPosition = this.StartText.transform.position;
+        this.Score.text = Highscore.Score.ToString();
     }
 
     private void OnDisable()
     {
-        this.StartText.transform.position = this.startPosition;
+        this.StartText.enabled = false;
     }
 }

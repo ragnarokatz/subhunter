@@ -14,7 +14,7 @@ public class Missile : Projectile
         var targetPos = Ship.IsAlive ? Ship.I.transform.position : EntityManager.I.ShipParent.position;
         var dist = targetPos - this.transform.position;
         if (Mathf.Abs(dist.y / 2) < Mathf.Abs(dist.x))
-            dist.y = dist.x * 2;
+            dist.y = Mathf.Abs(dist.x * 2);
 
         this.dir = dist.normalized;
         UpdateRotation(this.dir);

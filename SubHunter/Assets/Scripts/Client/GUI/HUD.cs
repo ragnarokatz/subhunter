@@ -15,7 +15,7 @@ public class HUD : MonoBehaviour
         this.gameObject.SetActive(true);
 
         var text = GetComponent<Text>();
-        text.text = String.Format("{0} x {1}", points, multiplier);
+        text.text = String.Format("{0}x{1}", points, multiplier);
         AlignScoreToEnemy(worldPoint);
 
         this.started = true;

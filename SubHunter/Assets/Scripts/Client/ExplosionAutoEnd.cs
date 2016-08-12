@@ -4,14 +4,13 @@ using UnityEngine;
 public class ExplosionAutoEnd : MonoBehaviour
 {
     public float Duration;
-    public AudioSource source;
 
     private float startTime;
 
     private void Start()
     {
         this.startTime = Time.time;
-        this.source.Play();
+        AudioManager.I.AudioSources[1].Play();
         this.transform.SetParent(EntityManager.I.ExplosionParent, true);
     }
 
