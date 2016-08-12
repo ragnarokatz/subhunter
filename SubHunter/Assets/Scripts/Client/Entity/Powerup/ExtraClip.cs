@@ -5,7 +5,7 @@ public class ExtraClip : Powerup
     public override void Effect()
     {
         Ship.Data.AddClip();
-        Notification.I.DisplayMessage("+1 Ammo");
+        Notification.I.DisplayMessage("Ammo +1");
         base.Effect();
     }
 }

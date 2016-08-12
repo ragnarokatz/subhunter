@@ -25,7 +25,7 @@ public class WaitView : MonoBehaviour
 
     private void OnEnable()
     {
-        this.Score.text = Highscore.Score.ToString();
+        this.Score.text = String.Format("HighScore: {0}", Highscore.Score);
     }
 
     private void Start()

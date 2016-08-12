@@ -121,7 +121,7 @@ public class PlayView : MonoBehaviour
             this.Level.text = (Player.I.Level + 1).ToString();
             if (playAnim)
             {
-                this.Levelup.Play("levelup");
+                // this.Levelup.Play("levelup");
                 this.LevelupSound.Play();
             }
             break;
@@ -138,8 +138,9 @@ public class PlayView : MonoBehaviour
                 break;
 
             if (animType == "add")
-                this.AddClip.Play ("addclip");
-            else if (animType == "restore")
+            {
+                // this.AddClip.Play ("addclip");
+            } else if (animType == "restore")
                 this.RestoreClip.Play ("restoreclip");
             else
                 Log.Assert(false, "Unrecognized anim type {0}.");
@@ -153,7 +154,7 @@ public class PlayView : MonoBehaviour
                 return;
             }
 
-            this.Addscore.Play("scoreshake");
+            // this.Addscore.Play("scoreshake");
 
             var currentScore = 0;
             if (! Int32.TryParse(this.Score.text, out currentScore))

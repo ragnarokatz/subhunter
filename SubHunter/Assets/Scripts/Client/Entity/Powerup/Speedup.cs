@@ -5,7 +5,7 @@ public class Speedup : Powerup
     public override void Effect()
     {
         BuffManager.I.AddSpeedupBuff();
-        Notification.I.DisplayMessage("LIGHT SPEED");
+        Notification.I.DisplayMessage("SPEED UP");
         base.Effect();
     }
 }

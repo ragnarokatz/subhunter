@@ -69,9 +69,10 @@ public class Ship : Entity
     public GameObject Weapon;
     public float FireInterval;
 
-    private float lastFireLeftTime;
-    private float lastFireRightTime;
-    private float lastFireMiddleTime;
+    private float lastFireTime;
+    // private float lastFireLeftTime;
+    // private float lastFireRightTime;
+    // private float lastFireMiddleTime;
 
     public void MoveLeft()
     {
@@ -94,11 +95,11 @@ public class Ship : Entity
         if (Data.Clip <= 0)
             return;
         
-        if (Time.time - this.lastFireLeftTime < this.FireInterval)
+        if (Time.time - this.lastFireTime < this.FireInterval)
             return;
 
         Data.UseClip();
-        this.lastFireLeftTime = Time.time;
+        this.lastFireTime = Time.time;
         this.GetComponent<AudioSource>().Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
@@ -109,11 +110,11 @@ public class Ship : Entity
         if (Data.Clip <= 0)
             return;
         
-        if (Time.time - this.lastFireRightTime < this.FireInterval)
+        if (Time.time - this.lastFireTime < this.FireInterval)
             return;
 
         Data.UseClip();
-        this.lastFireRightTime = Time.time;
+        this.lastFireTime = Time.time;
         this.GetComponent<AudioSource>().Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
@@ -124,11 +125,11 @@ public class Ship : Entity
         if (Data.Clip <= 0)
             return;
         
-        if (Time.time - this.lastFireMiddleTime < this.FireInterval)
+        if (Time.time - this.lastFireTime < this.FireInterval)
             return;
 
         Data.UseClip();
-        this.lastFireMiddleTime = Time.time;
+        this.lastFireTime = Time.time;
         this.GetComponent<AudioSource>().Play();
 
         GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);

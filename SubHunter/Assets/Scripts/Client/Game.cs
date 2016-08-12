@@ -33,16 +33,17 @@ public class Game : MonoBehaviour
     {
         Log.Trace("End game.");
 
-        PlayView.gameObject.SetActive(false);
-        WaitView.gameObject.SetActive(true);
-
         GameState.ChangeToWaitState();
+        Highscore.TrySubmitHighscore(Player.I.Score);
 
         Player.I.EndGame();
         this.Level.EndLevel();
         this.Spawner.FinishSpawn();
 
-        Highscore.TrySubmitHighscore(Player.I.Score);
+        PlayView.gameObject.SetActive(false);
+        WaitView.gameObject.SetActive(true);
+
+        Notification.I.DisplayMessage("Game Over");
     }
 
     public void PauseGame()
@@ -67,7 +68,7 @@ public class Game : MonoBehaviour
         if (Player.I.Lives > 0)
         {
             Invoke("ResumeLevel", 5f);
-            Notification.I.DisplayMessage("Resuming level...");
+            Notification.I.DisplayMessage("Resuming");
         }
         else
             Invoke("EndGame", 1f);
@@ -85,7 +86,7 @@ public class Game : MonoBehaviour
 
         Invoke("AdvanceToNextLevel", 5f);
 
-        Notification.I.DisplayMessage("Advancing to next level...");
+        Notification.I.DisplayMessage("Preparing Next Level");
     }
 
     private void ResumeLevel()
