@@ -7,7 +7,7 @@ public class Bomb : Projectile
     {
         this.speed = Random.Range(SpeedMin, SpeedMax);
         this.dir = Vector3.down;
-        this.destroyBoundary = Dimensions.BOT_EDGE;
+        this.destroyBoundary = Dimensions.BOTTOM_EDGE;
 
         EntityManager.I.Bombs.Add(this);
         this.transform.SetParent(EntityManager.I.ProjectileParent, true);

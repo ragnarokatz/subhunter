@@ -21,6 +21,7 @@ public class Notification : MonoBehaviour
 
         var go = GameObject.Instantiate(this.Template) as GameObject;
         go.transform.SetParent(this.Grid.transform);
+        go.transform.localScale = Vector3.one;
         go.GetComponent<Text>().text = message;
         go.SetActive(true);
 

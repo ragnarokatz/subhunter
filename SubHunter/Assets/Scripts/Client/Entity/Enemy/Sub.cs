@@ -18,11 +18,11 @@ public class Sub : Enemy
         if (dirRandom == 0)
         {
             this.dir = Vector3.right;
-            this.transform.position = new Vector3(Dimensions.LEFT_EDGE, spawnPos, this.transform.position.z);
+            this.transform.position = new Vector3(Dimensions.LEFT_SPAWN, spawnPos, this.transform.position.z);
         } else
         {
             this.dir = Vector3.left;
-            this.transform.position = new Vector3(Dimensions.RIGHT_EDGE, spawnPos, this.transform.position.z);
+            this.transform.position = new Vector3(Dimensions.RIGHT_SPAWN, spawnPos, this.transform.position.z);
 
             // All directional sprites default are face right
             this.transform.Rotate(0f, 180f, 0f);
@@ -58,13 +58,13 @@ public class Sub : Enemy
 
     private void MoveUpdate()
     {
-        if (this.dir == Vector3.right && this.transform.position.x > Dimensions.RIGHT_EDGE)
+        if (this.dir == Vector3.right && this.transform.position.x > Dimensions.RIGHT_SPAWN)
         {
             Destroy();
             return;
         }
 
-        if (this.dir == Vector3.left && this.transform.position.x < Dimensions.LEFT_EDGE)
+        if (this.dir == Vector3.left && this.transform.position.x < Dimensions.LEFT_SPAWN)
         {
             Destroy();
             return;

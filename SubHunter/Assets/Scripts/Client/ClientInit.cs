@@ -24,7 +24,7 @@ public class ClientInit : MonoBehaviour
     {
         Log.OnLog += HandleOnLog;
 
-        Dimensions.Init();
+        // Dimensions.Init();
 
         var configAssets = Resources.LoadAll("Configs", typeof(TextAsset));
         foreach (TextAsset asset in configAssets)

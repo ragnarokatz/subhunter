@@ -12,8 +12,8 @@ public class Medusa : Enemy
     {
         base.Start();
 
-        var spawnPos = Random.Range(Dimensions.SCREEN_LEFT, Dimensions.SCREEN_RIGHT);
-        this.transform.position = new Vector3(spawnPos, Dimensions.BOT_EDGE, this.transform.position.z);
+        var spawnPos = Random.Range(Dimensions.LEFT_SPAWN, Dimensions.RIGHT_SPAWN);
+        this.transform.position = new Vector3(spawnPos, Dimensions.BOTTOM_EDGE, this.transform.position.z);
     }
 
     protected override void Update ()
@@ -27,7 +27,7 @@ public class Medusa : Enemy
             return;
         }
 
-        if (this.transform.position.x < Dimensions.LEFT_EDGE)
+        if (this.transform.position.x < Dimensions.LEFT_SPAWN)
         {
             Destroy();
             return;
@@ -44,7 +44,7 @@ public class Medusa : Enemy
             this.isPaused = false;
             this.lastStateChangeTime = Time.time;
 
-            var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(Dimensions.LEFT_EDGE, Dimensions.MEDUSA, 0f);
+            var targetPos = Ship.IsAlive ? Ship.I.transform.position : new Vector3(Dimensions.LEFT_SPAWN, Dimensions.MEDUSA_LIMIT, 0f);
             this.dir = (targetPos - this.transform.position).normalized;
 
             return;
@@ -66,7 +66,7 @@ public class Medusa : Enemy
             return;
 
         this.transform.position += this.dir * this.speed * Time.deltaTime;
-        if (this.transform.position.y > Dimensions.MEDUSA)
-            this.transform.position = new Vector3(this.transform.position.x, Dimensions.MEDUSA, this.transform.position.z);
+        if (this.transform.position.y > Dimensions.MEDUSA_LIMIT)
+            this.transform.position = new Vector3(this.transform.position.x, Dimensions.MEDUSA_LIMIT, this.transform.position.z);
     }
 }

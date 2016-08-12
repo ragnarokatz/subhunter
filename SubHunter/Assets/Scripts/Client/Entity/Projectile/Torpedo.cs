@@ -12,7 +12,7 @@ public class Torpedo : Projectile
         base.Start();
 
         this.dir = Vector3.up;
-        this.destroyBoundary = Dimensions.WATER;
+        this.destroyBoundary = Dimensions.WATER_SURFACE;
     }
 
     protected override void Update ()

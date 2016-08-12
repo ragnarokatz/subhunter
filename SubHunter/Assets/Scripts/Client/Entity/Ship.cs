@@ -101,7 +101,7 @@ public class Ship : Entity
         this.lastFireLeftTime = Time.time;
         this.GetComponent<AudioSource>().Play();
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }
     
     public void FireRight()
@@ -116,7 +116,7 @@ public class Ship : Entity
         this.lastFireRightTime = Time.time;
         this.GetComponent<AudioSource>().Play();
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMax, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }
     
     public void FireMiddle()
@@ -131,7 +131,7 @@ public class Ship : Entity
         this.lastFireMiddleTime = Time.time;
         this.GetComponent<AudioSource>().Play();
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.transform.position.x, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }
 
     public void UseNuke()
@@ -166,7 +166,7 @@ public class Ship : Entity
         Ship.instance = this;
 
         this.transform.SetParent(EntityManager.I.ShipParent, true);
-        this.transform.position = new Vector3(0f, Dimensions.SHIP, 0f);
+        this.transform.localPosition = Vector3.zero;
         BuffManager.I.AddStartBuff();
     }
 

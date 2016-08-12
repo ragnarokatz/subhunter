@@ -1,50 +1,30 @@
 using UnityEngine;
 using Foundation;
 
-public class Dimensions
+public class Dimensions : MonoBehaviour
 {
-    // X dimensions (left and right)
-    private static float leftEdge;
-    private static float rightEdge;
-    private static float screenLeft;
-    private static float screenRight;
+    private static Dimensions instance;
 
-    public static float RIGHT_EDGE   { get { return Dimensions.rightEdge; } }
-    public static float LEFT_EDGE    { get { return Dimensions.leftEdge; } }
-    public static float SCREEN_LEFT  { get { return Dimensions.screenLeft; } }
-    public static float SCREEN_RIGHT { get { return Dimensions.screenRight; } }
+    public static float LEFT_EDGE    { get { return Dimensions.instance.leftEdge.position.x; } }
+    public static float RIGHT_EDGE   { get { return Dimensions.instance.rightEdge.position.x; } }
+    public static float LEFT_SPAWN   { get { return Dimensions.instance.leftSpawn.position.x; } }
+    public static float RIGHT_SPAWN  { get { return Dimensions.instance.rightSpawn.position.x; } }
+    public static float TOP_EDGE     { get { return Dimensions.instance.topEdge.position.y; } }
+    public static float BOTTOM_EDGE  { get { return Dimensions.instance.bottomEdge.position.y; } }
+    public static float MEDUSA_LIMIT  { get { return Dimensions.instance.medusaLimit.position.y; } }
+    public static float WATER_SURFACE { get { return Dimensions.instance.waterSurface.position.y; } }
 
-    // Y dimensions (up and down)
-    public const float SHIP     = 2.75f;
-    public const float WATER    = 2.65f;
-    public const float MEDUSA   = 2.35f;
-    public const float TOP_EDGE = 5f;
-    public const float BOT_EDGE = -5f;
-    public const float AMMO     = 3.5f;
+    [SerializeField] private Transform leftEdge;
+    [SerializeField] private Transform rightEdge;
+    [SerializeField] private Transform leftSpawn;
+    [SerializeField] private Transform rightSpawn;
+    [SerializeField] private Transform topEdge;
+    [SerializeField] private Transform bottomEdge;
+    [SerializeField] private Transform medusaLimit;
+    [SerializeField] private Transform waterSurface;
 
-    public static void Init()
+    private void Awake()
     {
-        var width = Screen.width;
-        var height = Screen.height;
-
-        Log.Trace("Screen resolution: {0} x {1}.", width, height);
-
-        var offset = (float) width / 5f;
-
-        var camera = Camera.main;
-        var worldPt = camera.ScreenToWorldPoint(Vector3.zero);
-        Dimensions.screenLeft = worldPt.x;
-
-        worldPt = camera.ScreenToWorldPoint(new Vector3(width, 0f, 0f));
-        Dimensions.screenRight = worldPt.x;
-
-        worldPt = camera.ScreenToWorldPoint(new Vector3(-offset, 0f, 0f));
-        Dimensions.leftEdge = worldPt.x;
-
-        worldPt = camera.ScreenToWorldPoint(new Vector3(width + offset, 0f, 0f));
-        Dimensions.rightEdge = worldPt.x;
-
-        Log.Trace("Left edge: {0}, right edge: {1}, screen left: {2}, screen right: {3}",
-                  Dimensions.leftEdge, Dimensions.rightEdge, Dimensions.screenLeft, Dimensions.screenRight);
+        Dimensions.instance = this;
     }
 }

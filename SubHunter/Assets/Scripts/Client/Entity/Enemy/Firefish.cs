@@ -36,13 +36,13 @@ public class Firefish : Sub
 
     private void MoveUpdate()
     {
-        if (this.dir == Vector3.right && this.transform.position.x > Dimensions.RIGHT_EDGE)
+        if (this.dir == Vector3.right && this.transform.position.x > Dimensions.RIGHT_SPAWN)
         {
             Destroy();
             return;
         }
         
-        if (this.dir == Vector3.left && this.transform.position.x < Dimensions.LEFT_EDGE)
+        if (this.dir == Vector3.left && this.transform.position.x < Dimensions.LEFT_SPAWN)
         {
             Destroy();
             return;

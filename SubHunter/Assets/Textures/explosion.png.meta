@@ -55,7 +55,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -65,11 +65,14 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -80,12 +83,14 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -103,6 +108,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 16.5}
+        - {x: -18, y: 13.5}
+        - {x: -18, y: -10.5}
+        - {x: -9, y: -16.5}
+        - {x: 12, y: -16.5}
+        - {x: 18, y: -13.5}
+        - {x: 18, y: 16.5}
     - name: explosion_1
       rect:
         serializedVersion: 2
@@ -113,6 +126,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 19}
+        - {x: -21, y: 15}
+        - {x: -21, y: -10}
+        - {x: -14, y: -19}
+        - {x: 14, y: -19}
+        - {x: 21, y: -14}
+        - {x: 21, y: 18}
+        - {x: 17, y: 19}
     - name: explosion_2
       rect:
         serializedVersion: 2
@@ -123,6 +145,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: 20.5}
+        - {x: -23.5, y: -17.5}
+        - {x: -12.5, y: -20.5}
+        - {x: 21.5, y: -20.5}
+        - {x: 23.5, y: -18.5}
+        - {x: 23.5, y: 17.5}
+        - {x: 21.5, y: 20.5}
     - name: explosion_3
       rect:
         serializedVersion: 2
@@ -133,6 +163,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 22}
+        - {x: -24.5, y: 20}
+        - {x: -24.5, y: -16}
+        - {x: -7.5, y: -22}
+        - {x: 17.5, y: -22}
+        - {x: 24.5, y: -11}
+        - {x: 24.5, y: 19}
+        - {x: 20.5, y: 22}
     - name: explosion_4
       rect:
         serializedVersion: 2
@@ -143,6 +182,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 23.5}
+        - {x: -26, y: -13.5}
+        - {x: -11, y: -23.5}
+        - {x: 22, y: -23.5}
+        - {x: 26, y: -19.5}
+        - {x: 26, y: 19.5}
+        - {x: 23, y: 23.5}
     - name: explosion_5
       rect:
         serializedVersion: 2
@@ -153,6 +200,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 23.5}
+        - {x: -27, y: 23.5}
+        - {x: -27, y: -15.5}
+        - {x: -19, y: -21.5}
+        - {x: -9, y: -23.5}
+        - {x: 16, y: -23.5}
+        - {x: 27, y: -12.5}
+        - {x: 27, y: 20.5}
     - name: explosion_6
       rect:
         serializedVersion: 2
@@ -163,6 +219,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: 24}
+        - {x: -27.5, y: 23}
+        - {x: -27.5, y: -17}
+        - {x: -15.5, y: -24}
+        - {x: 23.5, y: -24}
+        - {x: 27.5, y: -15}
+        - {x: 27.5, y: 24}
     - name: explosion_7
       rect:
         serializedVersion: 2
@@ -173,6 +237,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 24}
+        - {x: -28, y: -17}
+        - {x: -13, y: -24}
+        - {x: 24, y: -24}
+        - {x: 28, y: -19}
+        - {x: 28, y: 24}
     - name: explosion_8
       rect:
         serializedVersion: 2
@@ -183,6 +254,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 25}
+        - {x: -27.5, y: 24}
+        - {x: -28.5, y: 21}
+        - {x: -28.5, y: -11}
+        - {x: -11.5, y: -25}
+        - {x: 20.5, y: -25}
+        - {x: 28.5, y: -11}
+        - {x: 28.5, y: 24}
+        - {x: 25.5, y: 25}
     - name: explosion_9
       rect:
         serializedVersion: 2
@@ -193,6 +274,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 25}
+        - {x: -29, y: 21}
+        - {x: -29, y: -17}
+        - {x: -10, y: -25}
+        - {x: 19, y: -25}
+        - {x: 29, y: -12}
+        - {x: 29, y: 19}
+        - {x: 25, y: 25}
     - name: explosion_10
       rect:
         serializedVersion: 2
@@ -203,6 +293,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 25}
+        - {x: -29, y: -20}
+        - {x: -19, y: -25}
+        - {x: 16, y: -25}
+        - {x: 29, y: -21}
+        - {x: 29, y: 25}
     - name: explosion_11
       rect:
         serializedVersion: 2
@@ -213,6 +310,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 25}
+        - {x: -29, y: 22}
+        - {x: -29, y: -16}
+        - {x: -12, y: -25}
+        - {x: 16, y: -25}
+        - {x: 28, y: -21}
+        - {x: 29, y: -20}
+        - {x: 29, y: 24}
+        - {x: 25, y: 25}
     - name: explosion_12
       rect:
         serializedVersion: 2
@@ -223,6 +330,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 25}
+        - {x: -27.5, y: 17}
+        - {x: -29.5, y: 13}
+        - {x: -29.5, y: -2}
+        - {x: -25.5, y: -12}
+        - {x: -11.5, y: -25}
+        - {x: 16.5, y: -25}
+        - {x: 27.5, y: -19}
+        - {x: 29.5, y: -10}
+        - {x: 29.5, y: 15}
+        - {x: 23.5, y: 25}
     - name: explosion_13
       rect:
         serializedVersion: 2
@@ -233,6 +352,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 14}
+        - {x: -29.5, y: -1}
+        - {x: -26.5, y: -15}
+        - {x: -15.5, y: -25}
+        - {x: 19.5, y: -25}
+        - {x: 29.5, y: -18}
+        - {x: 29.5, y: 25}
+        - {x: -12.5, y: 25}
+        - {x: -24.5, y: 20}
     - name: explosion_14
       rect:
         serializedVersion: 2
@@ -243,6 +372,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 25}
+        - {x: -26.5, y: 23}
+        - {x: -29.5, y: 15}
+        - {x: -29.5, y: -4}
+        - {x: -22.5, y: -14}
+        - {x: -7.5, y: -25}
+        - {x: 23.5, y: -25}
+        - {x: 29.5, y: -11}
+        - {x: 29.5, y: 19}
+        - {x: 18.5, y: 25}
     - name: explosion_15
       rect:
         serializedVersion: 2
@@ -253,6 +393,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 24}
+        - {x: -29, y: -18}
+        - {x: -10, y: -24}
+        - {x: 21, y: -24}
+        - {x: 28, y: -16}
+        - {x: 29, y: -12}
+        - {x: 29, y: 24}
     - name: explosion_16
       rect:
         serializedVersion: 2
@@ -263,6 +411,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 29, y: 21}
+        - {x: 24, y: 24}
+        - {x: -28, y: 24}
+        - {x: -29, y: 21}
+        - {x: -29, y: -16}
+        - {x: -14, y: -24}
+        - {x: 15, y: -24}
+        - {x: 24, y: -13}
+        - {x: 29, y: -6}
     - name: explosion_17
       rect:
         serializedVersion: 2
@@ -273,6 +431,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 24}
+        - {x: -26, y: 20}
+        - {x: -29, y: 17}
+        - {x: -29, y: -11}
+        - {x: -6, y: -24}
+        - {x: 22, y: -24}
+        - {x: 29, y: -9}
+        - {x: 29, y: 23}
+        - {x: 26, y: 24}
     - name: explosion_18
       rect:
         serializedVersion: 2
@@ -283,6 +451,12 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 23.5}
+        - {x: -29, y: -23.5}
+        - {x: 19, y: -23.5}
+        - {x: 29, y: -6.5}
+        - {x: 29, y: 23.5}
     - name: explosion_19
       rect:
         serializedVersion: 2
@@ -293,6 +467,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 23.5}
+        - {x: -29, y: 17.5}
+        - {x: -29, y: -8.5}
+        - {x: -14, y: -23.5}
+        - {x: 18, y: -23.5}
+        - {x: 29, y: -19.5}
+        - {x: 29, y: 20.5}
+        - {x: 22, y: 23.5}
     - name: explosion_20
       rect:
         serializedVersion: 2
@@ -303,6 +486,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 23.5}
+        - {x: -28.5, y: 17.5}
+        - {x: -28.5, y: -6.5}
+        - {x: -19.5, y: -14.5}
+        - {x: -1.5, y: -23.5}
+        - {x: 14.5, y: -23.5}
+        - {x: 28.5, y: -11.5}
+        - {x: 28.5, y: 18.5}
+        - {x: 26.5, y: 23.5}
     - name: explosion_21
       rect:
         serializedVersion: 2
@@ -313,6 +506,27 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -17.5}
+        - {x: 3, y: -22.5}
+        - {x: 11, y: -22.5}
+        - {x: 12, y: -21.5}
+        - {x: 12, y: -20.5}
+        - {x: 9, y: -17.5}
+      - - {x: -12, y: 22.5}
+        - {x: -26, y: 16.5}
+        - {x: -26, y: -12.5}
+        - {x: -7, y: -18.5}
+        - {x: 20, y: -18.5}
+        - {x: 27, y: -6.5}
+        - {x: 27, y: 20.5}
+        - {x: 26, y: 22.5}
+      - - {x: -27, y: 15.5}
+        - {x: -27, y: 7.5}
+        - {x: -26, y: 7.5}
+        - {x: -22, y: 11.5}
+        - {x: -22, y: 13.5}
+        - {x: -24, y: 15.5}
     - name: explosion_22
       rect:
         serializedVersion: 2
@@ -323,6 +537,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 19}
+        - {x: -25, y: 5}
+        - {x: -25, y: -10}
+        - {x: -16, y: -19}
+        - {x: 21, y: -19}
+        - {x: 25, y: -18}
+        - {x: 25, y: 18}
+        - {x: 21, y: 19}
     - name: explosion_23
       rect:
         serializedVersion: 2
@@ -333,6 +556,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.5, y: 17}
+        - {x: -7.5, y: 17}
+        - {x: -22.5, y: 4}
+        - {x: -22.5, y: -15}
+        - {x: -17.5, y: -17}
+        - {x: 17.5, y: -17}
+        - {x: 22.5, y: -8}
+        - {x: 22.5, y: 11}
     - name: explosion_24
       rect:
         serializedVersion: 2
@@ -343,5 +575,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

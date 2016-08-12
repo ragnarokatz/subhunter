@@ -15,7 +15,7 @@ public class Powerup : Entity
         base.Start();
 
         this.dir = Vector3.up;
-        this.destroyBoundary = Dimensions.WATER;
+        this.destroyBoundary = Dimensions.WATER_SURFACE;
 
         EntityManager.I.Powerups.Add(this);
         this.transform.SetParent(EntityManager.I.PowerupParent, true);
