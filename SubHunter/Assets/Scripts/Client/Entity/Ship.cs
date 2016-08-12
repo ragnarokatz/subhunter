@@ -17,7 +17,7 @@ public class Ship : Entity
         {
             Data.clip  = 5;
             Data.nuke  = 0;
-            Data.speed = 2.5f;
+            Data.speed = 2f;
 
             EventManager.UpdateAttribs("clip", false);
         }
@@ -57,7 +57,7 @@ public class Ship : Entity
 
         public static void RestoreSpeed()
         {
-            Data.speed = 2.5f;
+            Data.speed = 2f;
         }
     }
 

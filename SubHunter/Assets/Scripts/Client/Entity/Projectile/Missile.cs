@@ -12,10 +12,11 @@ public class Missile : Projectile
         // Init direction targets ship if exists, or target the center point if not.
         // If angle is more than 45 deg away from vertical line, then adjust maximum angle to 45 deg.
         var targetPos = Ship.IsAlive ? Ship.I.transform.position : EntityManager.I.ShipParent.position;
-        if (targetPos.y < targetPos.x)
-            targetPos.y = targetPos.x;
+        var dist = targetPos - this.transform.position;
+        if (Mathf.Abs(dist.y / 2) < Mathf.Abs(dist.x))
+            dist.y = dist.x * 2;
 
-        this.dir = (targetPos - this.transform.position).normalized;
+        this.dir = dist.normalized;
         UpdateRotation(this.dir);
 
         this.destroyBoundary = Dimensions.TOP_EDGE;
@@ -32,6 +33,7 @@ public class Missile : Projectile
             return;
         }
 
+        #if false
         var change = this.YChangeRate * Time.deltaTime;
         if (Vector3.up.y - this.dir.y > change)
         {
@@ -46,6 +48,7 @@ public class Missile : Projectile
             this.dir = Vector3.up;
 
         UpdateRotation(this.dir);
+        #endif
     }
 
     private void UpdateRotation(Vector3 dir)
