@@ -101,7 +101,7 @@ public class Ship : Entity
         this.lastFireTime = Time.time;
         AudioManager.I.AudioSources[0].Play();
 
-        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin - 0.1f, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
+        GameObject.Instantiate(this.Weapon, new Vector3(this.Box.xMin - 0.2f, Dimensions.WATER_SURFACE, 0f), Quaternion.identity);
     }
     
     public void FireRight()

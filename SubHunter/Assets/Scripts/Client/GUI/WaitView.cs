@@ -28,6 +28,12 @@ public class WaitView : MonoBehaviour
         this.Score.text = Highscore.Score.ToString();
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            StartNewGame();
+    }
+
     private void OnDisable()
     {
         this.StartText.enabled = false;
