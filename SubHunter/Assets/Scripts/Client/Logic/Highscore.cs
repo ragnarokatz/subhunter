@@ -1,9 +1,10 @@
 using UnityEngine;
 using Foundation;
+using CodeStage.AntiCheat.ObscuredTypes;
 
 public class Highscore
 {
-    public static int Score { get { return PlayerPrefs.GetInt("high_score", 0); } }
+    public static int Score { get { return ObscuredPrefs.GetInt("high_score", 0); } }
 
     public static bool TrySubmitHighscore(int score)
     {
@@ -12,7 +13,7 @@ public class Highscore
         if (score <= Highscore.Score)
             return false;
 
-        PlayerPrefs.SetInt("high_score", score);
+        ObscuredPrefs.SetInt("high_score", score);
         return true;
     }
 }
