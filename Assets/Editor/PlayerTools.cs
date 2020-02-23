@@ -2,7 +2,6 @@
 using UnityEditor;
 #endif
 using UnityEngine;
-using CodeStage.AntiCheat.ObscuredTypes;
 
 namespace Editor
 {
@@ -12,7 +11,7 @@ namespace Editor
         [MenuItem("Tools/Clear Highscore")]
         public static void ClearHighscore()
         {
-            ObscuredPrefs.SetInt("high_score", 0);
+            PlayerPrefs.SetInt("high_score", 0);
         }
         #endif
     }
